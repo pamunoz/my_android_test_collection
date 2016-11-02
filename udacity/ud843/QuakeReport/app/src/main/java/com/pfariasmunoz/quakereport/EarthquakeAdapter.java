@@ -36,7 +36,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // set the text Magnitude
         TextView magTextView = (TextView) listItemView.findViewById(R.id.magnitude);
 
-        String mag = String.valueOf(currentEarthquake.getMagnitude());
+        String mag = currentEarthquake.getMagnitude();
         magTextView.setText(mag);
 
         // set the text Location

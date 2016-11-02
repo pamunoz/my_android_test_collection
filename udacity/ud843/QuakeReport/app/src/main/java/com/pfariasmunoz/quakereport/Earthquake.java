@@ -6,21 +6,21 @@ package com.pfariasmunoz.quakereport;
 
 public class Earthquake {
 
-    private float mMagnitude;
+    private String  mMagnitude;
     private String mLocation;
     private String mTime;
 
-    public Earthquake(float mMagnitude, String mLocation, String mTime) {
+    public Earthquake(String  mMagnitude, String mLocation, String mTime) {
         this.mMagnitude = mMagnitude;
         this.mLocation = mLocation;
         this.mTime = mTime;
     }
 
-    public float getMagnitude() {
+    public String getMagnitude() {
         return mMagnitude;
     }
 
-    public void setMagnitude(float mMagnitude) {
+    public void setMagnitude(String  mMagnitude) {
         this.mMagnitude = mMagnitude;
     }
 
