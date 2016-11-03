@@ -5,22 +5,32 @@ package com.pfariasmunoz.quakereport;
  */
 
 public class Earthquake {
-
-    private String  mMagnitude;
+    /** Magnitude of the earthquake */
+    private double mMagnitude;
+    /** the location of the earthquake */
     private String mLocation;
-    private String mTime;
+    /** time of the earthquake */
+    private long mTimeInMilliseconds;
 
-    public Earthquake(String  mMagnitude, String mLocation, String mTime) {
-        this.mMagnitude = mMagnitude;
-        this.mLocation = mLocation;
-        this.mTime = mTime;
+    /**
+     * Constructs a new {@link Earthquake} object.
+     *
+     * @param magnitude is the magnitude (size) of the earthquake
+     * @param location is the city location of the earthquake
+     * @param timeInMilliseconds is the time in milliseconds (from the Epoch) when the
+     *  earthquake happened
+     */
+    public Earthquake(double  magnitude, String location, long timeInMilliseconds) {
+        this.mMagnitude = magnitude;
+        this.mLocation = location;
+        this.mTimeInMilliseconds = timeInMilliseconds;
     }
 
-    public String getMagnitude() {
+    public double getMagnitude() {
         return mMagnitude;
     }
 
-    public void setMagnitude(String  mMagnitude) {
+    public void setMagnitude(double mMagnitude) {
         this.mMagnitude = mMagnitude;
     }
 
@@ -32,11 +42,11 @@ public class Earthquake {
         this.mLocation = mLocation;
     }
 
-    public String getTime() {
-        return mTime;
+    public long getTimeInMilliseconds() {
+        return mTimeInMilliseconds;
     }
 
-    public void setTime(String mTime) {
-        this.mTime = mTime;
+    public void setTime(long mTime) {
+        this.mTimeInMilliseconds = mTime;
     }
 }
