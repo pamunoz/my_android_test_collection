@@ -2,6 +2,7 @@ package com.pfariasmunoz.buttonclickcounter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,18 +23,17 @@ public class MainActivity extends AppCompatActivity {
         userInput = (EditText) findViewById(R.id.editText);
         button = (Button) findViewById(R.id.button);
         textView = (TextView) findViewById(R.id.textView);
+        // clear the original text view
+        textView.setText("");
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
         View.OnClickListener ourOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String time = "";
                 numTimesClicked++;
-                if (numTimesClicked == 1) {
-                    time = "time";
-                } else {
-                    time = "times";
-                }
+                String time = numTimesClicked != 1 ? "times" : "time";
                 String result ="\nThe button got tapped " + numTimesClicked + " " + time;
+                // add more text at the end
                 textView.append(result);
             }
         };
