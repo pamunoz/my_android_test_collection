@@ -66,9 +66,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String url = earthquakes.get(i).getUrl();
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
+                Uri webpage = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
     }

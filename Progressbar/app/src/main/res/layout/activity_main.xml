@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.pfariasmunoz.progressbar.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:contentDescription=" "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:id="@+id/textView"
+        tools:layout_editor_absoluteY="243dp"
+        tools:layout_editor_absoluteX="133dp" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="256dp"
+        android:layout_height="320dp"
+        android:id="@+id/progressBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp" />
+</android.support.constraint.ConstraintLayout>
