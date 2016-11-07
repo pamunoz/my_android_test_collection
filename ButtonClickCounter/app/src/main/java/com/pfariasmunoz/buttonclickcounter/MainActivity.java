@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText userInput;
     private Button button;
     private TextView textView;
-    private int numTimesClicked = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +29,8 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener ourOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numTimesClicked++;
-                String time = numTimesClicked != 1 ? "times" : "time";
-                String result ="\nThe button got tapped " + numTimesClicked + " " + time;
-                // add more text at the end
+                String result = userInput.getText().toString();
+                result += "\n";
                 textView.append(result);
             }
         };
