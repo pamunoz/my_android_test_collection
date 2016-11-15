@@ -29,7 +29,7 @@ public final class QueryUtils {
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /** Sample JSON response for a USGS query */
-    private static final String SAMPLE_JSON_RESPONSE = " http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
+    public static final String REQUEST_URL = " http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -43,7 +43,17 @@ public final class QueryUtils {
      * Return a list of {@link Earthquake} objects that has been built up from
      * parsing a JSON response.
      */
-    public static ArrayList<Earthquake> extractEarthquakes() {
+    public static ArrayList<Earthquake> extractEarthquakes(String stringUrl) {
+
+        URL requestUrl = createUrl(stringUrl);
+
+        // Perform HTTP request to the URL and receive a JSON response back
+        String jsonResponse = null;
+        try {
+            jsonResponse = makeHttpRequest(requestUrl);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Error closing input stream", e);
+        }
 
         // Create an empty ArrayList that we can start adding earthquakes to
         ArrayList<Earthquake> earthquakes = new ArrayList<>();
@@ -53,7 +63,7 @@ public final class QueryUtils {
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
 
-            JSONObject jsonRootObject = new JSONObject(SAMPLE_JSON_RESPONSE);
+            JSONObject jsonRootObject = new JSONObject(jsonResponse);
             // build up a list of Earthquake objects with the corresponding data.
             JSONArray jsonArray = jsonRootObject.getJSONArray("features");
             //Iterate the jsonArray and print the info of JSONObjects
@@ -97,6 +107,8 @@ public final class QueryUtils {
      * Make an HTTP request to the given URL and return a String as the response.
      */
     private static String makeHttpRequest(URL url) throws IOException {
+
+
         String jsonResponse = "";
 
         // If the URL is null, then return early.
