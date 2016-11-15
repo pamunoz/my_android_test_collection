@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,6 +17,10 @@ import java.util.Date;
  * Helper methods related to requesting and receiving earthquake data from USGS.
  */
 public final class QueryUtils {
+
+
+    /** Tag for the log messages */
+    public static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /** Sample JSON response for a USGS query */
     private static final String SAMPLE_JSON_RESPONSE = " http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
@@ -66,6 +72,19 @@ public final class QueryUtils {
 
         // Return the list of earthquakes
         return earthquakes;
+    }
+
+    /**
+     * Returns new URL object from the given string URL.
+     */
+    private static URL createUrl(String stringUrl) {
+        URL url = null;
+        try {
+            url = new URL(stringUrl);
+        } catch (MalformedURLException e) {
+            Log.e(LOG_TAG, "Error with creating URL ", e);
+        }
+        return url;
     }
 
 }
