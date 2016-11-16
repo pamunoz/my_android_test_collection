@@ -28,8 +28,6 @@ public final class QueryUtils {
     /** Tag for the log messages */
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
-    /** Sample JSON response for a USGS query */
-    public static final String REQUEST_URL = " http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
