@@ -17,16 +17,20 @@ package com.pfariasmunoz.quakereport;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ListView;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<Earthquake>> {
-    EarthquakeAdapter earthquakeAdapter;
+    private EarthquakeAdapter earthquakeAdapter;
+    private ListView earthquakeListView;
+    private TextView emptyListView;
 
     /** URL for earthquake data from the USGS dataset */
     private static final String USGS_REQUEST_URL =
@@ -48,13 +52,15 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         // Create a new {@link ArrayAdapter} of earthquakes
         earthquakeAdapter = new EarthquakeAdapter(MainActivity.this, new ArrayList<Earthquake>());
         // Find a reference to the {@link ListView} in the layout
-        ListView earthquakeListView = (ListView) findViewById(R.id.list);
+        earthquakeListView = (ListView) findViewById(R.id.list);
 
-
+        emptyListView = (TextView) findViewById(R.id.empty_element);
+        earthquakeListView.setEmptyView(emptyListView);
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         earthquakeListView.setAdapter(earthquakeAdapter);
+
 
         // Get a reference to the LoaderManager, in order to interact with loaders.
         LoaderManager loaderManager = getLoaderManager();
@@ -81,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
         // Clear the adapter of previous earthquake data
+        emptyListView.setText(R.string.no_earthquake_found);
         earthquakeAdapter.clear();
 
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
