@@ -36,6 +36,7 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>>{
         if (mUrl == null) {
             return null;
         }
+
         List<Earthquake> earthquakes = QueryUtils.extractEarthquakes(mUrl);
         return earthquakes;
     }

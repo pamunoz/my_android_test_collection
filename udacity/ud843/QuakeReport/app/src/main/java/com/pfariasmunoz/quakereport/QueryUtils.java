@@ -43,6 +43,7 @@ public final class QueryUtils {
      */
     public static ArrayList<Earthquake> extractEarthquakes(String stringUrl) {
 
+
         URL requestUrl = createUrl(stringUrl);
 
         // Perform HTTP request to the URL and receive a JSON response back
