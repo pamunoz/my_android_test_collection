@@ -22,6 +22,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +35,8 @@ import com.example.android.pets.data.PetDbHelper;
  * Displays list of pets that were entered and stored in the app.
  */
 public class CatalogActivity extends AppCompatActivity {
+
+    private PetDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class CatalogActivity extends AppCompatActivity {
             }
         });
 
+        mDbHelper = new PetDbHelper(this);
         displayDatabaseInfo();
     }
 
@@ -80,8 +84,7 @@ public class CatalogActivity extends AppCompatActivity {
 
     private void insertPet() {
         // Gets the data repository in write mode
-        PetDbHelper helper = new PetDbHelper(CatalogActivity.this);
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
@@ -93,6 +96,7 @@ public class CatalogActivity extends AppCompatActivity {
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(PetEntry.TABLE_NAME, null, values);
+        Log.v("CatalogActivity", "New row ID " + newRowId);
     }
 
     /**
