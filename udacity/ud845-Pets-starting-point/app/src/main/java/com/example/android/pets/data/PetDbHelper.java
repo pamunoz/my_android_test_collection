@@ -12,7 +12,10 @@ import com.example.android.pets.data.PetContract.PetEntry;
 
 public class PetDbHelper extends SQLiteOpenHelper {
 
+    /** Name of the database file */
     private static final String DATABASE_NAME = "shelter.db";
+    /** Database version.
+     * If you change the database schema, you must change its version */
     private static final int DATABASE_VERSION = 1;
 
     /**
