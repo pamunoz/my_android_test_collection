@@ -76,6 +76,8 @@ public class NetworkUtils {
             InputStream in = urlConnection.getInputStream();
 
             Scanner scanner = new Scanner(in);
+            // By setting this delimeter (\\A), we force the scanner to read the entire contex of
+            // the steam into the next token string.
             scanner.useDelimiter("\\A");
 
             boolean hasInput = scanner.hasNext();
