@@ -63,10 +63,13 @@ public class MainActivity extends AppCompatActivity {
      * @param v Button that was clicked.
      */
     public void onClickShareTextButton(View v) {
-        // TODO (5) Specify a String you'd like to share
+        // DONE (5) Specify a String you'd like to share
+        String message = "There was a time when people walk the earth and they fly and fly again\n" +
+                "but people was stupid and stupid and stupid";
 
-        // TODO (6) Replace the Toast with shareText, passing in the String from step 5
-        Toast.makeText(this, "TODO: Share text when this is clicked", Toast.LENGTH_LONG).show();
+        // DONE (6) Replace the Toast with shareText, passing in the String from step 5
+        // Toast.makeText(this, "TODO: Share text when this is clicked", Toast.LENGTH_LONG).show();
+        shareText(message);
     }
 
     /**
@@ -140,12 +143,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // TODO (1) Create a void method called shareText that accepts a String as a parameter
+    // DONE (1) Create a void method called shareText that accepts a String as a parameter
     // Do steps 2 - 4 within the shareText method
+    private void shareText(String parameter) {
+        // DONE (2) Create a String variable called mimeType and set it to "text/plain"
+        String mimeType = "text/plain";
 
-        // TODO (2) Create a String variable called mimeType and set it to "text/plain"
+        // DONE (3) Create a title for the chooser window that will pop up
+        String chooserTitle = "Learning to share";
+        String textToShare = "Hello there";
 
-        // TODO (3) Create a title for the chooser window that will pop up
 
-        // TODO (4) Use ShareCompat.IntentBuilder to build the Intent and start the chooser
+        // DONE (4) Use ShareCompat.IntentBuilder to build the Intent and start the chooser
+        ShareCompat.IntentBuilder.from(this)
+                .setChooserTitle(chooserTitle)
+                .setType(mimeType)
+                .startChooser();
+    }
 }
