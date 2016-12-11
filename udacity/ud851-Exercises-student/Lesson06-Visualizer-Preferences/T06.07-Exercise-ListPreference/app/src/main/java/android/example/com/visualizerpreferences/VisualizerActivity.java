@@ -65,6 +65,8 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
+    public 
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.pref_show_bass_key))) {
