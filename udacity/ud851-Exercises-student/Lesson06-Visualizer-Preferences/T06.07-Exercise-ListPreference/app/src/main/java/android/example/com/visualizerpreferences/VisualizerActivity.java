@@ -69,10 +69,9 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
      * This method calls setColor on the VisualizerView, taking the sharepreferences,
      * getting a string from sharepreferences, which has the key and a default value of red.
      *
-     * @param sharedPreferences
+     * @param sharedPreferences from where we get the key and its value.
      */
     public void loadColorFromPreferences(SharedPreferences sharedPreferences) {
-
         mVisualizerView.setColor(
                 sharedPreferences.getString(getString(R.string.pref_color_key),
                         getString(R.string.pref_color_red_value)));
