@@ -6,23 +6,45 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.android.waitlist.data.WaitlistContract.*;
 
-// TODO (1) extend the SQLiteOpenHelper class
-public class WaitlistDbHelper {
+// DONE (1) extend the SQLiteOpenHelper class
+public class WaitlistDbHelper extends SQLiteOpenHelper {
 
-    // TODO (2) Create a static final String called DATABASE_NAME and set it to "waitlist.db"
+    // DONE (2) Create a static final String called DATABASE_NAME and set it to "waitlist.db"
+    private static final String DATABASE_NAME = "waitlist.db";
 
-    // TODO (3) Create a static final String called DATABASE_VERSION and set it to 1
+    // DONE (3) Create a static final String called DATABASE_VERSION and set it to 1
+    private static final int DATABASE_VERSION = 1;
+    // DONE (4) Create a Constructor that takes a context and calls the parent constructor
 
-    // TODO (4) Create a Constructor that takes a context and calls the parent constructor
+    public WaitlistDbHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
 
-    // TODO (5) Override the onCreate method
+    // DONE (5) Override the onCreate method
 
-        // TODO (6) Inside, create an String query called SQL_CREATE_WAITLIST_TABLE that will create the table
 
-        // TODO (7) Execute the query by calling execSQL on sqLiteDatabase and pass the string query SQL_CREATE_WAITLIST_TABLE
 
-    // TODO (8) Override the onUpgrade method
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        // DONE (6) Inside, create an String query called SQL_CREATE_WAITLIST_TABLE that will create the table
+        String SQL_CREATE_WAITLIST_TABLE = "CREATE TABLE " +
+                        WaitlistEntry.TABLE_NAME + " (" +
+                        WaitlistEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        WaitlistEntry.COLUMN_GUEST_NAME + " TEXT NOT NULL, " +
+                        WaitlistEntry.COLUMN_PARTY_SIZE + " INTEGER NOT NULL, " +
+                        WaitlistEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                        ");";
+        // DONE (7) Execute the query by calling execSQL on sqLiteDatabase and pass the string query SQL_CREATE_WAITLIST_TABLE
+        sqLiteDatabase.execSQL(SQL_CREATE_WAITLIST_TABLE);
 
-        // TODO (9) Inside, execute a drop table query, and then call onCreate to re-create it
+    }
 
+
+    // DONE (8) Override the onUpgrade method
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        // DONE (9) Inside, execute a drop table query, and then call onCreate to re-create it
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + WaitlistEntry.TABLE_NAME);
+        onCreate(sqLiteDatabase);
+    }
 }
