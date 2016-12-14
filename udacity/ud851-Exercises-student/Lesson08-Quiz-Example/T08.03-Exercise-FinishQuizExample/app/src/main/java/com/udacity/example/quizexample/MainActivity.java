@@ -132,6 +132,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mData.close();
+    }
+
     // Use an async task to do the data fetch off of the main thread.
     public class WordFetchTask extends AsyncTask<Void, Void, Cursor> {
 
@@ -160,8 +167,8 @@ public class MainActivity extends AppCompatActivity {
 
             // DONE (2) Initialize anything that you need the cursor for, such as setting up
             // the screen with the first word and setting any other instance variables
-            int mWordCol = mData.getColumnIndex(DroidTermsExampleContract.COLUMN_WORD);
-            int mDefCol = mData.getColumnIndex(DroidTermsExampleContract.COLUMN_DEFINITION);
+            mWordCol = mData.getColumnIndex(DroidTermsExampleContract.COLUMN_WORD);
+            mDefCol = mData.getColumnIndex(DroidTermsExampleContract.COLUMN_DEFINITION);
 
             nextWord();
         }
