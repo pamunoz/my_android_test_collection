@@ -110,6 +110,9 @@ public class TaskContentProvider extends ContentProvider {
         }
 
         // DONE (5) Notify the resolver if the uri has been changed, and return the newly inserted URI
+        // so the resolver knows that something has changed so we can update the UI and
+        // any asociated UI accordingly
+        getContext().getContentResolver().notifyChange(uri, null);
 
         return returnedUri;
     }
