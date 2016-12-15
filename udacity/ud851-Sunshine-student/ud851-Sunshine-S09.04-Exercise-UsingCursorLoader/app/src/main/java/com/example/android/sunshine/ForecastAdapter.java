@@ -24,6 +24,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.sunshine.data.WeatherContract;
+import com.example.android.sunshine.utilities.SunshineDateUtils;
+import com.example.android.sunshine.utilities.SunshineWeatherUtils;
+
 import static com.example.android.sunshine.data.WeatherContract.WeatherEntry;
 
 
@@ -103,43 +106,30 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
 //      DONE (5) Delete the current body of onBindViewHolder
 //      DONE (6) Move the cursor to the appropriate position
         mCursor.moveToPosition(position);
+        /*******************
+         * Weather Summary *
+         *******************/
+
 //      DONE (7) Generate a weather summary with the date, description, high and low
-        int idIndex = mCursor.getColumnIndex(WeatherEntry._ID);
-        int dateIndex = mCursor.getColumnIndex(WeatherEntry.COLUMN_DATE);
-        int weatherIdIndex = mCursor.getColumnIndex(WeatherEntry.COLUMN_WEATHER_ID);
-        int minTempIndex = mCursor.getColumnIndex(WeatherEntry.COLUMN_MIN_TEMP);
-        int maxTempIndex = mCursor.getColumnIndex(WeatherEntry.COLUMN_MAX_TEMP);
-        int humidityIndex = mCursor.getColumnIndex(WeatherEntry.COLUMN_HUMIDITY);
-        int pressureIndex = mCursor.getColumnIndex(WeatherEntry.COLUMN_PRESSURE);
-        int windSpeedIndex = mCursor.getColumnIndex(WeatherEntry.COLUMN_WIND_SPEED);
-        int directionDegreesIndex =mCursor.getColumnIndex(WeatherEntry.COLUMN_DEGREES);
+        // Generate a weather summary with the date, description, high and low
+        /* Read date from the cursor */
+        long dateInMillis = mCursor.getLong(MainActivity.INDEX_WEATHER_DATE);
+        /* Get human readable string using our utility method */
+        String dateString = SunshineDateUtils.getFriendlyDateString(mContext, dateInMillis, false);
+        /* Use the weatherId to obtain the proper description */
+        int weatherId = mCursor.getInt(MainActivity.INDEX_WEATHER_CONDITION_ID);
+        String description = SunshineWeatherUtils.getStringForWeatherCondition(mContext, weatherId);
+         /* Read high temperature from the cursor (in degrees celsius) */
+        double highInCelsius = mCursor.getDouble(MainActivity.INDEX_WEATHER_MAX_TEMP);
+        /* Read low temperature from the cursor (in degrees celsius) */
+        double lowInCelsius = mCursor.getDouble(MainActivity.INDEX_WEATHER_MIN_TEMP);
+        String highAndLowTemperature =
+                SunshineWeatherUtils.formatHighLows(mContext, highInCelsius, lowInCelsius);
+        String weatherSummary = dateString + " - " + description + " - " + highAndLowTemperature;
 
-        int id = mCursor.getInt(idIndex);
-        int date = mCursor.getInt(dateIndex);
-        int weatherId = mCursor.getInt(weatherIdIndex);
-        float minTemp = mCursor.getFloat(minTempIndex);
-        float maxTemp = mCursor.getFloat(maxTempIndex);
-        float humidity = mCursor.getFloat(humidityIndex);
-        float pressure = mCursor.getFloat(pressureIndex);
-        float windSpeed = mCursor.getFloat(windSpeedIndex);
-        float directionDegrees = mCursor.getFloat(directionDegreesIndex);
-
-        String separator = " - ";
-        String wetherSummary =
-                date + separator +
-                weatherId + separator +
-                minTemp + separator +
-                maxTemp + separator + "\n" +
-                humidity + separator +
-                pressure + separator +
-                windSpeed + separator +
-                directionDegrees;
-
-
-//      DONE (8) Display the summary that you created above
-        // determine the values of the wanted data
-        forecastAdapterViewHolder.itemView.setTag(id);
-        forecastAdapterViewHolder.weatherSummary.setText(wetherSummary);
+        //DONE (8) Display the summary that you created above
+        // Display the summary that you created above
+        forecastAdapterViewHolder.weatherSummary.setText(weatherSummary);
     }
 
     /**
@@ -188,7 +178,8 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
         @Override
         public void onClick(View v) {
             //  DONE (13) Instead of passing the String from the data array, use the weatherSummary text!
-            mClickHandler.onClick(weatherSummary.getText().toString().trim());
+            String weatherForDay = weatherSummary.getText().toString().trim();
+            mClickHandler.onClick(weatherForDay);
         }
     }
 }
