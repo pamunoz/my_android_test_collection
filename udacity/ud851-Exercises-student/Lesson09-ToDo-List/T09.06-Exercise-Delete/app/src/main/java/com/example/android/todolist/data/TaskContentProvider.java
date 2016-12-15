@@ -156,7 +156,23 @@ public class TaskContentProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
 
-        // TODO (1) Get access to the database and write URI matching code to recognize a single item
+        // DONE (1) Get access to the database and write URI matching code to recognize a single item
+        final SQLiteDatabase db = mTaskDbHelper.getWritableDatabase();
+
+        int match = sUriMatcher.match(uri);
+        Uri returnUri; // URI to be returned
+
+        switch (match) {
+            case TASKS:
+                int itemsDeleted = db.delete(TABLE_NAME, null, null);
+                if (itemsDeleted > 0) {
+                    return itemsDeleted;
+                } else {
+                    throw new android.database.SQLException("Failed to delete table with uri: " + uri);
+                }
+            case TASK_WITH_ID:
+
+        }
 
         // TODO (2) Write the code to delete a single row of data
         // [Hint] Use selections to delete an item by its row ID
