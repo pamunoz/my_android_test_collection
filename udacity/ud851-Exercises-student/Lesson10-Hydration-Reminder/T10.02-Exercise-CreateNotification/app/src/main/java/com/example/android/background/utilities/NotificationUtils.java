@@ -1,11 +1,17 @@
 package com.example.android.background.utilities;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
+import android.renderscript.RenderScript;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 
 import com.example.android.background.MainActivity;
 import com.example.android.background.R;
@@ -15,12 +21,14 @@ import com.example.android.background.R;
  */
 public class NotificationUtils {
     public static final int WATER_REMINDER_PENDING_INTENT_ID = 3517;
+    public static final int WATER_REMINDER_NOTIFICATION_ID = 1138;
 
-    // TODO (7) Create a method called remindUserBecauseCharging which takes a Context.
+    // DONE (7) Create a method called remindUserBecauseCharging which takes a Context.
     // This method will create a notification for charging. It might be helpful
     // to take a look at this guide to see an example of what the code in this method will look like:
     // https://developer.android.com/training/notify-user/build-notification.html
-        // TODO (8) In the remindUser method use NotificationCompat.Builder to create a notification
+    public void remindUserBecauseCharging(Context context) {
+        // DONE (8) In the remindUser method use NotificationCompat.Builder to create a notification
         // that:
         // - has a color of R.colorPrimary - use ContextCompat.getColor to get a compatible color
         // - has ic_drink_notification as the small icon
@@ -31,11 +39,31 @@ public class NotificationUtils {
         // - sets the notification defaults to vibrate
         // - uses the content intent returned by the contentIntent helper method for the contentIntent
         // - automatically cancels the notification when the notification is clicked
-        // TODO (9) If the build version is greater than JELLY_BEAN, set the notification's priority
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(context)
+                .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                .setSmallIcon(R.drawable.ic_drink_notification)
+                .setLargeIcon(largeIcon(context))
+                .setContentTitle(context.getString(R.string.charging_reminder_notification_title))
+                .setContentText(context.getString(R.string.charging_reminder_notification_body))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(
+                        context.getString(R.string.charging_reminder_notification_body)))
+                .setDefaults(Notification.DEFAULT_VIBRATE)
+                .setContentIntent(contentIntent(context))
+                .setAutoCancel(true);
+        // DONE (9) If the build version is greater than JELLY_BEAN, set the notification's priority
         // to PRIORITY_HIGH.
-        // TODO (11) Get a NotificationManager, using context.getSystemService(Context.NOTIFICATION_SERVICE);
-        // TODO (12) Trigger the notification by calling notify on the NotificationManager.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            notificationBuilder.setPriority(Notification.PRIORITY_HIGH);
+        }
+        // DONE (11) Get a NotificationManager, using context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        // DONE (12) Trigger the notification by calling notify on the NotificationManager.
         // Pass in a unique ID of your choosing for the notification and notificationBuilder.build()
+        manager.notify(WATER_REMINDER_NOTIFICATION_ID, notificationBuilder.build());
+    }
+
+
 
 
 
