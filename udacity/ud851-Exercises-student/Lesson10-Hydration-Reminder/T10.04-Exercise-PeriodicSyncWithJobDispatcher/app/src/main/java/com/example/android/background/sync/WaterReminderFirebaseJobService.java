@@ -41,8 +41,8 @@ public class WaterReminderFirebaseJobService extends com.firebase.jobdispatcher.
             @Override
             protected Object doInBackground(Object[] objects) {
                 Context context = WaterReminderFirebaseJobService.this;
-
                 ReminderTasks.executeTask(context, ReminderTasks.ACTION_CHARGING_REMINDER);
+                return null;
             }
 
             @Override
@@ -53,7 +53,7 @@ public class WaterReminderFirebaseJobService extends com.firebase.jobdispatcher.
 
         // DONE (9) Execute the AsyncTask
         // DONE (10) Return true
-        mBackgroundTask.execute()
+        mBackgroundTask.execute();
         return true;
     }
 
