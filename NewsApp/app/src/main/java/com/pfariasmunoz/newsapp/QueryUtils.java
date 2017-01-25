@@ -6,6 +6,10 @@ package com.pfariasmunoz.newsapp;
 
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +24,8 @@ import java.util.ArrayList;
  * Helper methods related to requesting and receiving news data from the guardian.
  */
 public class QueryUtils {
+
+    private static String TEMP_URL = "http://content.guardianapis.com/search?section=politics&page-size=10&show-field=headline,short-url&show-tags=contributor&api-key=d97b8466-d780-4368-9e65-0da55b17b11c";
 
     /** Tag for the log messages */
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
@@ -52,6 +58,40 @@ public class QueryUtils {
         ArrayList<Article> articles = new ArrayList<>();
 
         //TODO: try to parse a json response
+        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
+        // is formatted, a JSONException exception object will be thrown.
+        // Catch the exception so the app doesn't crash, and print the error message to the logs.
+        try {
+
+            JSONObject jsonRootObject = new JSONObject(jsonResponse);
+            // build up a list of Earthquake objects with the corresponding data.
+            JSONArray jsonArray = jsonRootObject.getJSONArray("results");
+            //Iterate the jsonArray and print the info of JSONObjects
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String sectionName = jsonObject.getString("sectionName");
+                String title = jsonObject.getString("webTitle");
+                String webUrl = jsonObject.getString("webUrl");
+                String authors = "";
+                String datePublication = jsonObject.getString("webPublicationDate");
+                JSONArray tags = jsonObject.getJSONArray("tags");
+                for (int j = 0; j < tags.length(); j++) {
+                    JSONObject jsonObject2 = tags.getJSONObject(j);
+
+                    if (tags.length() > 1) {
+                        authors += jsonObject2.getString("webTitle") + ", ";
+                    }
+                }
+
+
+                articles.add(new Article(title,sectionName, authors, datePublication, webUrl));
+            }
+        } catch (JSONException e) {
+            // If an error is thrown when executing any of the above statements in the "try" block,
+            // catch the exception here, so the app doesn't crash. Print a log message
+            // with the message from the exception.
+            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+        }
 
         return articles;
 

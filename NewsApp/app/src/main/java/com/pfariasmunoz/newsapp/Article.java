@@ -1,5 +1,7 @@
 package com.pfariasmunoz.newsapp;
 
+import java.util.Date;
+
 /**
  * Created by Pablo Farias on 24-01-17.
  */
@@ -16,15 +18,15 @@ public class Article {
     private String mAuthorName;
 
     /** (optional) The date of publication */
-    private long mTimeInMilliseconds;
+    private String mDateOfPublication;
 
     private String mUrl;
 
-    public Article(String title, String section, String authorName, long timeInMilliseconds, String url) {
+    public Article(String title, String section, String authorName, String dateOfPublication, String url) {
         this.mTitle = title;
         this.mSection = section;
         this.mAuthorName = authorName;
-        this.mTimeInMilliseconds = timeInMilliseconds;
+        this.mDateOfPublication = dateOfPublication;
         this.mUrl = url;
     }
 
@@ -52,12 +54,12 @@ public class Article {
         this.mAuthorName = authorName;
     }
 
-    public long getTimeInMilliseconds() {
-        return mTimeInMilliseconds;
+    public String getDateOfPublication() {
+        return mDateOfPublication;
     }
 
-    public void setTimeInMilliseconds(long mTimeInMilliseconds) {
-        this.mTimeInMilliseconds = mTimeInMilliseconds;
+    public void setTimeInMilliseconds(String dateOfPublication) {
+        this.mDateOfPublication = dateOfPublication;
     }
 
     public String getUrl() {
