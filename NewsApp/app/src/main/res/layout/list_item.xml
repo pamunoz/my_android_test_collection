@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fdf5ef">
+    android:background="#fdf5ef"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/title"
@@ -14,27 +16,42 @@
         android:fontFamily="sans-serif"
         android:textStyle="bold"
         android:textColor="@android:color/holo_red_dark"
+        tools:text="Noticia de Ultima hora"
         />
 
     <TextView
         android:id="@+id/author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:text="por Pablo Farias"
         />
 
-    <TextView
-        android:id="@+id/date"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+        android:gravity="fill_horizontal">
+        <TextView
+            android:id="@+id/section"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            tools:text="section"/>
 
-    <TextView
-        android:id="@+id/section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            tools:text="Hoy mierda"/>
+
+
+    </RelativeLayout>
+
+
 
 
 </LinearLayout>

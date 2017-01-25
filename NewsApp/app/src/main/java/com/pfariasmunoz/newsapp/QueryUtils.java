@@ -205,5 +205,11 @@ public class QueryUtils {
         return articles;
     }
 
+    private String parseDateString(String dateString) {
+        int indexSeparator = dateString.indexOf("T");
+        String dataStringFormated = dateString.substring(0, indexSeparator);
+        return dataStringFormated;
+    }
+
 
 }
