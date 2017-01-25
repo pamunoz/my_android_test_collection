@@ -4,6 +4,7 @@ package com.pfariasmunoz.newsapp;
  * Created by Pablo Farias on 24-01-17.
  */
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -19,13 +20,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Helper methods related to requesting and receiving news data from the guardian.
  */
 public class QueryUtils {
 
-    private static String TEMP_URL = "http://content.guardianapis.com/search?section=politics&page-size=10&show-field=headline,short-url&show-tags=contributor&api-key=d97b8466-d780-4368-9e65-0da55b17b11c";
 
     /** Tag for the log messages */
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
@@ -39,62 +40,25 @@ public class QueryUtils {
     }
 
     /**
-     * Return a list of {@link Article} objects that has been built up from
-     * parsing a JSON response.
+     * Query the USGS dataset and return a list of {@link Article} objects.
      */
-    public static ArrayList<Article> extractArticles(String stringUrl) {
-
-        URL requestUrl = createUrl(stringUrl);
+    public static List<Article> fetchArticleData(String requestUrl) {
+        // Create URL object
+        URL url = createUrl(requestUrl);
 
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
-            jsonResponse = makeHttpRequest(requestUrl);
+            jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error closing input stream", e);
+            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Create an empty ArrayList that we can start adding articles to
-        ArrayList<Article> articles = new ArrayList<>();
+        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
+        List<Article> articles = extractFeatureFromJson(jsonResponse);
 
-        //TODO: try to parse a json response
-        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
-        // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
-        try {
-
-            JSONObject jsonRootObject = new JSONObject(jsonResponse);
-            // build up a list of Earthquake objects with the corresponding data.
-            JSONArray jsonArray = jsonRootObject.getJSONArray("results");
-            //Iterate the jsonArray and print the info of JSONObjects
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String sectionName = jsonObject.getString("sectionName");
-                String title = jsonObject.getString("webTitle");
-                String webUrl = jsonObject.getString("webUrl");
-                String authors = "";
-                String datePublication = jsonObject.getString("webPublicationDate");
-                JSONArray tags = jsonObject.getJSONArray("tags");
-                for (int j = 0; j < tags.length(); j++) {
-                    JSONObject jsonObject2 = tags.getJSONObject(j);
-
-                    if (tags.length() > 1) {
-                        authors += jsonObject2.getString("webTitle") + ", ";
-                    }
-                }
-
-
-                articles.add(new Article(title,sectionName, authors, datePublication, webUrl));
-            }
-        } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
-        }
-
+        // Return the list of {@link Earthquake}s
         return articles;
-
     }
 
     /**
@@ -105,7 +69,7 @@ public class QueryUtils {
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "Error with creating URL ", e);
+            Log.e(LOG_TAG, "Problem building the URL ", e);
         }
         return url;
     }
@@ -114,8 +78,6 @@ public class QueryUtils {
      * Make an HTTP request to the given URL and return a String as the response.
      */
     private static String makeHttpRequest(URL url) throws IOException {
-
-
         String jsonResponse = "";
 
         // If the URL is null, then return early.
@@ -147,6 +109,9 @@ public class QueryUtils {
                 urlConnection.disconnect();
             }
             if (inputStream != null) {
+                // Closing the input stream could throw an IOException, which is why
+                // the makeHttpRequest(URL url) method signature specifies than an IOException
+                // could be thrown.
                 inputStream.close();
             }
         }
@@ -170,5 +135,70 @@ public class QueryUtils {
         }
         return output.toString();
     }
+
+    /**
+     * Return a list of {@link Article} objects that has been built up from
+     * parsing the given JSON response.
+     */
+    private static List<Article> extractFeatureFromJson(String articleJSON) {
+        // If the JSON string is empty or null, then return early.
+        if (TextUtils.isEmpty(articleJSON)) {
+            return null;
+        }
+
+        // Create an empty ArrayList that we can start adding earthquakes to
+        List<Article> articles = new ArrayList<>();
+
+        // Try to parse the JSON response string. If there's a problem with the way the JSON
+        // is formatted, a JSONException exception object will be thrown.
+        // Catch the exception so the app doesn't crash, and print the error message to the logs.
+        try {
+
+            // Create a JSONObject from the JSON response string
+            JSONObject baseJsonResponse = new JSONObject(articleJSON);
+
+            JSONObject responseObject = baseJsonResponse.getJSONObject("response");
+
+            // Extract the JSONArray associated with the key called "results",
+            // which represents a list of features (or earthquakes).
+            JSONArray articleArray = responseObject.getJSONArray("results");
+
+            // For each article in the earthquakeArray, create an {@link Earthquake} object
+            for (int i = 0; i < articleArray.length(); i++) {
+
+                // Get a single earthquake at position i within the list of earthquakes
+                JSONObject currentArticle = articleArray.getJSONObject(i);
+
+                // For a given earthquake, extract the JSONObject associated with the
+                // key called "properties", which represents a list of all properties
+                // for that earthquake.
+                String sectionName = currentArticle.getString("sectionName");
+                String title = currentArticle.getString("webTitle");
+                String webUrl = currentArticle.getString("webUrl");
+                String datePublication = currentArticle.getString("webPublicationDate");
+                JSONArray tags = currentArticle.getJSONArray("tags");
+                String authors = "";
+
+                for (int j = 0; j < tags.length(); j++) {
+                    JSONObject tag = tags.getJSONObject(j);
+                    authors += tag.getString("webTitle") + ", ";
+                }
+
+                Article article = new Article(title, sectionName, authors, datePublication, webUrl);
+
+                articles.add(article);
+            }
+
+        } catch (JSONException e) {
+            // If an error is thrown when executing any of the above statements in the "try" block,
+            // catch the exception here, so the app doesn't crash. Print a log message
+            // with the message from the exception.
+            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+        }
+
+        // Return the list of earthquakes
+        return articles;
+    }
+
 
 }
