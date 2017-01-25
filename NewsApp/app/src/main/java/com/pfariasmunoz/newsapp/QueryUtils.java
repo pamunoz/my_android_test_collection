@@ -177,11 +177,16 @@ public class QueryUtils {
                 String webUrl = currentArticle.getString("webUrl");
                 String datePublication = currentArticle.getString("webPublicationDate");
                 JSONArray tags = currentArticle.getJSONArray("tags");
-                String authors = "";
+                String authors = "by ";
 
                 for (int j = 0; j < tags.length(); j++) {
                     JSONObject tag = tags.getJSONObject(j);
-                    authors += tag.getString("webTitle") + ", ";
+                    if (tags.length() > 1 || j != tags.length() - 1) {
+                        authors += tag.getString("webTitle") + ", ";
+                    } else {
+                        authors += tag.getString("webTitle");
+                    }
+
                 }
 
                 Article article = new Article(title, sectionName, authors, datePublication, webUrl);
