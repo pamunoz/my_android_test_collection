@@ -19,7 +19,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -177,7 +180,11 @@ public class QueryUtils {
                 String webUrl = currentArticle.getString("webUrl");
                 String datePublication = currentArticle.getString("webPublicationDate");
                 JSONArray tags = currentArticle.getJSONArray("tags");
-                String authors = "by ";
+                String authors = "";
+                String formatedDate = formateDateFromstring("yyyy-MM-dd'T'HH:mm:ss'Z'", "EEE, MMM d, ''yy", datePublication);
+                //"2017-01-25T18:51:35Z"
+
+                System.out.println("PATERN: " + datePublication);
 
                 for (int j = 0; j < tags.length(); j++) {
                     JSONObject tag = tags.getJSONObject(j);
@@ -189,7 +196,7 @@ public class QueryUtils {
 
                 }
 
-                Article article = new Article(title, sectionName, authors, datePublication, webUrl);
+                Article article = new Article(title, sectionName, authors, formatedDate, webUrl);
 
                 articles.add(article);
             }
@@ -205,11 +212,27 @@ public class QueryUtils {
         return articles;
     }
 
-    private String parseDateString(String dateString) {
-        int indexSeparator = dateString.indexOf("T");
-        String dataStringFormated = dateString.substring(0, indexSeparator);
-        return dataStringFormated;
+    private static String formateDateFromstring(String inputFormat, String outputFormat, String inputDate){
+
+        Date parsed = null;
+        String outputDate = "";
+
+        SimpleDateFormat df_input = new SimpleDateFormat(inputFormat, java.util.Locale.getDefault());
+        SimpleDateFormat df_output = new SimpleDateFormat(outputFormat, java.util.Locale.getDefault());
+
+        try {
+            parsed = df_input.parse(inputDate);
+            outputDate = df_output.format(parsed);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Log.i(LOG_TAG, "ParseException - dateFormat");
+        }
+
+        return outputDate;
+
     }
+
 
 
 }
