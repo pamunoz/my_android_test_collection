@@ -16,6 +16,7 @@
 package com.google.firebase.udacity.friendlychat;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -191,6 +192,14 @@ public class MainActivity extends AppCompatActivity {
             } else if (resultCode == RESULT_CANCELED){
                 Toast.makeText(this, "Signed in cancelled", Toast.LENGTH_SHORT).show();
                 finish();
+            } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
+                Uri selectedImageUri = data.getData();
+                StorageReference photoRef =
+                        // with the reference we make a child that is named after the last
+                        // segment of the Uri.
+                        // Example: Uri = // content://local_images/foo/4, the name will be = "4".
+                        mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
+
             }
         }
     }
