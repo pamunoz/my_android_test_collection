@@ -194,11 +194,15 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
                 Uri selectedImageUri = data.getData();
+                // Get a reference to store a file to chat_photos/<FILE_NAME>
                 StorageReference photoRef =
                         // with the reference we make a child that is named after the last
                         // segment of the Uri.
                         // Example: Uri = // content://local_images/foo/4, the name will be = "4".
                         mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
+                // Upload file to Firebase Storage
+                photoRef.putFile(selectedImageUri);
+
 
             }
         }
