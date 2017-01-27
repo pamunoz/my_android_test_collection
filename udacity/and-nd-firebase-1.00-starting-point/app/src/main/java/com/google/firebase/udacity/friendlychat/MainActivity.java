@@ -43,6 +43,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseStorage mFirebaseStorage;
     private StorageReference mChatPhotosStorageReference;
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
 
     @Override
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseStorage = FirebaseStorage.getInstance();
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
         mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("messages");
         mChatPhotosStorageReference = mFirebaseStorage.getReference().child("chat_photos");
@@ -183,6 +186,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+
+        
     }
 
     @Override
