@@ -35,6 +35,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -44,6 +45,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -188,23 +190,36 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
+                // Sign-in succeeded, set up the UI
                 Toast.makeText(this, "Signed in", Toast.LENGTH_SHORT).show();
             } else if (resultCode == RESULT_CANCELED){
+                // Sign in was canceled by the user, finish the activity
                 Toast.makeText(this, "Signed in cancelled", Toast.LENGTH_SHORT).show();
                 finish();
-            } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
-                Uri selectedImageUri = data.getData();
-                // Get a reference to store a file to chat_photos/<FILE_NAME>
-                StorageReference photoRef =
-                        // with the reference we make a child that is named after the last
-                        // segment of the Uri.
-                        // Example: Uri = // content://local_images/foo/4, the name will be = "4".
-                        mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
-                // Upload file to Firebase Storage
-                photoRef.putFile(selectedImageUri);
-
-
             }
+        } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
+            Uri selectedImageUri = data.getData();
+            // Get a reference to store a file to chat_photos/<FILE_NAME>
+            StorageReference photoRef =
+                    // with the reference we make a child that is named after the last
+                    // segment of the Uri.
+                    // Example: Uri = // content://local_images/foo/4, the name will be = "4".
+                    mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
+            // Upload file to Firebase Storage
+            photoRef.putFile(selectedImageUri)
+                    .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // When the image has successfully uploaded, we get its download URL
+                            Uri downloadUri = taskSnapshot.getDownloadUrl();
+
+                            // save the file as an friendly message to the database
+                            // Set the download URL to the message box, so that the user can send it to the database
+                            FriendlyMessage friendlyMessage =
+                                    new FriendlyMessage(null, mUsername, downloadUri.toString());
+                            mMessagesDatabaseReference.push().setValue(friendlyMessage);
+                        }
+                    });
         }
     }
 
@@ -298,4 +313,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
 }
