@@ -198,6 +198,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void onSignedInInitialize(String username) {
         mUsername = username;
+        attachDatabaseReadListener();
+
+    }
+
+    private void onSignedOutCleanup() {
+
+    }
+
+    private void attachDatabaseReadListener() {
         mChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -226,10 +235,5 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
-
-    }
-
-    private void onSignedOutCleanup() {
-
     }
 }
