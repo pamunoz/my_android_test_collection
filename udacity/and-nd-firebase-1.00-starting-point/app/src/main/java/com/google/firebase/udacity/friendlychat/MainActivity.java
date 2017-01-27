@@ -203,7 +203,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onSignedOutCleanup() {
-
+        mUsername = ANONYMOUS;
+        mMessageAdapter.clear();
     }
 
     private void attachDatabaseReadListener() {
