@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         Map<String, Object> defaultConfigMap = new HashMap<>();
         defaultConfigMap.put(FRIENDLY_MSG_LENGTH_KEY, DEFAULT_MSG_LENGTH_LIMIT);
         mFirebaseRemoteConfig.setDefaults(defaultConfigMap);
-
+        fetchConfig();
     }
 
     @Override
@@ -332,5 +332,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void fetchConfig() {
+        // cache expiration time
+        long cacheExpiration = 3600; // an hour for production builds
+        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
+            cacheExpiration = 0; // expiration 0 when dev mode enabled
+        }
 
+    }
 }
