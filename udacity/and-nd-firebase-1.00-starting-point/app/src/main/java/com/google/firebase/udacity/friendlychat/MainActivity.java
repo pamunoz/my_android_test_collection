@@ -149,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                // if this current user is logged in or not
                 if (user != null) {
                     // the user is signed in
                     onSignedInInitialize(user.getDisplayName());
@@ -192,14 +191,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+        if (mAuthStateListener != null) {
+            mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+        }
+        detachDatabaseReadListner();
+        mMessageAdapter.clear();
 
     }
 
     private void onSignedInInitialize(String username) {
         mUsername = username;
         attachDatabaseReadListener();
-
     }
 
     private void onSignedOutCleanup() {
