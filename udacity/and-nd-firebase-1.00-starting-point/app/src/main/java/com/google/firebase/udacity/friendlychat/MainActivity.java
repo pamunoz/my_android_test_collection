@@ -345,14 +345,15 @@ public class MainActivity extends AppCompatActivity {
         .addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-
+                // this will activate the parameters
+                mFirebaseRemoteConfig.activateFetched();
+                applyRetrieveLengthLimit();
             }
         })
         .addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                // this will activate the parameters
-                mFirebaseRemoteConfig.activateFetched();
+                Log.d(TAG, "Error fetching conifg", e);
                 applyRetrieveLengthLimit();
             }
         });
