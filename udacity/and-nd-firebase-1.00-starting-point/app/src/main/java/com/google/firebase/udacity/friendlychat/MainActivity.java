@@ -212,12 +212,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+        mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+
     }
 }
