@@ -28,9 +28,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-  private Book[] books = {
+
+
+    private Book[] books = {
       new Book(R.string.abc_an_amazing_alphabet_book, R.string.dr_seuss, R.drawable.abc,
         "http://www.raywenderlich.com/wp-content/uploads/2016/03/abc.jpg"),
       new Book(R.string.are_you_my_mother, R.string.dr_seuss, R.drawable.areyoumymother,
@@ -51,29 +55,66 @@ public class MainActivity extends AppCompatActivity {
         "http://www.raywenderlich.com/wp-content/uploads/2016/03/thetoothbook.jpg"),
       new Book(R.string.one_fish_two_fish_red_fish_blue_fish, R.string.dr_seuss, R.drawable.onefish,
         "http://www.raywenderlich.com/wp-content/uploads/2016/03/onefish.jpg")
-  };
+    };
 
-      @Override
-      protected void onCreate(Bundle savedInstanceState) {
-          super.onCreate(savedInstanceState);
-          setContentView(R.layout.activity_main);
+    private static final String favoritedBookNamesKey = "favoritedBookNamesKey";
 
-          GridView gridView = (GridView)findViewById(R.id.gridview);
-          final BooksAdapter booksAdapter = new BooksAdapter(this, books);
-          gridView.setAdapter(booksAdapter);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+
+      GridView gridView = (GridView)findViewById(R.id.gridview);
+      final BooksAdapter booksAdapter = new BooksAdapter(this, books);
+      gridView.setAdapter(booksAdapter);
 
 
-          gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-              @Override
-              public void onItemClick(AdapterView parent, View view, int position, long id) {
-                  Book book = books[position];
-                  book.toggleFavorite();
+      gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+          @Override
+          public void onItemClick(AdapterView parent, View view, int position, long id) {
+              Book book = books[position];
+              book.toggleFavorite();
 
-                  // This tells the GridView to redraw itself
-                  // in turn calling your BooksAdapter's getView method again for each cell
-                  booksAdapter.notifyDataSetChanged();
-              }
-          });
-      }
+              // This tells the GridView to redraw itself
+              // in turn calling your BooksAdapter's getView method again for each cell
+              booksAdapter.notifyDataSetChanged();
+          }
+      });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // construct a list of books you've favorited
+        final ArrayList<Integer> favoritedBookNames = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getIsFavorite()) {
+                favoritedBookNames.add(book.getName());
+            }
+        }
+
+        // save that list to outState for later
+        outState.putIntegerArrayList(favoritedBookNamesKey, favoritedBookNames);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // get our previously saved list of favorited books
+        final ArrayList<Integer> favoritedBookNames =
+                savedInstanceState.getIntegerArrayList(favoritedBookNamesKey);
+
+        // look at all of your books and figure out which are the favorites
+        for (int bookName : favoritedBookNames) {
+            for (Book book : books) {
+                if (book.getName() == bookName) {
+                    book.setIsFavorite(true);
+                    break;
+                }
+            }
+        }
+    }
 
 }
