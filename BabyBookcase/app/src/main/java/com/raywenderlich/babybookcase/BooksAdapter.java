@@ -66,4 +66,19 @@ public class BooksAdapter extends BaseAdapter {
         return convertView;
     }
 
+    // Your "view holder" that holds references to each subview
+    private class ViewHolder {
+        private final TextView nameTextView;
+        private final TextView authorTextView;
+        private final ImageView imageViewCoverArt;
+        private final ImageView imageViewFavorite;
+
+        public ViewHolder(TextView nameTextView, TextView authorTextView, ImageView imageViewCoverArt, ImageView imageViewFavorite) {
+            this.nameTextView = nameTextView;
+            this.authorTextView = authorTextView;
+            this.imageViewCoverArt = imageViewCoverArt;
+            this.imageViewFavorite = imageViewFavorite;
+        }
+    }
+
 }

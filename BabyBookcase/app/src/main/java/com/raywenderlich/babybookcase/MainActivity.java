@@ -69,17 +69,19 @@ public class MainActivity extends AppCompatActivity {
       gridView.setAdapter(booksAdapter);
 
 
-      gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-          @Override
-          public void onItemClick(AdapterView parent, View view, int position, long id) {
-              Book book = books[position];
-              book.toggleFavorite();
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View view, int position, long id) {
+                Book book = books[position];
+                book.toggleFavorite();
 
-              // This tells the GridView to redraw itself
-              // in turn calling your BooksAdapter's getView method again for each cell
-              booksAdapter.notifyDataSetChanged();
-          }
-      });
+                // This tells the GridView to redraw itself
+                // in turn calling your BooksAdapter's getView method again for each cell
+                booksAdapter.notifyDataSetChanged();
+            }
+        });
+
+
     }
 
     @Override
