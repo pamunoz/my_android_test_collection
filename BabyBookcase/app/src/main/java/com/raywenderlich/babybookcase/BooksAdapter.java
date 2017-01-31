@@ -1,9 +1,11 @@
 package com.raywenderlich.babybookcase;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class BooksAdapter extends BaseAdapter {
@@ -38,9 +40,27 @@ public class BooksAdapter extends BaseAdapter {
     // 5
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView dummyTextView = new TextView(mContext);
-        dummyTextView.setText(String.valueOf(position));
-        return dummyTextView;
+        // 1
+        final Book book = books[position];
+
+        // 2
+        if (convertView == null) {
+            final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+            convertView = layoutInflater.inflate(R.layout.linearlayout_book, null);
+        }
+
+        // 3
+        final ImageView imageView = (ImageView)convertView.findViewById(R.id.imageview_cover_art);
+        final TextView nameTextView = (TextView)convertView.findViewById(R.id.textview_book_name);
+        final TextView authorTextView = (TextView)convertView.findViewById(R.id.textview_book_author);
+        final ImageView imageViewFavorite = (ImageView)convertView.findViewById(R.id.imageview_favorite);
+
+        // 4
+        imageView.setImageResource(book.getImageResource());
+        nameTextView.setText(mContext.getString(book.getName()));
+        authorTextView.setText(mContext.getString(book.getAuthor()));
+
+        return convertView;
     }
 
 }
