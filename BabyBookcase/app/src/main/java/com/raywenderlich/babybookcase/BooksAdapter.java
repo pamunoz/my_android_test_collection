@@ -40,28 +40,27 @@ public class BooksAdapter extends BaseAdapter {
     // 5
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // 1
         final Book book = books[position];
 
-        // 2
+        // view holder pattern
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             convertView = layoutInflater.inflate(R.layout.linearlayout_book, null);
+
+            final ImageView imageViewCoverArt = (ImageView)convertView.findViewById(R.id.imageview_cover_art);
+            final TextView nameTextView = (TextView)convertView.findViewById(R.id.textview_book_name);
+            final TextView authorTextView = (TextView)convertView.findViewById(R.id.textview_book_author);
+            final ImageView imageViewFavorite = (ImageView)convertView.findViewById(R.id.imageview_favorite);
+
+            final ViewHolder viewHolder = new ViewHolder(nameTextView, authorTextView, imageViewCoverArt, imageViewFavorite);
+            convertView.setTag(viewHolder);
         }
 
-        // 3
-        final ImageView imageView = (ImageView)convertView.findViewById(R.id.imageview_cover_art);
-        final TextView nameTextView = (TextView)convertView.findViewById(R.id.textview_book_name);
-        final TextView authorTextView = (TextView)convertView.findViewById(R.id.textview_book_author);
-        final ImageView imageViewFavorite = (ImageView)convertView.findViewById(R.id.imageview_favorite);
-
-        // 4
-        imageView.setImageResource(book.getImageResource());
-        nameTextView.setText(mContext.getString(book.getName()));
-        authorTextView.setText(mContext.getString(book.getAuthor()));
-
-        imageViewFavorite.setImageResource(
-                book.getIsFavorite() ? R.drawable.star_enabled : R.drawable.star_disabled);
+        final ViewHolder viewHolder = (ViewHolder)convertView.getTag();
+        viewHolder.imageViewCoverArt.setImageResource(book.getImageResource());
+        viewHolder.nameTextView.setText(mContext.getString(book.getName()));
+        viewHolder.authorTextView.setText(mContext.getString(book.getAuthor()));
+        viewHolder.imageViewFavorite.setImageResource(book.getIsFavorite() ? R.drawable.star_enabled : R.drawable.star_disabled);
 
         return convertView;
     }
