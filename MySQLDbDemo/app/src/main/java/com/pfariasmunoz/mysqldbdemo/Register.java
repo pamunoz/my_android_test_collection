@@ -34,5 +34,6 @@ public class Register extends AppCompatActivity {
         String method = "register";
         BackgroundTask task = new BackgroundTask(this);
         task.execute(method, mNewName, mNewUserName, mNewPassword);
+        finish();
     }
 }
