@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class Register extends AppCompatActivity {
     private EditText mEditTextNewName;
     private EditText mEditTextNewUserName;
@@ -28,5 +30,9 @@ public class Register extends AppCompatActivity {
         mNewName = mEditTextNewName.getText().toString();
         mNewUserName = mEditTextNewUserName.getText().toString();
         mNewPassword = mEditTextNewPassword.getText().toString();
+
+        String method = "register";
+        BackgroundTask task = new BackgroundTask(this);
+        task.execute(method, mNewName, mNewUserName, mNewPassword);
     }
 }
