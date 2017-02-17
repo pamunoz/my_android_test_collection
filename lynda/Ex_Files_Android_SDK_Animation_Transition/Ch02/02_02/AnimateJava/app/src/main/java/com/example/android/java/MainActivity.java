@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
+        imageView.animate()
+                .scaleX(2)
+                .scaleY(2)
+                .setDuration(2000);
     }
 
 }
