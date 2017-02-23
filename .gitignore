@@ -1,7 +1,4 @@
-
-# Created by https://www.gitignore.io/api/an,android
-
-#!! ERROR: an is undefined. Use list command to see defined gitignore types !!#
+# Created by https://www.gitignore.io/api/android
 
 ### Android ###
 # Built application files
@@ -42,6 +39,7 @@ captures/
 *.iml
 .idea/workspace.xml
 .idea/tasks.xml
+.idea/gradle.xml
 .idea/libraries
 
 # Keystore files
@@ -50,5 +48,15 @@ captures/
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
 
+# Google Services (e.g. APIs or Firebase)
+google-services.json
+
+# Freeline
+freeline.py
+freeline/
+freeline_project_description.json
+
 ### Android Patch ###
 gen-external-apklibs
+
+# End of https://www.gitignore.io/api/android
