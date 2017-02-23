@@ -1,44 +1,57 @@
 package org.sergiiz.rxkata;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.FutureTask;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.SingleSource;
+import io.reactivex.SingleTransformer;
+import io.reactivex.functions.Function;
 
 class CountriesServiceSolved implements CountriesService {
 
     @Override
     public Single<String> countryNameInCapitals(Country country) {
         //return null; // put your solution here
-        Single<String> singleCountry = Single.just(country.getName().toUpperCase());
-        return singleCountry;
+        return Single.just(country.getName().toUpperCase());
     }
 
     public Single<Integer> countCountries(List<Country> countries) {
         //return null; // put your solution here
-        Single<Integer> countriesNumer = Single.just(countries.size());
-        return countriesNumer;
+        return Single.just(countries.size());
     }
 
     public Observable<Long> listPopulationOfEachCountry(List<Country> countries) {
-        Observable<long> populationObservable = Observable.fromIterable(countries.forEach(country -> country.getPopulation()););
+        return Observable
+                .fromIterable(countries)
+                .flatMap(country -> Observable.just(country.getPopulation()));
     }
 
     @Override
     public Observable<String> listNameOfEachCountry(List<Country> countries) {
-        return null; // put your solution here
+        return Observable
+                .fromIterable(countries)
+                .flatMap(country -> Observable.just(country.getName()));
     }
 
     @Override
     public Observable<Country> listOnly3rdAnd4thCountry(List<Country> countries) {
-        return null; // put your solution here
+        return Observable
+                .fromIterable(countries)
+                .skip(2)
+                .take(2);
     }
 
     @Override
     public Single<Boolean> isAllCountriesPopulationMoreThanOneMillion(List<Country> countries) {
-        return null; // put your solution here
+        return Single.create(countries.forEach(i -> countries.get(i).getPopulation() > 1000L));
+
+
     }
 
     @Override
