@@ -7,6 +7,7 @@ import java.util.concurrent.FutureTask;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.SingleSource;
@@ -49,9 +50,25 @@ class CountriesServiceSolved implements CountriesService {
 
     @Override
     public Single<Boolean> isAllCountriesPopulationMoreThanOneMillion(List<Country> countries) {
-        return Single.create(countries.forEach(i -> countries.get(i).getPopulation() > 1000L));
+        return Single.create(emiter -> {
+            try {
+                if (countries != null && !countries.isEmpty()) {
+                    boolean value = true;
+                    for (Country country : countries) {
+                        if (country.getPopulation() < 1_000_000L) {
+                            value = false;
+                            return;
+                        }
 
+                    }
+                    emiter.onSuccess(value);
+                }
 
+            } catch (Exception e) {
+                emiter.onError(e);
+            }
+
+        });
     }
 
     @Override
