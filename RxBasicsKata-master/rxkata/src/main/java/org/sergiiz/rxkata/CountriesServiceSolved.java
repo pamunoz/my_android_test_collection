@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -50,16 +51,20 @@ class CountriesServiceSolved implements CountriesService {
 
     @Override
     public Single<Boolean> isAllCountriesPopulationMoreThanOneMillion(List<Country> countries) {
+
+
         return Single.create(emiter -> {
             try {
                 if (countries != null && !countries.isEmpty()) {
                     boolean value = true;
+                    outerloop:
                     for (Country country : countries) {
-                        if (country.getPopulation() < 1_000_000L) {
+                        if (country.getPopulation() > 1_000_000L) {
+                            value = true;
+                        } else {
                             value = false;
-                            return;
+                            break outerloop;
                         }
-
                     }
                     emiter.onSuccess(value);
                 }
@@ -67,17 +72,20 @@ class CountriesServiceSolved implements CountriesService {
             } catch (Exception e) {
                 emiter.onError(e);
             }
-
         });
     }
 
     @Override
     public Observable<Country> listPopulationMoreThanOneMillion(List<Country> countries) {
-        return null; // put your solution here
+        TimedEvent
+        return Observable.fromIterable(countries)
+                .filter(country -> country.getPopulation() > 1_000_000L);
     }
 
     @Override
     public Observable<Country> listPopulationMoreThanOneMillionWithTimeoutFallbackToEmpty(final FutureTask<List<Country>> countriesFromNetwork) {
+        countriesFromNetwork.run();
+
         return null; // put your solution here
     }
 
