@@ -17,22 +17,33 @@ package com.example.android.datafrominternet;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    // TODO (26) Create an EditText variable called mSearchBoxEditText
-
-    // TODO (27) Create a TextView variable called mUrlDisplayTextView
-    // TODO (28) Create a TextView variable called mSearchResultsTextView
+    // DONE (26) Create an EditText variable called mSearchBoxEditText
+    // DONE (27) Create a TextView variable called mUrlDisplayTextView
+    // DONE (28) Create a TextView variable called mSearchResultsTextView
+    @BindView(R.id.et_search_box)
+    EditText mSearchBoxEditText;
+    @BindView(R.id.tv_url_display)
+    TextView mUrlDisplayTextView;
+    @BindView(R.id.tv_github_search_results_json)
+    TextView mSearchResultsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO (29) Use findViewById to get a reference to mSearchBoxEditText
+        ButterKnife.bind(this);
 
-        // TODO (30) Use findViewById to get a reference to mUrlDisplayTextView
-        // TODO (31) Use findViewById to get a reference to mSearchResultsTextView
+        // DONE (29) Use findViewById to get a reference to mSearchBoxEditText
+        // DONE (30) Use findViewById to get a reference to mUrlDisplayTextView
+        // DONE (31) Use findViewById to get a reference to mSearchResultsTextView
     }
 }
