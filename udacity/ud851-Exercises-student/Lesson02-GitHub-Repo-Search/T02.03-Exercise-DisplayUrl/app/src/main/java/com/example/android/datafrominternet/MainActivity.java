@@ -24,12 +24,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
+    @BindView(R.id.et_search_box)
     private EditText mSearchBoxEditText;
-
+    @BindView(R.id.tv_url_display)
     private TextView mUrlDisplayTextView;
-
+    @BindView(R.id.tv_github_search_results_json)
     private TextView mSearchResultsTextView;
 
     @Override
@@ -37,10 +41,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
-
-        mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
-        mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
+        // Butterknife binding
+        ButterKnife.bind(this);
     }
 
     // TODO (2) Create a method called makeGithubSearchQuery
