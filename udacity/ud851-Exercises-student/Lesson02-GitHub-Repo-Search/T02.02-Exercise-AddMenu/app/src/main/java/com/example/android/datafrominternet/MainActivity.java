@@ -20,23 +20,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
+    @BindView(R.id.et_search_box)
     private EditText mSearchBoxEditText;
-
+    @BindView(R.id.tv_url_display)
     private TextView mUrlDisplayTextView;
-
+    @BindView(R.id.tv_github_search_results_json)
     private TextView mSearchResultsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // bind view with butterknife
+        ButterKnife.bind(this);
 
-        mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
-
-        mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
-        mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
     }
 
     // Do 2 - 7 in menu.xml ///////////////////////////////////////////////////////////////////////
