@@ -2,7 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
+<<<<<<< HEAD
     buildToolsVersion '25.0.2'
+=======
+    buildToolsVersion '25.0.1'
+>>>>>>> examples
 
     defaultConfig {
         applicationId "com.example.android.sunshine"
@@ -28,7 +32,12 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.android.support:preference-v7:25.0.1'
 
+<<<<<<< HEAD
     // TODO (1) Add the FirebaseJobDispatcher dependency to the project
+=======
+    // DONE (1) Add the FirebaseJobDispatcher dependency to the project
+    compile 'com.firebase:firebase-jobdispatcher:0.5.2'
+>>>>>>> examples
 
     // Instrumentation dependencies use androidTestCompile
     // (as opposed to testCompile for local unit tests run in the JVM)

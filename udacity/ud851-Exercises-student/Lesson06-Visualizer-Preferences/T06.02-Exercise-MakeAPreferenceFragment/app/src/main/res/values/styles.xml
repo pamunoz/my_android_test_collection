@@ -6,7 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+<<<<<<< HEAD
         <!-- TODO (6) Add a theme for the preference -->
+=======
+        <!-- DONE (6) Add a theme for the preference -->
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+>>>>>>> examples
     </style>
 
 </resources>

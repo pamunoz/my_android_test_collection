@@ -170,14 +170,22 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      * This method simply returns the number of items to display. It is used behind the scenes
      * to help layout our Views and for animations.
      *
+<<<<<<< HEAD
      * @return The number of items available
+=======
+     * @return The number of items available in our forecast
+>>>>>>> examples
      */
     @Override
     public int getItemCount() {
         return mNumberItems;
     }
 
+<<<<<<< HEAD
     // COMPLETED (5) Implement OnClickListener in the NumberViewHolder class
+=======
+    // COMPLETED (5) Implement OnClickListener in the ForecastAdapterViewHolder class
+>>>>>>> examples
     /**
      * Cache of the children views for a list item.
      */
@@ -214,8 +222,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
             listItemNumberView.setText(String.valueOf(listIndex));
         }
 
+<<<<<<< HEAD
 
         // COMPLETED (6) Override onClick, passing the clicked item's position (getAdapterPosition()) to mOnClickListener via its onListItemClick method
+=======
+        // COMPLETED (6) Override onClick, passing the clicked item's position (getAdapterPosition()) to mClickHandler via its onListItemClick method
+>>>>>>> examples
         /**
          * Called whenever a user clicks on an item in the list.
          * @param v The View that was clicked

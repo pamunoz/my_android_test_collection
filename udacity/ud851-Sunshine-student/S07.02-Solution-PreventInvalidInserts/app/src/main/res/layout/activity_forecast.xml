@@ -54,6 +54,10 @@
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:layout_gravity="center"
+<<<<<<< HEAD
         android:visibility="invisible" />
 
+=======
+        android:visibility="invisible"/>
+>>>>>>> examples
 </FrameLayout>

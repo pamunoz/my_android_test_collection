@@ -1,13 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
+<<<<<<< HEAD
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+=======
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+>>>>>>> examples
 
     defaultConfig {
         applicationId "com.example.android.datafrominternet"
         minSdkVersion 10
+<<<<<<< HEAD
         targetSdkVersion 25
+=======
+        targetSdkVersion 24
+>>>>>>> examples
         versionCode 1
         versionName "1.0"
     }
@@ -20,9 +29,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+<<<<<<< HEAD
     compile 'com.android.support:appcompat-v7:25.1.0'
 
     // Butterknife
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+=======
+    compile 'com.android.support:appcompat-v7:24.1.1'
+>>>>>>> examples
 }

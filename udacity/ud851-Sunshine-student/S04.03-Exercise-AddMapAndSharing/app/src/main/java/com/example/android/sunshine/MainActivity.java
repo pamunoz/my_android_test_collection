@@ -106,8 +106,11 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
      * background method to get the weather data in the background.
      */
     private void loadWeatherData() {
+<<<<<<< HEAD
         showWeatherDataView();
 
+=======
+>>>>>>> examples
         String location = SunshinePreferences.getPreferredWeatherLocation(this);
         new FetchWeatherTask().execute(location);
     }
@@ -215,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+<<<<<<< HEAD
         if (id == R.id.action_refresh) {
             mForecastAdapter.setWeatherData(null);
             loadWeatherData();
@@ -225,4 +229,42 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
 
         return super.onOptionsItemSelected(item);
     }
+=======
+        switch (id) {
+            case R.id.action_refresh:
+                mForecastAdapter.setWeatherData(null);
+                loadWeatherData();
+                break;
+            case R.id.action_open_map:
+                // COMPLETED (5) Store an address in a String
+                String addressString = "1600 Amphitheatre Parkway, CA";
+
+                // COMPLETED (6) Use Uri.parse with the appropriate scheme and query to form the Uri for the address
+                Uri addressUri = Uri.parse("geo:0,0?q=" + addressString);
+
+                // COMPLETED (7) Replace the Toast with a call to showMap, passing in the Uri from the previous step
+                showMap(addressUri);
+                break;
+            default:
+                return true;
+        }
+
+
+        if (id == R.id.action_refresh) {
+
+        }
+
+        // DONE (2) Launch the map when the map menu item is clicked
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showMap(Uri geoLocation) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+>>>>>>> examples
 }

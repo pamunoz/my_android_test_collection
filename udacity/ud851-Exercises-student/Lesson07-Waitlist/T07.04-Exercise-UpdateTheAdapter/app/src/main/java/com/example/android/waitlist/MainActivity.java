@@ -45,11 +45,19 @@ public class MainActivity extends AppCompatActivity {
         TestUtil.insertFakeData(mDb);
 
         // Get all guest info from the database and save in a cursor
+<<<<<<< HEAD
         Cursor cursor = getAllGuests();
 
         // TODO (10) Pass the entire cursor to the adapter rather than just the count
         // Create an adapter for that cursor to display the data
         mAdapter = new GuestListAdapter(this, cursor.getCount());
+=======
+        Cursor guestData = getAllGuests();
+
+        // DONE (10) Pass the entire cursor to the adapter rather than just the count
+        // Create an adapter for that cursor to display the data
+        mAdapter = new GuestListAdapter(this, guestData);
+>>>>>>> examples
 
         // Link the adapter to the RecyclerView
         waitlistRecyclerView.setAdapter(mAdapter);

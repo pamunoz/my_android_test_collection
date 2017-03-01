@@ -15,7 +15,10 @@
   -->
 <resources>
     <string name="app_name">Github Query</string>
+<<<<<<< HEAD
     <string name="query_editText">Enter a query and then click search</string>
     <string name="tv_url_display">Your search URL will show up here when you click search</string>
     <string name="tv_github_search_result_json">Make your search</string>
+=======
+>>>>>>> examples
 </resources>

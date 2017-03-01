@@ -102,8 +102,11 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
      * background method to get the weather data in the background.
      */
     private void loadWeatherData() {
+<<<<<<< HEAD
         showWeatherDataView();
 
+=======
+>>>>>>> examples
         String location = SunshinePreferences.getPreferredWeatherLocation(this);
         new FetchWeatherTask().execute(location);
     }
@@ -119,7 +122,12 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         Context context = this;
         Class destinationClass = DetailActivity.class;
         Intent intentToStartDetailActivity = new Intent(context, destinationClass);
+<<<<<<< HEAD
         // TODO (1) Pass the weather to the DetailActivity
+=======
+        // DONE (1) Pass the weather to the DetailActivity
+        intentToStartDetailActivity.putExtra(Intent.EXTRA_TEXT, weatherForDay);
+>>>>>>> examples
         startActivity(intentToStartDetailActivity);
     }
 

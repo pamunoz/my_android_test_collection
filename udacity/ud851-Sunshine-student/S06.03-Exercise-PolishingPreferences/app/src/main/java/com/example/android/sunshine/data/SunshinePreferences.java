@@ -16,6 +16,13 @@
 package com.example.android.sunshine.data;
 
 import android.content.Context;
+<<<<<<< HEAD
+=======
+import android.content.SharedPreferences;
+import android.support.v7.preference.PreferenceManager;
+
+import com.example.android.sunshine.R;
+>>>>>>> examples
 
 public class SunshinePreferences {
 
@@ -87,9 +94,18 @@ public class SunshinePreferences {
      * "94043,USA" if SharedPreferences have not been implemented yet.
      */
     public static String getPreferredWeatherLocation(Context context) {
+<<<<<<< HEAD
         // TODO (1) Return the user's preferred location
         /** This will be implemented in a future lesson **/
         return getDefaultWeatherLocation();
+=======
+
+        // DONE (1) Return the user's preferred location
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String keyForLocation = context.getString(R.string.pref_location_key);
+        String defaultLocation = context.getString(R.string.pref_location_default);
+        return sp.getString(keyForLocation, defaultLocation);
+>>>>>>> examples
     }
 
     /**
@@ -100,9 +116,19 @@ public class SunshinePreferences {
      * @return true If metric display should be used
      */
     public static boolean isMetric(Context context) {
+<<<<<<< HEAD
         // TODO (2) Return true if the user's preference for units is metric, false otherwise
         /** This will be implemented in a future lesson **/
         return true;
+=======
+        // DONE (2) Return true if the user's preference for units is metric, false otherwise
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String keyForUnits = context.getString(R.string.pref_units_key);
+        String defaultUnits = context.getString(R.string.pref_units_metric);
+        String preferredUnits = sp.getString(keyForUnits, defaultUnits);
+        String metric = context.getString(R.string.pref_units_metric);
+        return metric.equals(preferredUnits);
+>>>>>>> examples
     }
 
     /**

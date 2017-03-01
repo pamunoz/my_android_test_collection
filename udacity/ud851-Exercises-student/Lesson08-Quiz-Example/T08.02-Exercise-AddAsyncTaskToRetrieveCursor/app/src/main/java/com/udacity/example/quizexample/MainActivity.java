@@ -16,11 +16,25 @@
 
 package com.udacity.example.quizexample;
 
+<<<<<<< HEAD
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+=======
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+import com.udacity.example.droidtermsprovider.DroidTermsExampleContract;
+
+>>>>>>> examples
 /**
  * Gets the data from the ContentProvider and shows a series of flash cards.
  */
@@ -30,9 +44,17 @@ public class MainActivity extends AppCompatActivity {
     // The current state of the app
     private int mCurrentState;
 
+<<<<<<< HEAD
     // TODO (3) Create an instance variable storing a Cursor called mData
     private Button mButton;
 
+=======
+    // DONE (3) Create an instance variable storing a Cursor called mData
+    private Button mButton;
+
+    private Cursor mData;
+
+>>>>>>> examples
     // This state is when the word definition is hidden and clicking the button will therefore
     // show the definition
     private final int STATE_HIDDEN = 0;
@@ -50,7 +72,13 @@ public class MainActivity extends AppCompatActivity {
         // Get the views
         mButton = (Button) findViewById(R.id.button_next);
 
+<<<<<<< HEAD
         // TODO (5) Create and execute your AsyncTask here
+=======
+        // DONE (5) Create and execute your AsyncTask here
+        QuizTask task = new QuizTask();
+        task.execute();
+>>>>>>> examples
     }
 
     /**
@@ -90,9 +118,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+<<<<<<< HEAD
     // TODO (1) Create AsyncTask with the following generic types <Void, Void, Cursor>
     // TODO (2) In the doInBackground method, write the code to access the DroidTermsExample
     // provider and return the Cursor object
     // TODO (4) In the onPostExecute method, store the Cursor object in mData
+=======
+    // DONE (1) Create AsyncTask with the following generic types <Void, Void, Cursor>
+    private class QuizTask extends AsyncTask<Void, Void, Cursor> {
+        // DONE (2) In the doInBackground method, write the code to access the DroidTermsExample
+        @Override
+        protected Cursor doInBackground(Void... voids) {
+            ContentResolver resolver = getContentResolver();
+            Cursor cursor = resolver.query(
+                    DroidTermsExampleContract.CONTENT_URI,
+                    null, null, null, null);
+            return cursor;
+        }
+
+        // provider and return the Cursor object
+        // DONE (4) In the onPostExecute method, store the Cursor object in mData
+        @Override
+        protected void onPostExecute(Cursor cursor) {
+            super.onPostExecute(cursor);
+            mData = cursor;
+
+            int wordCol = mData.getColumnIndex(DroidTermsExampleContract.COLUMN_WORD);
+            int defCol = mData.getColumnIndex(DroidTermsExampleContract.COLUMN_DEFINITION);
+            while(mData.moveToNext()) {
+                String word = mData.getString(wordCol);
+                String definition = mData.getString(defCol);
+                Log.v("Cursor Example", word + "_" + definition);
+            }
+            mData.close();
+        }
+    }
+
+>>>>>>> examples
 
 }

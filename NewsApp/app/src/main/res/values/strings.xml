@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">News App</string>
+    <string name="by">by</string>
+    <string name="title">title</string>
+    <string name="author">author</string>
+    <string name="date">date</string>
+    <string name="section">section</string>
+</resources>

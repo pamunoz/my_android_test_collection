@@ -120,6 +120,7 @@ public class TaskContentProvider extends ContentProvider {
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
 
+<<<<<<< HEAD
         // TODO (1) Get access to underlying database (read-only for query)
 
         // TODO (2) Write URI match code and set a variable to return a Cursor
@@ -129,6 +130,58 @@ public class TaskContentProvider extends ContentProvider {
         // TODO (4) Set a notification URI on the Cursor and return that Cursor
 
         throw new UnsupportedOperationException("Not yet implemented");
+=======
+        // DONE (1) Get access to underlying database (read-only for query)
+        final SQLiteDatabase db = mTaskDbHelper.getReadableDatabase();
+
+        // DONE (2) Write URI match code and set a variable to return a Cursor
+        int match = sUriMatcher.match(uri);
+
+        // DONE (3) Query for the tasks directory and write a default case
+        Cursor retCursor;
+
+        switch (match) {
+            // Query for the tasks directory
+            case TASKS:
+                retCursor = db.query(TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
+
+            // Add a case to query for a single row of data by ID
+            case TASK_WITH_ID:
+                // Using selection and selectionArgs
+                // URI: content://<authority>/tasks/#
+                // index 0 is the tasks portion of path
+                // index 1 is the segment right after that (# the wild card")
+                String id = uri.getPathSegments().get(1);
+
+                // Selection is the _ID column = ?, and the Selection args = the row ID
+                // from the URI
+                String mSelection = "_id=?";
+                String[] mSelectionArgs = new String[]{id};
+
+                retCursor = db.query(TABLE_NAME,
+                        projection,
+                        mSelection,
+                        mSelectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+
+            // default exception
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+
+        // DONE (4) Set a notification URI on the Cursor and return that Cursor
+        retCursor.setNotificationUri(getContext().getContentResolver(), uri);
+        return retCursor;
+>>>>>>> examples
     }
 
 

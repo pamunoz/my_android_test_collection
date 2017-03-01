@@ -16,6 +16,10 @@
 package com.example.android.sunshine;
 
 import android.content.Context;
+<<<<<<< HEAD
+=======
+import android.content.Intent;
+>>>>>>> examples
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -102,8 +106,11 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
      * background method to get the weather data in the background.
      */
     private void loadWeatherData() {
+<<<<<<< HEAD
         showWeatherDataView();
 
+=======
+>>>>>>> examples
         String location = SunshinePreferences.getPreferredWeatherLocation(this);
         new FetchWeatherTask().execute(location);
     }
@@ -117,11 +124,20 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
     @Override
     public void onClick(String weatherForDay) {
         Context context = this;
+<<<<<<< HEAD
         // TODO (1) Create a new Activity called DetailActivity using Android Studio's wizard
         // TODO (2) Change the root layout of activity_detail.xml to a FrameLayout and remove unnecessary xml attributes
         // TODO (3) Remove the Toast and launch the DetailActivity using an explicit Intent
         Toast.makeText(context, weatherForDay, Toast.LENGTH_SHORT)
                 .show();
+=======
+        // DONE (1) Create a new Activity called DetailActivity using Android Studio's wizard
+        // DONE (2) Change the root layout of activity_detail.xml to a FrameLayout and remove unnecessary xml attributes
+        // DONE (3) Remove the Toast and launch the DetailActivity using an explicit Intent
+        //Toast.makeText(context, weatherForDay, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        startActivity(intent);
+>>>>>>> examples
     }
 
     /**

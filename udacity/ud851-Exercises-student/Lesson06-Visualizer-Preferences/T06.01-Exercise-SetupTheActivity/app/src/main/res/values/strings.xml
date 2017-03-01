@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">Visualize</string>
 
+<<<<<<< HEAD
     <!-- TODO (4) Add string for Settings -->
     
+=======
+    <!-- DONE (4) Add string for Settings -->
+
+>>>>>>> examples
     <!-- - - - - - - - - - - - - - - -
           - Used by Preferences  -
           - - - - - - - - - - - - - - - -->
@@ -15,4 +20,9 @@
 
     <!-- Value in SharedPreferences for green color option -->
     <string name="pref_color_green_value" translatable="false">green</string>
+<<<<<<< HEAD
+=======
+    <string name="settings_menu">Settings</string>
+    <string name="settings_title_activity">settings</string>
+>>>>>>> examples
 </resources>

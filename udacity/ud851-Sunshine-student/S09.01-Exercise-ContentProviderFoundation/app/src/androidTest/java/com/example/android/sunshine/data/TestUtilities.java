@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2016 The Android Open Source Project
+=======
+ * Copyright (C) 2015 The Android Open Source Project
+>>>>>>> examples
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +29,7 @@ import android.os.HandlerThread;
 import com.example.android.sunshine.utilities.SunshineDateUtils;
 import com.example.android.sunshine.utils.PollingCheck;
 
+<<<<<<< HEAD
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Map;
@@ -43,6 +48,13 @@ import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COL
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
+=======
+import java.util.Map;
+import java.util.Set;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+>>>>>>> examples
 import static junit.framework.Assert.assertTrue;
 
 /**
@@ -68,10 +80,13 @@ class TestUtilities {
      * @param expectedValues The values we expect to receive in valueCursor
      */
     static void validateThenCloseCursor(String error, Cursor valueCursor, ContentValues expectedValues) {
+<<<<<<< HEAD
         assertNotNull(
                 "This cursor is null. Did you make sure to register your ContentProvider in the manifest?",
                 valueCursor);
 
+=======
+>>>>>>> examples
         assertTrue("Empty cursor returned. " + error, valueCursor.moveToFirst());
         validateCurrentRecord(error, valueCursor, expectedValues);
         valueCursor.close();
@@ -120,6 +135,7 @@ class TestUtilities {
 
         ContentValues testWeatherValues = new ContentValues();
 
+<<<<<<< HEAD
         testWeatherValues.put(COLUMN_DATE, DATE_NORMALIZED);
         testWeatherValues.put(COLUMN_DEGREES, 1.1);
         testWeatherValues.put(COLUMN_HUMIDITY, 1.2);
@@ -128,6 +144,16 @@ class TestUtilities {
         testWeatherValues.put(COLUMN_MIN_TEMP, 65);
         testWeatherValues.put(COLUMN_WIND_SPEED, 5.5);
         testWeatherValues.put(COLUMN_WEATHER_ID, 321);
+=======
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_DATE, DATE_NORMALIZED);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_DEGREES, 1.1);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 1.2);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_PRESSURE, 1.3);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_MAX_TEMP, 75);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_MIN_TEMP, 65);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, 5.5);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_ID, 321);
+>>>>>>> examples
 
         return testWeatherValues;
     }
@@ -157,6 +183,7 @@ class TestUtilities {
 
             ContentValues weatherValues = new ContentValues();
 
+<<<<<<< HEAD
             weatherValues.put(COLUMN_DATE, normalizedTestDate);
             weatherValues.put(COLUMN_DEGREES, 1.1);
             weatherValues.put(COLUMN_HUMIDITY, 1.2 + 0.01 * (float) i);
@@ -165,6 +192,16 @@ class TestUtilities {
             weatherValues.put(COLUMN_MIN_TEMP, 65 - i);
             weatherValues.put(COLUMN_WIND_SPEED, 5.5 + 0.2 * (float) i);
             weatherValues.put(COLUMN_WEATHER_ID, 321);
+=======
+            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_DATE, normalizedTestDate);
+            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_DEGREES, 1.1);
+            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 1.2 + 0.01 * (float) i);
+            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_PRESSURE, 1.3 - 0.01 * (float) i);
+            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_MAX_TEMP, 75 + i);
+            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_MIN_TEMP, 65 - i);
+            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, 5.5 + 0.2 * (float) i);
+            weatherValues.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_ID, 321);
+>>>>>>> examples
 
             bulkTestWeatherValues[i] = weatherValues;
         }
@@ -242,6 +279,7 @@ class TestUtilities {
             mHT.quit();
         }
     }
+<<<<<<< HEAD
 
     static String getConstantNameByStringValue(Class klass, String value)  {
         for (Field f : klass.getDeclaredFields()) {
@@ -313,4 +351,6 @@ class TestUtilities {
             return e.getMessage();
         }
     }
+=======
+>>>>>>> examples
 }

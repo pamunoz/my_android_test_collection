@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * Copyright (C) 2016 The Android Open Source Project
  *
@@ -13,6 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+=======
+>>>>>>> examples
 package com.example.android.background.sync;
 
 import android.content.Context;
@@ -28,7 +31,11 @@ public class ReminderTasks {
     //  COMPLETED (6) Create a public static void method called executeTask
 //  COMPLETED (7) Add a Context called context and String parameter called action to the parameter list
     public static void executeTask(Context context, String action) {
+<<<<<<< HEAD
 // COMPLETED (8) If the action equals ACTION_INCREMENT_WATER_COUNT, call this class's incrementWaterCount
+=======
+//      COMPLETED (8) If the action equals ACTION_INCREMENT_WATER, call this class's incrementWaterCount
+>>>>>>> examples
         if (ACTION_INCREMENT_WATER_COUNT.equals(action)) {
             incrementWaterCount(context);
         }

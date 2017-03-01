@@ -3,6 +3,7 @@
 buildscript {
     repositories {
         jcenter()
+<<<<<<< HEAD
 
     }
     dependencies {
@@ -11,10 +12,19 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 
+=======
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+>>>>>>> examples
     }
 }
 
 allprojects {
+<<<<<<< HEAD
     String osName = System.getProperty("os.name").toLowerCase();
     if (osName.contains("windows")) {
         buildDir = "C:/tmp/${rootProject.name}/${project.name}"
@@ -22,6 +32,10 @@ allprojects {
     repositories {
         jcenter()
 
+=======
+    repositories {
+        jcenter()
+>>>>>>> examples
     }
 }
 

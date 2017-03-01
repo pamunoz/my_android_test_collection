@@ -15,15 +15,23 @@
  */
 package com.example.android.datafrominternet;
 
+<<<<<<< HEAD
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
+=======
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+>>>>>>> examples
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -35,14 +43,30 @@ public class MainActivity extends AppCompatActivity {
     TextView mUrlDisplayTextView;
     @BindView(R.id.tv_github_search_results_json)
     TextView mSearchResultsTextView;
+=======
+public class MainActivity extends AppCompatActivity {
+
+    private EditText mSearchBoxEditText;
+
+    private TextView mUrlDisplayTextView;
+    private TextView mSearchResultsTextView;
+>>>>>>> examples
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
         // bind view with butterknife
         ButterKnife.bind(this);
 
+=======
+
+        mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
+
+        mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
+        mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
+>>>>>>> examples
     }
 
     // Do 2 - 7 in menu.xml ///////////////////////////////////////////////////////////////////////
@@ -61,8 +85,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+<<<<<<< HEAD
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+=======
+        getMenuInflater().inflate(R.menu.main, menu);
+>>>>>>> examples
         return true;
     }
 
@@ -76,13 +104,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+<<<<<<< HEAD
         int itemId = item.getItemId();
         if (itemId == R.id.action_search) {
             String message = "search menu selected";
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+=======
+        int menuItemThatWasSelected = item.getItemId();
+        if (menuItemThatWasSelected == R.id.action_search) {
+            Context context = MainActivity.this;
+            String message = "Search clicked";
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+>>>>>>> examples
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
+<<<<<<< HEAD
     }
 }
+=======
+
+    }
+}
+>>>>>>> examples

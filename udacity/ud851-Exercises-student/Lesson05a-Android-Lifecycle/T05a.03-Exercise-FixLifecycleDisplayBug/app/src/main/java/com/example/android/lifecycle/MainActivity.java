@@ -6,6 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+
+>>>>>>> examples
 public class MainActivity extends AppCompatActivity {
 
     /*
@@ -39,7 +44,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private TextView mLifecycleDisplay;
 
+<<<<<<< HEAD
     // TODO (1) Declare and instantiate a static ArrayList of Strings called mLifecycleCallbacks
+=======
+    // DONE (1) Declare and instantiate an ArrayList of Strings called mLifecycleCallbacks
+    private static ArrayList<String> mLifecycleCallbacks = new ArrayList<>();
+>>>>>>> examples
 
     /**
      * Called when the activity is first created. This is where you should do all of your normal
@@ -71,9 +81,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+<<<<<<< HEAD
         // TODO (4) Iterate backwards through mLifecycleCallbacks, appending each String and a newline to mLifecycleDisplay
 
         // TODO (5) Clear mLifecycleCallbacks after iterating through it
+=======
+        // DONE (4) Iterate backwards through mLifecycleCallbacks, appending each String and a newline to mLifecycleDisplay
+        for (int i = mLifecycleCallbacks.size() - 1; i >= 0; i--) {
+            String lifeCycleToAppend = mLifecycleCallbacks.get(i) + "\n";
+            mLifecycleDisplay.append(lifeCycleToAppend);
+        }
+
+        // DONE (5) Clear mLifecycleCallbacks after iterating through it
+        mLifecycleCallbacks.clear();
+>>>>>>> examples
 
         logAndAppend(ON_CREATE);
     }
@@ -133,7 +154,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
+<<<<<<< HEAD
         // TODO (2) Add the ON_STOP String to the front of mLifecycleCallbacks
+=======
+        // DONE (2) Add the ON_STOP String to the front of mLifecycleCallbacks
+        mLifecycleCallbacks.add(0, ON_STOP);
+>>>>>>> examples
 
         logAndAppend(ON_STOP);
     }
@@ -149,7 +175,11 @@ public class MainActivity extends AppCompatActivity {
 
         logAndAppend(ON_RESTART);
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> examples
     /**
      * The final call you receive before your activity is destroyed. This can happen either because
      * the activity is finishing (someone called finish() on it, or because the system is
@@ -160,7 +190,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
+<<<<<<< HEAD
         // TODO (3) Add the ON_DESTROY String to the front of mLifecycleCallbacks
+=======
+        // DONE (3) Add the ON_DESTROY String to the front of mLifecycleCallbacks
+        mLifecycleCallbacks.add(0, ON_DESTROY);
+>>>>>>> examples
 
         logAndAppend(ON_DESTROY);
     }

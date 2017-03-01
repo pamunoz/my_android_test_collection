@@ -26,6 +26,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.background.sync.ReminderTasks;
+<<<<<<< HEAD
+=======
+import com.example.android.background.sync.ReminderUtilities;
+>>>>>>> examples
 import com.example.android.background.sync.WaterReminderIntentService;
 import com.example.android.background.utilities.NotificationUtils;
 import com.example.android.background.utilities.PreferenceUtilities;
@@ -53,7 +57,12 @@ public class MainActivity extends AppCompatActivity implements
         updateWaterCount();
         updateChargingReminderCount();
 
+<<<<<<< HEAD
         // TODO (23) Schedule the charging reminder
+=======
+        // DONE (23) Schedule the charging reminder
+        ReminderUtilities.scheduleChargingReminder(this);
+>>>>>>> examples
 
         /** Setup the shared preference listener **/
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -93,10 +102,15 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
+<<<<<<< HEAD
     // TODO (24) Remove the button and testNotification code
     public void testNotification(View view) {
         NotificationUtils.remindUserBecauseCharging(this);
     }
+=======
+    // DONE (24) Remove the button and testNotification code
+
+>>>>>>> examples
 
     @Override
     protected void onDestroy() {

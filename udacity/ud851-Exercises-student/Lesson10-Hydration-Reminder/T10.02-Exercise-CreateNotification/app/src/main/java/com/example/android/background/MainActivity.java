@@ -27,6 +27,10 @@ import android.widget.Toast;
 
 import com.example.android.background.sync.ReminderTasks;
 import com.example.android.background.sync.WaterReminderIntentService;
+<<<<<<< HEAD
+=======
+import com.example.android.background.utilities.NotificationUtils;
+>>>>>>> examples
 import com.example.android.background.utilities.PreferenceUtilities;
 
 public class MainActivity extends AppCompatActivity implements
@@ -89,7 +93,15 @@ public class MainActivity extends AppCompatActivity implements
         startService(incrementWaterCountIntent);
     }
 
+<<<<<<< HEAD
     // TODO (14) Create a method called testNotification that triggers NotificationUtils' remindUserBecauseCharging
+=======
+    // DONE (14) Create a method called testNotification that triggers NotificationUtils' remindUserBecauseCharging
+    public void testNotification(View view) {
+        NotificationUtils notificationUtils = new NotificationUtils();
+        notificationUtils.remindUserBecauseCharging(this);
+    }
+>>>>>>> examples
 
     @Override
     protected void onDestroy() {

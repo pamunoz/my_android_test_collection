@@ -33,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private EditText mSearchBoxEditText;
 
     private TextView mUrlDisplayTextView;
+<<<<<<< HEAD
 
+=======
+>>>>>>> examples
     private TextView mSearchResultsTextView;
 
     @Override
@@ -101,4 +104,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> examples

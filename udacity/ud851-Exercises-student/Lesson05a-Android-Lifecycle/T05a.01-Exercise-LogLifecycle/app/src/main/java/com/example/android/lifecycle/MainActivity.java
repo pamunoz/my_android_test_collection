@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         mLifecycleDisplay = (TextView) findViewById(R.id.tv_lifecycle_events_display);
 
+<<<<<<< HEAD
         // TODO (1) Use logAndAppend within onCreate
     }
 
@@ -61,6 +62,65 @@ public class MainActivity extends AppCompatActivity {
     // TODO (6) Override onRestart, call super.onRestart, and call logAndAppend with ON_RESTART
 
     // TODO (7) Override onDestroy, call super.onDestroy, and call logAndAppend with ON_DESTROY
+=======
+        // DONE (1) Use logAndAppend within onCreate
+        logAndAppend(ON_CREATE);
+    }
+
+    // DONE (2) Override onStart, call super.onStart, and call logAndAppend with ON_START
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        logAndAppend(ON_START);
+    }
+
+    // DONE (3) Override onResume, call super.onResume, and call logAndAppend with ON_RESUME
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        logAndAppend(ON_RESUME);
+    }
+
+    // DONE (4) Override onPause, call super.onPause, and call logAndAppend with ON_PAUSE
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        logAndAppend(ON_PAUSE);
+    }
+
+    // DONE (5) Override onStop, call super.onStop, and call logAndAppend with ON_STOP
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        logAndAppend(ON_STOP);
+    }
+
+    // DONE (6) Override onRestart, call super.onRestart, and call logAndAppend with ON_RESTART
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        logAndAppend(ON_RESTART);
+    }
+
+    // DONE (7) Override onDestroy, call super.onDestroy, and call logAndAppend with ON_DESTROY
+    /**
+     * The final call you receive before your activity is destroyed. This can happen either because
+     * the activity is finishing (someone called finish() on it, or because the system is
+     * temporarily destroying this instance of the activity to save space. You can distinguish
+     * between these two scenarios with the isFinishing() method.
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        logAndAppend(ON_DESTROY);
+    }
+>>>>>>> examples
 
     /**
      * Logs to the console and appends the lifecycle method name to the TextView so that you can

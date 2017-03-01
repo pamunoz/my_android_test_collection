@@ -17,12 +17,20 @@ package com.example.android.sunshine;
 
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
+=======
+import android.content.SharedPreferences;
+>>>>>>> examples
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+<<<<<<< HEAD
+=======
+import android.support.v7.preference.PreferenceManager;
+>>>>>>> examples
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -38,11 +46,19 @@ import com.example.android.sunshine.utilities.NetworkUtils;
 import com.example.android.sunshine.utilities.OpenWeatherJsonUtils;
 
 import java.net.URL;
+<<<<<<< HEAD
 
 public class MainActivity extends AppCompatActivity implements
         ForecastAdapter.ForecastAdapterOnClickHandler,
         // TODO (3) Implement OnSharedPreferenceChangeListener on MainActivity
         LoaderCallbacks<String[]> {
+=======
+// DONE (3) Implement OnSharedPreferenceChangeListener on MainActivity
+public class MainActivity extends AppCompatActivity implements
+        ForecastAdapter.ForecastAdapterOnClickHandler,
+        LoaderCallbacks<String[]>,
+        SharedPreferences.OnSharedPreferenceChangeListener {
+>>>>>>> examples
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -55,7 +71,12 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final int FORECAST_LOADER_ID = 0;
 
+<<<<<<< HEAD
     // TODO (4) Add a private static boolean flag for preference updates and initialize it to false
+=======
+    // DONE (4) Add a private static boolean flag for preference updates and initialize it to false
+    private static boolean PREFERENCES_HAVE_BEEN_UPDATED = false;
+>>>>>>> examples
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +168,18 @@ public class MainActivity extends AppCompatActivity implements
 
         Log.d(TAG, "onCreate: registering preference changed listener");
 
+<<<<<<< HEAD
         // TODO (6) Register MainActivity as a OnSharedPreferenceChangedListener in onCreate
+=======
+        // DONE (6) Register MainActivity as a OnSharedPreferenceChangedListener in onCreate
+        /*
+         * Register MainActivity as an OnPreferenceChangedListener to receive a callback when a
+         * SharedPreference has changed. Please note that we must unregister MainActivity as an
+         * OnSharedPreferenceChanged listener in onDestroy to avoid any memory leaks.
+         */
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .registerOnSharedPreferenceChangeListener(this);
+>>>>>>> examples
     }
 
     /**
@@ -271,8 +303,13 @@ public class MainActivity extends AppCompatActivity implements
      * open the Common Intents page
      */
     private void openLocationInMap() {
+<<<<<<< HEAD
         // TODO (9) Use preferred location rather than a default location to display in the map
         String addressString = "1600 Ampitheatre Parkway, CA";
+=======
+        // DONE (9) Use preferred location rather than a default location to display in the map
+        String addressString = SunshinePreferences.getPreferredWeatherLocation(this);
+>>>>>>> examples
         Uri geoLocation = Uri.parse("geo:0,0?q=" + addressString);
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -327,9 +364,42 @@ public class MainActivity extends AppCompatActivity implements
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
     }
 
+<<<<<<< HEAD
     // TODO (7) In onStart, if preferences have been changed, refresh the data and set the flag to false
 
     // TODO (8) Override onDestroy and unregister MainActivity as a SharedPreferenceChangedListener
+=======
+    // DONE (7) In onStart, if preferences have been changed, refresh the data and set the flag to false
+    @Override
+    protected void onStart() {
+        super.onStart();
+        /*
+         * If the preferences for location or units have changed since the user was last in
+         * MainActivity, perform another query and set the flag to false.
+         *
+         * This isn't the ideal solution because there really isn't a need to perform another
+         * GET request just to change the units, but this is the simplest solution that gets the
+         * job done for now. Later in this course, we are going to show you more elegant ways to
+         * handle converting the units from celsius to fahrenheit and back without hitting the
+         * network again by keeping a copy of the data in a manageable format.
+         */
+        if (PREFERENCES_HAVE_BEEN_UPDATED) {
+            Log.d(TAG, "onStart: preferences were updated");
+            getSupportLoaderManager().restartLoader(FORECAST_LOADER_ID, null, this);
+            PREFERENCES_HAVE_BEEN_UPDATED = false;
+        }
+    }
+
+
+    // DONE (8) Override onDestroy and unregister MainActivity as a SharedPreferenceChangedListener
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+         /* Unregister MainActivity as an OnPreferenceChangedListener to avoid any memory leaks. */
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
+>>>>>>> examples
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -365,5 +435,23 @@ public class MainActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+<<<<<<< HEAD
     // TODO (5) Override onSharedPreferenceChanged to set the preferences flag to true
+=======
+    // DONE (5) Override onSharedPreferenceChanged to set the preferences flag to true
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        /*
+         * Set this flag to true so that when control returns to MainActivity, it can refresh the
+         * data.
+         *
+         * This isn't the ideal solution because there really isn't a need to perform another
+         * GET request just to change the units, but this is the simplest solution that gets the
+         * job done for now. Later in this course, we are going to show you more elegant ways to
+         * handle converting the units from celsius to fahrenheit and back without hitting the
+         * network again by keeping a copy of the data in a manageable format.
+         */
+        PREFERENCES_HAVE_BEEN_UPDATED = true;
+    }
+>>>>>>> examples
 }

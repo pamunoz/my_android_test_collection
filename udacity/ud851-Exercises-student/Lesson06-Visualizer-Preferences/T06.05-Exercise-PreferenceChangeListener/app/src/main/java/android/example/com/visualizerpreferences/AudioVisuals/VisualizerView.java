@@ -89,15 +89,32 @@ public class VisualizerView extends View {
         // Make bass circle
         mBassCircle = new TrailedShape(BASS_MULTIPLIER) {
             @Override
+<<<<<<< HEAD
             protected void drawThisShape(float shapeCenterX, float shapeCenterY, float currentSize, Canvas canvas, Paint paint) {
                 canvas.drawCircle(shapeCenterX, shapeCenterY, currentSize, paint);
+=======
+            protected void drawThisShape(
+                    float shapeCenterX, float shapeCenterY,
+                    float currentSize, Canvas canvas, Paint paint) {
+                canvas.drawCircle(
+                        shapeCenterX,
+                        shapeCenterY,
+                        currentSize,
+                        paint);
+>>>>>>> examples
             }
         };
 
         // Make midrange square
         mMidSquare = new TrailedShape(MID_MULTIPLIER) {
             @Override
+<<<<<<< HEAD
             protected void drawThisShape(float shapeCenterX, float shapeCenterY, float currentSize, Canvas canvas, Paint paint) {
+=======
+            protected void drawThisShape(
+                    float shapeCenterX, float shapeCenterY,
+                    float currentSize, Canvas canvas, Paint paint) {
+>>>>>>> examples
                 canvas.drawRect(shapeCenterX - currentSize,
                         shapeCenterY - currentSize,
                         shapeCenterX + currentSize,
@@ -109,7 +126,13 @@ public class VisualizerView extends View {
         // Make treble triangle
         mTrebleTriangle = new TrailedShape(TREBLE_MULTIPLIER) {
             @Override
+<<<<<<< HEAD
             protected void drawThisShape(float shapeCenterX, float shapeCenterY, float currentSize, Canvas canvas, Paint paint) {
+=======
+            protected void drawThisShape(
+                    float shapeCenterX, float shapeCenterY,
+                    float currentSize, Canvas canvas, Paint paint) {
+>>>>>>> examples
                 Path trianglePath = new Path();
                 trianglePath.moveTo(shapeCenterX, shapeCenterY - currentSize);
                 trianglePath.lineTo(shapeCenterX + currentSize, shapeCenterY + currentSize / 2);

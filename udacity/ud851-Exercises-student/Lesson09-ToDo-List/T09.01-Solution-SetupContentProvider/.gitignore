@@ -1,7 +1,12 @@
 *.iml
 .gradle
 /local.properties
+<<<<<<< HEAD
 /.idea
+=======
+/.idea/workspace.xml
+/.idea/libraries
+>>>>>>> examples
 .DS_Store
 /build
 /captures

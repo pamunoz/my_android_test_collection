@@ -18,10 +18,19 @@ package com.example.android.implicitintents;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.support.v4.app.ShareCompat;
+>>>>>>> examples
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+<<<<<<< HEAD
+=======
+import static android.R.attr.mimeType;
+
+>>>>>>> examples
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -49,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onClickOpenAddressButton(View v) {
         String addressString = "1600 Amphitheatre Parkway, CA";
+<<<<<<< HEAD
 
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("geo")
@@ -56,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
                 .query(addressString);
         Uri addressUri = builder.build();
 
+=======
+        Uri addressUri = Uri.parse("geo:0,0?q=" + addressString);
+>>>>>>> examples
         showMap(addressUri);
     }
 
@@ -66,10 +79,20 @@ public class MainActivity extends AppCompatActivity {
      * @param v Button that was clicked.
      */
     public void onClickShareTextButton(View v) {
+<<<<<<< HEAD
         // TODO (5) Specify a String you'd like to share
 
         // TODO (6) Replace the Toast with shareText, passing in the String from step 5
         Toast.makeText(this, "TODO: Share text when this is clicked", Toast.LENGTH_LONG).show();
+=======
+        // DONE (5) Specify a String you'd like to share
+        String message = "There was a time when people walk the earth and they fly and fly again\n" +
+                "but people was stupid and stupid and stupid";
+
+        // DONE (6) Replace the Toast with shareText, passing in the String from step 5
+        // Toast.makeText(this, "TODO: Share text when this is clicked", Toast.LENGTH_LONG).show();
+        shareText(message);
+>>>>>>> examples
     }
 
     /**
@@ -143,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
     // TODO (1) Create a void method called shareText that accepts a String as a parameter
     // Do steps 2 - 4 within the shareText method
 
@@ -151,4 +175,23 @@ public class MainActivity extends AppCompatActivity {
         // TODO (3) Create a title for the chooser window that will pop up
 
         // TODO (4) Use ShareCompat.IntentBuilder to build the Intent and start the chooser
+=======
+    // DONE (1) Create a void method called shareText that accepts a String as a parameter
+    // Do steps 2 - 4 within the shareText method
+    private void shareText(String parameter) {
+        // DONE (2) Create a String variable called mimeType and set it to "text/plain"
+        String mimeType = "text/plain";
+
+        // DONE (3) Create a title for the chooser window that will pop up
+        String chooserTitle = "Learning to share";
+        String textToShare = "Hello there";
+
+
+        // DONE (4) Use ShareCompat.IntentBuilder to build the Intent and start the chooser
+        ShareCompat.IntentBuilder.from(this)
+                .setChooserTitle(chooserTitle)
+                .setType(mimeType)
+                .startChooser();
+    }
+>>>>>>> examples
 }

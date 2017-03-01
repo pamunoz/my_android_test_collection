@@ -18,12 +18,19 @@
             </intent-filter>
         </activity>
 
+<<<<<<< HEAD
         <!-- COMPLETED (14) Declare WaterReminderIntentService in the Manifest and set the exported
          attribute to false-->
+=======
+        <!-- COMPLETED (14) Declare WaterReminderIntentService in the Manifest -->
+>>>>>>> examples
         <!--This is required for immediate syncs -->
         <service
             android:name=".sync.WaterReminderIntentService"
             android:exported="false"/>
+<<<<<<< HEAD
 
+=======
+>>>>>>> examples
     </application>
 </manifest>

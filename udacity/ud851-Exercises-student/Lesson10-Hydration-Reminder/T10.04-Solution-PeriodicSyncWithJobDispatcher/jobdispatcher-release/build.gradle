@@ -1,2 +1,6 @@
 configurations.maybeCreate("default")
+<<<<<<< HEAD
 artifacts.add("default", file('jobdispatcher-release.aar'))
+=======
+artifacts.add("default", file('jobdispatcher-release.aar'))
+>>>>>>> examples

@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.android.background">
+<<<<<<< HEAD
     <!-- TODO (10) Add the VIBRATE permission -->
+=======
+    <!-- DONE (10) Add the VIBRATE permission -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+>>>>>>> examples
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <!-- TODO (15) Add the launch mode "single top" attribute to the MainActivity so that when you open
+=======
+        <!-- DONE (15) Add the launch mode "single top" attribute to the MainActivity so that when you open
+>>>>>>> examples
         MainActivity using a notification, it will take you back to the already opened activity, not
         generate a new one -->
         <activity
             android:name=".MainActivity"
+<<<<<<< HEAD
             android:screenOrientation="portrait">
+=======
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop">
+>>>>>>> examples
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

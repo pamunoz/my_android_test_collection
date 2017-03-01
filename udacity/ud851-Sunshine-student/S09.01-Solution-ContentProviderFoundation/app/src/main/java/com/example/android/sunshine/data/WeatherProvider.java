@@ -35,7 +35,11 @@ import android.support.annotation.NonNull;
  */
 public class WeatherProvider extends ContentProvider {
 
+<<<<<<< HEAD
 //  COMPLETED (5) Create static constant integer values named CODE_WEATHER & CODE_WEATHER_WITH_DATE to identify the URIs this ContentProvider can handle
+=======
+//  COMPLETED (6) Create constant integer values to identify the URIs this ContentProvider can handle
+>>>>>>> examples
     /*
      * These constant will be used to match URIs with the data they are looking for. We will take
      * advantage of the UriMatcher class to make that matching MUCH easier than doing something

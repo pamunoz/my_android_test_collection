@@ -15,7 +15,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final String TAG = MainActivity.class.getSimpleName();
 
+<<<<<<< HEAD
     // TODO (1) Create a key String called LIFECYCLE_CALLBACKS_TEXT_KEY
+=======
+    // DONE (1) Create a key String called LIFECYCLE_CALLBACKS_TEXT_KEY
+    private static final String LIFECYCLE_CALLBACKS_TEXT_KEY = "Callbacks";
+>>>>>>> examples
 
     /* Constant values for the names of each respective lifecycle callback */
     private static final String ON_CREATE = "onCreate";
@@ -49,7 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
         mLifecycleDisplay = (TextView) findViewById(R.id.tv_lifecycle_events_display);
 
+<<<<<<< HEAD
         // TODO (6) If savedInstanceState is not null and contains LIFECYCLE_CALLBACKS_TEXT_KEY, set that text on our TextView
+=======
+        // DONE (6) If savedInstanceState is not null and contains LIFECYCLE_CALLBACKS_TEXT_KEY, set that text on our TextView
+        if (savedInstanceState != null && savedInstanceState.containsKey(LIFECYCLE_CALLBACKS_TEXT_KEY)) {
+            mLifecycleDisplay.setText(savedInstanceState.getString(LIFECYCLE_CALLBACKS_TEXT_KEY));
+        }
+>>>>>>> examples
 
         logAndAppend(ON_CREATE);
     }
@@ -123,7 +135,11 @@ public class MainActivity extends AppCompatActivity {
 
         logAndAppend(ON_RESTART);
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> examples
     /**
      * The final call you receive before your activity is destroyed. This can happen either because
      * the activity is finishing (someone called finish() on it, or because the system is
@@ -137,11 +153,26 @@ public class MainActivity extends AppCompatActivity {
         logAndAppend(ON_DESTROY);
     }
 
+<<<<<<< HEAD
     // TODO (2) Override onSaveInstanceState
     // Do steps 3 - 5 within onSaveInstanceState
     // TODO (3) Call super.onSaveInstanceState
     // TODO (4) Call logAndAppend with the ON_SAVE_INSTANCE_STATE String
     // TODO (5) Put the text from the TextView in the outState bundle
+=======
+    // DONE (2) Override onSaveInstanceState
+    // Do steps 3 - 5 within onSaveInstanceState
+    // DONE (3) Call super.onSaveInstanceState
+    // DONE (4) Call logAndAppend with the ON_SAVE_INSTANCE_STATE String
+    // DONE (5) Put the text from the TextView in the outState bundle
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        logAndAppend(LIFECYCLE_CALLBACKS_TEXT_KEY);
+        String lifeCycleDisplayTextViewContents = mLifecycleDisplay.getText().toString();
+        outState.putString(LIFECYCLE_CALLBACKS_TEXT_KEY, lifeCycleDisplayTextViewContents);
+    }
+>>>>>>> examples
 
     /**
      * Logs to the console and appends the lifecycle method name to the TextView so that you can

@@ -51,12 +51,17 @@ public class MainActivity extends AppCompatActivity {
         // COMPLETED (5) Store an address in a String
         String addressString = "1600 Amphitheatre Parkway, CA";
 
+<<<<<<< HEAD
         // COMPLETED (6) Use Uri.Builder with the appropriate scheme and query to form the Uri for the address
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("geo")
                 .path("0,0")
                 .query(addressString);
         Uri addressUri = builder.build();
+=======
+        // COMPLETED (6) Use Uri.parse with the appropriate scheme and query to form the Uri for the address
+        Uri addressUri = Uri.parse("geo:0,0?q=" + addressString);
+>>>>>>> examples
 
         // COMPLETED (7) Replace the Toast with a call to showMap, passing in the Uri from the previous step
         showMap(addressUri);
@@ -142,7 +147,10 @@ public class MainActivity extends AppCompatActivity {
          */
         intent.setData(geoLocation);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> examples
         // COMPLETED (4) Verify that this Intent can be launched and then call startActivity
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);

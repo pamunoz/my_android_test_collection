@@ -16,5 +16,9 @@
 <resources>
     <string name="app_name">Github Query</string>
     <!--DONE (1) Add a string resource called search with the title "Search"-->
+<<<<<<< HEAD
     <string name="search">Search</string>
+=======
+    <string name="menu_search_title">Search</string>
+>>>>>>> examples
 </resources>

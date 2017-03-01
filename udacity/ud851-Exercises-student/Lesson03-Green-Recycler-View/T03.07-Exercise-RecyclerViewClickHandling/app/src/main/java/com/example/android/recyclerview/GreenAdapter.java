@@ -39,7 +39,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     private static final String TAG = GreenAdapter.class.getSimpleName();
 
+<<<<<<< HEAD
     // TODO (3) Create a final private ListItemClickListener called mOnClickListener
+=======
+    // DONE (3) Create a final private ListItemClickListener called mOnClickListener
+    final private ListItemClickListener mOnclickListener;
+>>>>>>> examples
 
     /*
      * The number of ViewHolders that have been created. Typically, you can figure out how many
@@ -87,19 +92,36 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     private int mNumberItems;
 
+<<<<<<< HEAD
     // TODO (1) Add an interface called ListItemClickListener
     // TODO (2) Within that interface, define a void method called onListItemClick that takes an int as a parameter
 
     // TODO (4) Add a ListItemClickListener as a parameter to the constructor and store it in mOnClickListener
+=======
+    // DONE (1) Add an interface called ListItemClickListener
+    // DONE (2) Within that interface, define a void method called onListItemClick that takes an int as a parameter
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    // DONE (4) Add a ListItemClickListener as a parameter to the constructor and store it in mOnClickListener
+>>>>>>> examples
     /**
      * Constructor for GreenAdapter that accepts a number of items to display and the specification
      * for the ListItemClickListener.
      *
      * @param numberOfItems Number of items to display in list
      */
+<<<<<<< HEAD
     public GreenAdapter(int numberOfItems) {
         mNumberItems = numberOfItems;
         viewHolderCount = 0;
+=======
+    public GreenAdapter(int numberOfItems, ListItemClickListener listener) {
+        mNumberItems = numberOfItems;
+        viewHolderCount = 0;
+        mOnclickListener = listener;
+>>>>>>> examples
     }
 
     /**
@@ -156,18 +178,30 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      * This method simply returns the number of items to display. It is used behind the scenes
      * to help layout our Views and for animations.
      *
+<<<<<<< HEAD
      * @return The number of items available
+=======
+     * @return The number of items available in our forecast
+>>>>>>> examples
      */
     @Override
     public int getItemCount() {
         return mNumberItems;
     }
 
+<<<<<<< HEAD
     // TODO (5) Implement OnClickListener in the NumberViewHolder class
     /**
      * Cache of the children views for a list item.
      */
     class NumberViewHolder extends RecyclerView.ViewHolder {
+=======
+    // DONE (5) Implement OnClickListener in the ForecastAdapterViewHolder class
+    /**
+     * Cache of the children views for a list item.
+     */
+    class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+>>>>>>> examples
 
         // Will display the position in the list, ie 0 through getItemCount() - 1
         TextView listItemNumberView;
@@ -186,7 +220,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
             viewHolderIndex = (TextView) itemView.findViewById(R.id.tv_view_holder_instance);
+<<<<<<< HEAD
             // TODO (7) Call setOnClickListener on the View passed into the constructor (use 'this' as the OnClickListener)
+=======
+            // DONE (7) Call setOnClickListener on the View passed into the constructor (use 'this' as the OnClickListener)
+            listItemNumberView.setOnClickListener(this);
+>>>>>>> examples
         }
 
         /**
@@ -198,6 +237,17 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
             listItemNumberView.setText(String.valueOf(listIndex));
         }
 
+<<<<<<< HEAD
         // TODO (6) Override onClick, passing the clicked item's position (getAdapterPosition()) to mOnClickListener via its onListItemClick method
+=======
+        // DONE (6) Override onClick, passing the clicked item's position
+        // (getAdapterPosition()) to mClickHandler via its onListItemClick method
+
+        @Override
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            mOnclickListener.onListItemClick(clickedPosition);
+        }
+>>>>>>> examples
     }
 }

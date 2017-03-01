@@ -16,7 +16,18 @@ STUDENT = "student"
 DEVELOP = "develop-"
 DEVELOP_DEFAULT = "all develop branches"
 
+<<<<<<< HEAD
 
+=======
+DIFF_FORMAT = """
+
+You can download a zip of this exercise [here](https://github.com/udacity/ud843-QuakeReport/archive/{number}-Exercise-{name}.zip), \
+and a zip of the solution [here](https://github.com/udacity/ud843-QuakeReport/archive/{number}-Solution-{name}.zip). \
+Also, you can find a visual summary of the solution [here](https://github.com/udacity/ud843-QuakeReport/compare/\
+{number}-Exercise-{name}...{number}-Solution-{name}).
+
+"""
+>>>>>>> examples
 
 
 def flatten(repo_dir, target_dir, student, develop_branches, remove_branches, links):
@@ -25,6 +36,7 @@ def flatten(repo_dir, target_dir, student, develop_branches, remove_branches, li
     if develop_branches == DEVELOP_DEFAULT:
         develop_branches = [branch for branch in repo.branches if DEVELOP in branch.name]
 
+<<<<<<< HEAD
     remove_local_branches(repo, student, develop_branches)
 
     try:
@@ -35,6 +47,35 @@ def flatten(repo_dir, target_dir, student, develop_branches, remove_branches, li
             to_temp_dir(repo, repo_dir, develop, temp_dir)
 
         copy_snapshots(repo, student, temp_dir, target_dir)
+=======
+    if remove_branches:
+        remove_local_branches(repo, student, develop_branches)
+
+    flat = len(develop_branches) == 1
+
+    # print develop_branches
+
+    try:
+        temp_dir = tempfile.mkdtemp()
+        try:
+            # current_branch = repo.active_branch
+            # print "Stashing"
+            # repo.git.stash()
+
+            for develop in develop_branches:
+                to_temp_dir(repo, repo_dir, develop, temp_dir, flat, links)
+            if links:
+                insert_diff_links(temp_dir)
+
+            copy_snapshots(repo, student, temp_dir, target_dir)
+        finally:
+            pass
+            # if current_branch:
+            #     repo.git.checkout(current_branch)
+            # print "Popping"
+            # if repo.git.stash("list"):
+            #     repo.git.stash("pop")
+>>>>>>> examples
     finally:
         if os.path.exists(temp_dir):
             shutil.rmtree(temp_dir)
@@ -50,7 +91,11 @@ def remove_local_branches(repo, student, develop_branches):
             repo.git.branch(branch.name, "-D")
 
 
+<<<<<<< HEAD
 def to_temp_dir(repo, repo_dir, develop, temp_dir):
+=======
+def to_temp_dir(repo, repo_dir, develop, temp_dir, flat, links):
+>>>>>>> examples
     for rev in repo.git.rev_list(develop).split("\n"):
         commit = repo.commit(rev)
         branch_name = clean_commit_message(commit.message)
@@ -63,12 +108,29 @@ def to_temp_dir(repo, repo_dir, develop, temp_dir):
             repo.git.checkout(commit)
             print "Saving snapshot of:", branch_name
             repo.git.clean("-fdx")
+<<<<<<< HEAD
             folder_name = develop.name.split("-",1)[1]
             target_dir = os.path.join(temp_dir, folder_name, branch_name)
+=======
+            if flat:
+                target_dir = os.path.join(temp_dir, branch_name)
+            else:
+                folder_name = develop.name.split("-",1)[1]
+                target_dir = os.path.join(temp_dir, folder_name, branch_name)
+>>>>>>> examples
 
             shutil.copytree(repo_dir, target_dir,
                             ignore=shutil.ignore_patterns(*IGNORE_PATTERNS))
 
+<<<<<<< HEAD
+=======
+            if links:
+                with open(os.path.join(target_dir, "README.md"), "a") as readme:
+                    print branch_name
+                    number, _, name = branch_name.split("-")
+                    readme.write(DIFF_FORMAT.format(number=number, name=name))
+
+>>>>>>> examples
 
 def clean_commit_message(message):
     first_line = message.split("\n")[0]
@@ -77,6 +139,16 @@ def clean_commit_message(message):
     return safe_message[:MAX_LENGTH] if len(safe_message) > MAX_LENGTH else safe_message
 
 
+<<<<<<< HEAD
+=======
+def insert_diff_links(temp_dir):
+    for item in os.listdir(temp_dir):
+        number, _, name = item.split("-")
+        with open(os.path.join(temp_dir, item, "README.md"), "a") as readme:
+            readme.write(DIFF_FORMAT.format(number=number, name=name))
+
+
+>>>>>>> examples
 def copy_snapshots(repo, student, temp_dir, target_dir):
     if target_dir == os.getcwd():
         repo.git.checkout(student)

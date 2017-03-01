@@ -43,7 +43,12 @@ public class AudioInputReader {
 
     private void initVisualizer() {
         // Setup media player
+<<<<<<< HEAD
         mPlayer = MediaPlayer.create(mContext, R.raw.htmlthesong);
+=======
+        // mPlayer = MediaPlayer.create(mContext, R.raw.htmlthesong);
+        mPlayer = MediaPlayer.create(mContext, R.raw.asteroids);
+>>>>>>> examples
         mPlayer.setLooping(true);
 
         // Setup the Visualizer

@@ -41,7 +41,11 @@ public class MainActivity extends AppCompatActivity {
      */
     private TextView mLifecycleDisplay;
 
+<<<<<<< HEAD
     // COMPLETED (1) Declare and instantiate a static ArrayList of Strings called mLifecycleCallbacks
+=======
+    // COMPLETED (1) Declare and instantiate an ArrayList of Strings called mLifecycleCallbacks
+>>>>>>> examples
     /*
      * This ArrayList will keep track of lifecycle callbacks that occur after we are able to save
      * them. Since, as we've observed, the contents of the TextView are saved in onSaveInstanceState
@@ -183,7 +187,11 @@ public class MainActivity extends AppCompatActivity {
 
         logAndAppend(ON_RESTART);
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> examples
     /**
      * The final call you receive before your activity is destroyed. This can happen either because
      * the activity is finishing (someone called finish() on it, or because the system is

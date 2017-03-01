@@ -40,7 +40,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="22sp"
+<<<<<<< HEAD
         android:hint="@string/query_editText"/>
+=======
+        android:hint="Enter a query and then click search"/>
+>>>>>>> examples
 
     <!--DONE (12) Add a TextView-->
     <!--DONE (13) Give the TextView an id of @+id/tv_url_display-->
@@ -51,15 +55,23 @@
     <TextView
         android:id="@+id/tv_url_display"
         android:layout_width="wrap_content"
+<<<<<<< HEAD
         android:textSize="22sp"
         android:layout_marginTop="8dp"
         android:text="@string/tv_url_display"
         android:layout_height="wrap_content"/>
+=======
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:layout_marginTop="8dp"
+        android:text="Your search URL will show up here when you click search"/>
+>>>>>>> examples
 
     <!--DONE (18) Add a ScrollView-->
     <!--DONE (19) Set the width to match_parent and the height to wrap_content-->
     <!--DONE (20) Set the top margin to 16dp-->
     <ScrollView
+<<<<<<< HEAD
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -69,10 +81,16 @@
         <!--DONE (23) Set the text size to 18sp-->
         <!--DONE (24) Set the height and width to wrap_content-->
         <!--DONE (25) Set the text to something that tells the user to make a search-->
+=======
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+>>>>>>> examples
 
         <TextView
             android:id="@+id/tv_github_search_results_json"
             android:layout_width="wrap_content"
+<<<<<<< HEAD
             android:textSize="18sp"
             android:layout_height="wrap_content"
             android:text="@string/tv_github_search_result_json"/>
@@ -80,5 +98,18 @@
     </ScrollView>
 
 
+=======
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Make a search"/>
+
+    </ScrollView>
+
+        <!--DONE (21) Within the ScrollView, add a TextView-->
+        <!--DONE (22) Give the TextView an id of @+id/tv_github_search_results_json-->
+        <!--DONE (23) Set the text size to 18sp-->
+        <!--DONE (24) Set the height and width to wrap_content-->
+        <!--DONE (25) Set the text to something that tells the user to make a search-->
+>>>>>>> examples
 
 </LinearLayout>

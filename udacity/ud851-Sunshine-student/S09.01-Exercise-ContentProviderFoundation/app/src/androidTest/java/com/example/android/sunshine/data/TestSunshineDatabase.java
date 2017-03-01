@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2016 The Android Open Source Project
+=======
+ * Copyright (C) 2015 The Android Open Source Project
+>>>>>>> examples
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +23,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+<<<<<<< HEAD
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+=======
+>>>>>>> examples
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -28,6 +35,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+<<<<<<< HEAD
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -44,12 +52,27 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
+=======
+import java.util.HashSet;
+import java.util.concurrent.TimeUnit;
+
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COLUMN_DATE;
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.COLUMN_WEATHER_ID;
+import static com.example.android.sunshine.data.WeatherContract.WeatherEntry.TABLE_NAME;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+>>>>>>> examples
 
 /**
  * Used to test the database we use in Sunshine to cache weather data. Within these tests, we
  * test the following:
  * <p>
+<<<<<<< HEAD
  * <p>
+=======
+ *
+>>>>>>> examples
  * 1) Creation of the database with proper table(s)
  * 2) Insertion of single record into our weather table
  * 3) When a record is already stored in the weather table with a particular date, a new record
@@ -61,6 +84,7 @@ import static junit.framework.Assert.fail;
 @RunWith(AndroidJUnit4.class)
 public class TestSunshineDatabase {
 
+<<<<<<< HEAD
     /*
      * Context used to perform operations on the database and create WeatherDbHelpers.
      */
@@ -224,6 +248,30 @@ public class TestSunshineDatabase {
      */
     @Test
     public void testDuplicateDateInsertBehaviorShouldReplace() {
+=======
+    /* Context used to perform operations on the database and create WeatherDbHelpers */
+    private final Context mContext = InstrumentationRegistry.getTargetContext();
+
+    /**
+     * Because we annotate this method with the @Before annotation, this method will be called
+     * before every single method with an @Test annotation. We want to start each test clean, so we
+     * delete the database to do so.
+     */
+    @Before
+    public void setUp() {
+        deleteTheDatabase();
+    }
+
+    /**
+     * Tests that when an insert is performed where the date already exists in the database, the
+     * older record is replaced by the newer record.
+     */
+    @Test
+    public void testDuplicateDateInsertBehaviorShouldReplace() {
+        /* Use WeatherDbHelper to get access to a writable database */
+        WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+>>>>>>> examples
 
         /* Obtain weather values from TestUtilities */
         ContentValues testWeatherValues = TestUtilities.createTestWeatherContentValues();
@@ -232,7 +280,11 @@ public class TestSunshineDatabase {
          * Get the original weather ID of the testWeatherValues to ensure we use a different
          * weather ID for our next insert.
          */
+<<<<<<< HEAD
         long originalWeatherId = testWeatherValues.getAsLong(REFLECTED_COLUMN_WEATHER_ID);
+=======
+        long originalWeatherId = testWeatherValues.getAsLong(COLUMN_WEATHER_ID);
+>>>>>>> examples
 
         /* Insert the ContentValues with old weather ID into database */
         database.insert(
@@ -244,9 +296,15 @@ public class TestSunshineDatabase {
          * We don't really care what this ID is, just that it is different than the original and
          * that we can use it to verify our "new" weather entry has been made.
          */
+<<<<<<< HEAD
         long newWeatherId = originalWeatherId + 1;
 
         testWeatherValues.put(REFLECTED_COLUMN_WEATHER_ID, newWeatherId);
+=======
+        long newWeatherId = originalWeatherId + 42;
+
+        testWeatherValues.put(COLUMN_WEATHER_ID, newWeatherId);
+>>>>>>> examples
 
         /* Insert the ContentValues with new weather ID into database */
         database.insert(
@@ -256,9 +314,15 @@ public class TestSunshineDatabase {
 
         /* Query for a weather record with our new weather ID */
         Cursor newWeatherIdCursor = database.query(
+<<<<<<< HEAD
                 REFLECTED_TABLE_NAME,
                 new String[]{REFLECTED_COLUMN_DATE},
                 null,
+=======
+                TABLE_NAME,
+                new String[]{COLUMN_WEATHER_ID},
+                COLUMN_WEATHER_ID + " == " + newWeatherId,
+>>>>>>> examples
                 null,
                 null,
                 null,
@@ -269,21 +333,38 @@ public class TestSunshineDatabase {
         assertTrue(recordWithNewIdNotFound,
                 newWeatherIdCursor.getCount() == 1);
 
+<<<<<<< HEAD
         /* Always close the cursor after you're done with it */
         newWeatherIdCursor.close();
     }
 
     /**
 >>>>>>> a6840f1... S07.03-Exercise-ConflictResolutionPolicy
+=======
+        /* Always close the database */
+        database.close();
+    }
+
+    /**
+>>>>>>> examples
      * Tests the columns with null values cannot be inserted into the database.
      */
     @Test
     public void testNullColumnConstraints() {
         /* Use a WeatherDbHelper to get access to a writable database */
+<<<<<<< HEAD
 
         /* We need a cursor from a weather table query to access the column names */
         Cursor weatherTableCursor = database.query(
                 REFLECTED_TABLE_NAME,
+=======
+        WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+        /* We need a cursor from a weather table query to access the column names */
+        Cursor weatherTableCursor = database.query(
+                TABLE_NAME,
+>>>>>>> examples
                 /* We don't care about specifications, we just want the column names */
                 null, null, null, null, null, null);
 
@@ -306,6 +387,7 @@ public class TestSunshineDatabase {
 
             /* Insert ContentValues into database and get a row ID back */
             long shouldFailRowId = database.insert(
+<<<<<<< HEAD
                     REFLECTED_TABLE_NAME,
                     null,
                     testValues);
@@ -324,6 +406,18 @@ public class TestSunshineDatabase {
             assertEquals(nullRowInsertShouldFail,
                     -1,
                     shouldFailRowId);
+=======
+                    TABLE_NAME,
+                    null,
+                    testValues);
+
+            /* If the insert fails, which it should in this case, database.insert returns -1 */
+            String nullRowInsertShouldFail =
+                    "Insert should have failed due to a null value for column: '" + columnName + "', but didn't.";
+            // TODO, use assert equals with actual and expected instead of assertTrue
+            assertTrue(nullRowInsertShouldFail,
+                    shouldFailRowId == -1);
+>>>>>>> examples
 
             /* "Restore" the original value in testValues */
             testValues.put(columnName, testValuesReferenceCopy.getAsDouble(columnName));
@@ -336,7 +430,10 @@ public class TestSunshineDatabase {
     /**
      * Tests to ensure that inserts into your database results in automatically
      * incrementing row IDs.
+<<<<<<< HEAD
 >>>>>>> 4174cf2... S07.02-Exercise-PreventInvalidInserts
+=======
+>>>>>>> examples
      */
     @Test
     public void testIntegerAutoincrement() {
@@ -344,10 +441,18 @@ public class TestSunshineDatabase {
         /* First, let's ensure we have some values in our table initially */
         testInsertSingleRecordIntoWeatherTable();
 
+<<<<<<< HEAD
+=======
+        /* Use WeatherDbHelper to get access to a writable database */
+        WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+>>>>>>> examples
         /* Obtain weather values from TestUtilities */
         ContentValues testWeatherValues = TestUtilities.createTestWeatherContentValues();
 
         /* Get the date of the testWeatherValues to ensure we use a different date later */
+<<<<<<< HEAD
         long originalDate = testWeatherValues.getAsLong(REFLECTED_COLUMN_DATE);
 
         /* Insert ContentValues into database and get a row ID back */
@@ -362,23 +467,48 @@ public class TestSunshineDatabase {
                 "_ID == " + firstRowId,
                 null);
 
+=======
+        long originalDate = testWeatherValues.getAsLong(COLUMN_DATE);
+
+        /* Insert ContentValues into database and get a row ID back */
+        long firstRowId = database.insert(
+                WeatherContract.WeatherEntry.TABLE_NAME,
+                null,
+                testWeatherValues);
+
+>>>>>>> examples
         /*
          * Now we need to change the date associated with our test content values because the
          * database policy is to replace identical dates on conflict.
          */
         long dayAfterOriginalDate = originalDate + TimeUnit.DAYS.toMillis(1);
+<<<<<<< HEAD
         testWeatherValues.put(REFLECTED_COLUMN_DATE, dayAfterOriginalDate);
 
         /* Insert ContentValues into database and get another row ID back */
         long secondRowId = database.insert(
                 REFLECTED_TABLE_NAME,
+=======
+        testWeatherValues.put(COLUMN_DATE, dayAfterOriginalDate);
+
+        /* Insert ContentValues into database and get another row ID back */
+        long secondRowId = database.insert(
+                WeatherContract.WeatherEntry.TABLE_NAME,
+>>>>>>> examples
                 null,
                 testWeatherValues);
 
         String sequentialInsertsDoNotAutoIncrementId =
+<<<<<<< HEAD
                 "IDs were reused and shouldn't be if autoincrement is setup properly.";
         assertNotSame(sequentialInsertsDoNotAutoIncrementId,
                 firstRowId, secondRowId);
+=======
+                "IDs were expected to autoincrement but did not.";
+        // TODO, use assert equals with actual and expected instead of assertTrue
+        assertTrue(sequentialInsertsDoNotAutoIncrementId,
+                firstRowId + 1 == secondRowId);
+>>>>>>> examples
     }
 
     /**
@@ -391,6 +521,13 @@ public class TestSunshineDatabase {
 
         testInsertSingleRecordIntoWeatherTable();
 
+<<<<<<< HEAD
+=======
+        /* Use a WeatherDbHelper to get access to a writable database */
+        WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+>>>>>>> examples
         dbHelper.onUpgrade(database, 13, 14);
 
         /*
@@ -398,24 +535,37 @@ public class TestSunshineDatabase {
          * make sure that our weather table is still in the database after upgrading.
          */
         Cursor tableNameCursor = database.rawQuery(
+<<<<<<< HEAD
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='" + REFLECTED_TABLE_NAME + "'",
+=======
+                "SELECT name FROM sqlite_master WHERE type='table' AND name='" + TABLE_NAME + "'",
+>>>>>>> examples
                 null);
 
         /*
          * Our database should only contain one table, and so the above query should have one
          * record in the cursor that queried for our table names.
          */
+<<<<<<< HEAD
         int expectedTableCount = 1;
         String shouldHaveSingleTable = "There should only be one table returned from this query.";
         assertEquals(shouldHaveSingleTable,
                 expectedTableCount,
                 tableNameCursor.getCount());
+=======
+        // TODO, use assert equals with actual and expected instead of assertTrue
+        assertTrue(tableNameCursor.getCount() == 1);
+>>>>>>> examples
 
         /* We are done verifying our table names, so we can close this cursor */
         tableNameCursor.close();
 
         Cursor shouldBeEmptyWeatherCursor = database.query(
+<<<<<<< HEAD
                 REFLECTED_TABLE_NAME,
+=======
+                TABLE_NAME,
+>>>>>>> examples
                 null,
                 null,
                 null,
@@ -423,6 +573,7 @@ public class TestSunshineDatabase {
                 null,
                 null);
 
+<<<<<<< HEAD
         int expectedRecordCountAfterUpgrade = 0;
         /* We will finally verify that our weather table is empty after */
         String weatherTableShouldBeEmpty =
@@ -431,6 +582,15 @@ public class TestSunshineDatabase {
         assertEquals(weatherTableShouldBeEmpty,
                 expectedRecordCountAfterUpgrade,
                 shouldBeEmptyWeatherCursor.getCount());
+=======
+        /* We will finally verify that our weather table is empty after */
+        String weatherTableShouldBeEmpty =
+                "Weather table should be empty after upgrade, but wasn't";
+
+        // TODO, use assert equals with actual and expected instead of assertTrue
+        assertTrue(weatherTableShouldBeEmpty,
+                shouldBeEmptyWeatherCursor.getCount() == 0);
+>>>>>>> examples
 
         /* Test is over, close the cursor */
         database.close();
@@ -455,11 +615,22 @@ public class TestSunshineDatabase {
         final HashSet<String> tableNameHashSet = new HashSet<>();
 
         /* Here, we add the name of our only table in this particular database */
+<<<<<<< HEAD
         tableNameHashSet.add(REFLECTED_TABLE_NAME);
+=======
+        tableNameHashSet.add(WeatherContract.WeatherEntry.TABLE_NAME);
+>>>>>>> examples
         /* Students, here is where you would add any other table names if you had them */
 //        tableNameHashSet.add(MyAwesomeSuperCoolTableName);
 //        tableNameHashSet.add(MyOtherCoolTableNameThatContainsOtherCoolData);
 
+<<<<<<< HEAD
+=======
+        /* Use a WeatherDbHelper to get access to a writable database */
+        WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+>>>>>>> examples
         /* We think the database is open, let's verify that here */
         String databaseIsNotOpen = "The database should be open and isn't";
         assertEquals(databaseIsNotOpen,
@@ -496,7 +667,11 @@ public class TestSunshineDatabase {
         assertTrue("Error: Your database was created without the expected tables.",
                 tableNameHashSet.isEmpty());
 
+<<<<<<< HEAD
         /* Always close the cursor when you are finished with it */
+=======
+        /* Always close a cursor when you are done with it */
+>>>>>>> examples
         tableNameCursor.close();
     }
 
@@ -512,21 +687,38 @@ public class TestSunshineDatabase {
     @Test
     public void testInsertSingleRecordIntoWeatherTable() {
 
+<<<<<<< HEAD
+=======
+        /* Use WeatherDbHelper to get access to a writable database */
+        WeatherDbHelper dbHelper = new WeatherDbHelper(mContext);
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+>>>>>>> examples
         /* Obtain weather values from TestUtilities */
         ContentValues testWeatherValues = TestUtilities.createTestWeatherContentValues();
 
         /* Insert ContentValues into database and get a row ID back */
         long weatherRowId = database.insert(
+<<<<<<< HEAD
                 REFLECTED_TABLE_NAME,
+=======
+                WeatherContract.WeatherEntry.TABLE_NAME,
+>>>>>>> examples
                 null,
                 testWeatherValues);
 
         /* If the insert fails, database.insert returns -1 */
+<<<<<<< HEAD
         int valueOfIdIfInsertFails = -1;
         String insertFailed = "Unable to insert into the database";
         assertNotSame(insertFailed,
                 valueOfIdIfInsertFails,
                 weatherRowId);
+=======
+        String insertFailed = "Unable to insert into the database";
+        // TODO use assert equals with expected and actual instead
+        assertTrue(insertFailed, weatherRowId != -1);
+>>>>>>> examples
 
         /*
          * Query the database and receive a Cursor. A Cursor is the primary way to interact with
@@ -534,7 +726,11 @@ public class TestSunshineDatabase {
          */
         Cursor weatherCursor = database.query(
                 /* Name of table on which to perform the query */
+<<<<<<< HEAD
                 REFLECTED_TABLE_NAME,
+=======
+                WeatherContract.WeatherEntry.TABLE_NAME,
+>>>>>>> examples
                 /* Columns; leaving this null returns every column in the table */
                 null,
                 /* Optional specification for columns in the "where" clause above */
@@ -569,7 +765,20 @@ public class TestSunshineDatabase {
         assertFalse("Error: More than one record returned from weather query",
                 weatherCursor.moveToNext());
 
+<<<<<<< HEAD
         /* Close cursor */
         weatherCursor.close();
+=======
+        /* Close cursor and database */
+        weatherCursor.close();
+        dbHelper.close();
+    }
+
+    /**
+     * Deletes the entire database.
+     */
+    void deleteTheDatabase() {
+        mContext.deleteDatabase(WeatherDbHelper.DATABASE_NAME);
+>>>>>>> examples
     }
 }

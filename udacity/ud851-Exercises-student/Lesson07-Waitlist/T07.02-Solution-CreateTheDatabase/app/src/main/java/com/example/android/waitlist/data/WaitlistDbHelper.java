@@ -1,6 +1,9 @@
 package com.example.android.waitlist.data;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> examples
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,7 +17,11 @@ public class WaitlistDbHelper extends SQLiteOpenHelper {
     // The database name
     private static final String DATABASE_NAME = "waitlist.db";
 
+<<<<<<< HEAD
     // COMPLETED (3) Create a static final int called DATABASE_VERSION and set it to 1
+=======
+    // COMPLETED (3) Create a static final String called DATABASE_VERSION and set it to 1
+>>>>>>> examples
     // If you change the database schema, you must increment the database version
     private static final int DATABASE_VERSION = 1;
 

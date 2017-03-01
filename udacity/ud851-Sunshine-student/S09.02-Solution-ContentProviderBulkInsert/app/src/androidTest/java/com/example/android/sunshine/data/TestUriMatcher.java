@@ -19,6 +19,7 @@ import android.content.UriMatcher;
 import android.net.Uri;
 import android.support.test.runner.AndroidJUnit4;
 
+<<<<<<< HEAD
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +31,12 @@ import static com.example.android.sunshine.data.TestUtilities.getStaticIntegerFi
 import static com.example.android.sunshine.data.TestUtilities.studentReadableNoSuchField;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;
+=======
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static junit.framework.Assert.assertEquals;
+>>>>>>> examples
 
 @RunWith(AndroidJUnit4.class)
 public class TestUriMatcher {
@@ -38,6 +45,7 @@ public class TestUriMatcher {
     private static final Uri TEST_WEATHER_WITH_DATE_DIR = WeatherContract.WeatherEntry
             .buildWeatherUriWithDate(TestUtilities.DATE_NORMALIZED);
 
+<<<<<<< HEAD
     private static final String weatherCodeVariableName = "CODE_WEATHER";
     private static int REFLECTED_WEATHER_CODE;
 
@@ -75,6 +83,8 @@ public class TestUriMatcher {
         }
     }
 
+=======
+>>>>>>> examples
     /**
      * Students: This function tests that your UriMatcher returns the correct integer value for
      * each of the Uri types that our ContentProvider can handle. Uncomment this when you are
@@ -83,6 +93,7 @@ public class TestUriMatcher {
     @Test
     public void testUriMatcher() {
 
+<<<<<<< HEAD
         /* Test that the code returned from our matcher matches the expected weather code */
         String weatherUriDoesNotMatch = "Error: The CODE_WEATHER URI was matched incorrectly.";
         int actualWeatherCode = testMatcher.match(TEST_WEATHER_DIR);
@@ -90,6 +101,18 @@ public class TestUriMatcher {
         assertEquals(weatherUriDoesNotMatch,
                 expectedWeatherCode,
                 actualWeatherCode);
+=======
+        /* Create a URI matcher that our ContentProvider uses */
+        UriMatcher testMatcher = WeatherProvider.buildUriMatcher();
+
+        /* Test that the code returned from our matcher matches the expected weather code */
+        String weatherUriDoesNotMatch = "Error: The CODE_WEATHER URI was matched incorrectly.";
+        int actualWeatherCode = testMatcher.match(TEST_WEATHER_DIR);
+        int expectedWeatherCode = WeatherProvider.CODE_WEATHER;
+        assertEquals(weatherUriDoesNotMatch,
+                actualWeatherCode,
+                expectedWeatherCode);
+>>>>>>> examples
 
         /*
          * Test that the code returned from our matcher matches the expected weather with date code
@@ -97,9 +120,16 @@ public class TestUriMatcher {
         String weatherWithDateUriCodeDoesNotMatch =
                 "Error: The CODE_WEATHER WITH DATE URI was matched incorrectly.";
         int actualWeatherWithDateCode = testMatcher.match(TEST_WEATHER_WITH_DATE_DIR);
+<<<<<<< HEAD
         int expectedWeatherWithDateCode = REFLECTED_WEATHER_WITH_DATE_CODE;
         assertEquals(weatherWithDateUriCodeDoesNotMatch,
                 expectedWeatherWithDateCode,
                 actualWeatherWithDateCode);
+=======
+        int expectedWeatherWithDateCode = WeatherProvider.CODE_WEATHER_WITH_DATE;
+        assertEquals(weatherWithDateUriCodeDoesNotMatch,
+                actualWeatherWithDateCode,
+                expectedWeatherWithDateCode);
+>>>>>>> examples
     }
 }

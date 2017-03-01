@@ -2,7 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
+<<<<<<< HEAD
     buildToolsVersion "25.0.2"
+=======
+    buildToolsVersion "25.0.1"
+>>>>>>> examples
     defaultConfig {
         applicationId "com.example.android.background"
         minSdkVersion 10
@@ -19,5 +23,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+<<<<<<< HEAD
     compile 'com.android.support:appcompat-v7:25.1.0'
 }
+=======
+    compile 'com.android.support:appcompat-v7:25.0.1'
+}
+>>>>>>> examples

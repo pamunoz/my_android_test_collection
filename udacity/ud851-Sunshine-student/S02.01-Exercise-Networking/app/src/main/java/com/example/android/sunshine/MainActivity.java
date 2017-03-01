@@ -15,10 +15,26 @@
  */
 package com.example.android.sunshine;
 
+<<<<<<< HEAD
+=======
+import android.os.AsyncTask;
+>>>>>>> examples
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+<<<<<<< HEAD
+=======
+import com.example.android.sunshine.data.SunshinePreferences;
+import com.example.android.sunshine.utilities.NetworkUtils;
+import com.example.android.sunshine.utilities.OpenWeatherJsonUtils;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.net.URL;
+
+>>>>>>> examples
 public class MainActivity extends AppCompatActivity {
 
     private TextView mWeatherTextView;
@@ -34,12 +50,17 @@ public class MainActivity extends AppCompatActivity {
          */
         mWeatherTextView = (TextView) findViewById(R.id.tv_weather_data);
 
+<<<<<<< HEAD
         // TODO (4) Delete the dummy weather data. You will be getting REAL data from the Internet in this lesson.
+=======
+        // DONE (4) Delete the dummy weather data. You will be getting REAL data from the Internet in this lesson.
+>>>>>>> examples
         /*
          * This String array contains dummy weather data. Later in the course, we're going to get
          * real weather data. For now, we want to get something on the screen as quickly as
          * possible, so we'll display this dummy data.
          */
+<<<<<<< HEAD
         String[] dummyWeatherData = {
                 "Today, May 17 - Clear - 17°C / 15°C",
                 "Tomorrow - Cloudy - 19°C / 15°C",
@@ -58,11 +79,16 @@ public class MainActivity extends AppCompatActivity {
         };
 
         // TODO (3) Delete the for loop that populates the TextView with dummy data
+=======
+
+        // DONE (3) Delete the for loop that populates the TextView with dummy data
+>>>>>>> examples
         /*
          * Iterate through the array and append the Strings to the TextView. The reason why we add
          * the "\n\n\n" after the String is to give visual separation between each String in the
          * TextView. Later, we'll learn about a better way to display lists of data.
          */
+<<<<<<< HEAD
         for (String dummyWeatherDay : dummyWeatherData) {
             mWeatherTextView.append(dummyWeatherDay + "\n\n\n");
         }
@@ -75,4 +101,61 @@ public class MainActivity extends AppCompatActivity {
     // TODO (5) Create a class that extends AsyncTask to perform network requests
     // TODO (6) Override the doInBackground method to perform your network requests
     // TODO (7) Override the onPostExecute method to display the results of the network request
+=======
+
+        // DONE (9) Call loadWeatherData to perform the network request to get the weather
+        loadWeatherData();
+
+    }
+
+    // DONE (8) Create a method that will get the user's preferred location and execute your new AsyncTask and call it loadWeatherData
+    private void loadWeatherData() {
+        String location = SunshinePreferences.getPreferredWeatherLocation(this);
+        new FetchWeatherTask().execute(location);
+    }
+
+
+    // DONE (5) Create a class that extends AsyncTask to perform network requests
+    // DONE (6) Override the doInBackground method to perform your network requests
+    // DONE (7) Override the onPostExecute method to display the results of the network request
+    public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
+
+        @Override
+        protected String[] doInBackground(String... params) {
+            // If there is no zip code, there is nothing to look up
+            if (params.length == 0) {
+                return null;
+            }
+
+            String location = params[0];
+            URL weatherRequestUrl = NetworkUtils.buildUrl(location);
+
+            try {
+                String jsonWeatherResponse = NetworkUtils
+                        .getResponseFromHttpUrl(weatherRequestUrl);
+                String[] simpleJsonWeatherData = OpenWeatherJsonUtils
+                        .getSimpleWeatherStringsFromJson(MainActivity.this, jsonWeatherResponse);
+                return simpleJsonWeatherData;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String[] weatherData) {
+            if (weatherData != null) {
+                /*
+                 * Iterate through the array and append the Strings to the TextView.
+                 * The reason why we add the "\n\n\n" after the String is to give visual
+                 * separation between each String in the
+                 * TextView. Later, we'll learn about a better way to display lists of data.
+                 */
+                for (String weatherCondition : weatherData) {
+                    mWeatherTextView.append(weatherCondition + "\n\n\n");
+                }
+            }
+        }
+    }
+>>>>>>> examples
 }

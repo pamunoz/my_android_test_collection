@@ -42,10 +42,17 @@ public class NetworkUtils {
     final static String sortBy = "stars";
 
     /**
+<<<<<<< HEAD
      * Builds the URL used to query GitHub.
      *
      * @param githubSearchQuery The keyword that will be queried for.
      * @return The URL to use to query the GitHub.
+=======
+     * Builds the URL used to query Github.
+     *
+     * @param githubSearchQuery The keyword that will be queried for.
+     * @return The URL to use to query the weather server.
+>>>>>>> examples
      */
     public static URL buildUrl(String githubSearchQuery) {
         Uri builtUri = Uri.parse(GITHUB_BASE_URL).buildUpon()

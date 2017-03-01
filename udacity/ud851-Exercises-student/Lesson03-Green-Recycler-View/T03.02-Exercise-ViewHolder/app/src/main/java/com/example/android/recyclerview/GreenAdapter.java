@@ -17,6 +17,10 @@ package com.example.android.recyclerview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+<<<<<<< HEAD
+=======
+import android.support.v7.widget.RecyclerView.Adapter;
+>>>>>>> examples
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +41,7 @@ import android.widget.TextView;
  */
 public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHolder> {
 
+<<<<<<< HEAD
     // TODO (1) Create a layout resource in res/layout/ called number_list_item.xml
 
     // Do steps 2 - 11 within number_list_item.xml
@@ -50,6 +55,21 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     // TODO (9) Center the TextView vertically in the layout
     // TODO (10) Set the font family to monospace
     // TODO (11) Set the text size to 42sp
+=======
+    // DONE (1) Create a layout resource in res/layout/ called number_list_item.xml
+
+    // Do steps 2 - 11 within number_list_item.xml
+    // DONE (2) Make the root layout a FrameLayout
+    // DONE (3) Make the width match_parent and the height wrap_content
+    // DONE (4) Set the padding to 16dp
+    // DONE (5) Add a TextView as the only child of the FrameLayout
+    // DONE (6) Give the TextView an ID "@+id/tv_item_number"
+    // DONE (7) Set the height and width to wrap_content
+    // DONE (8) Align the TextView to the start of the parent
+    // DONE (9) Center the TextView vertically in the layout
+    // DONE (10) Set the font family to monospace
+    // DONE (11) Set the text size to 42sp
+>>>>>>> examples
 
     private static final String TAG = GreenAdapter.class.getSimpleName();
 
@@ -117,6 +137,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         return mNumberItems;
     }
 
+<<<<<<< HEAD
     // TODO (12) Create a class called NumberViewHolder that extends RecyclerView.ViewHolder
 
     // TODO (13) Within NumberViewHolder, create a TextView variable called listItemNumberView
@@ -128,5 +149,28 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     // TODO (17) Within bind, set the text of listItemNumberView to the listIndex
     // TODO (18) Be careful to get the String representation of listIndex, as using setText with an int does something different
 
+=======
+    // DONE (12) Create a class called NumberViewHolder that extends RecyclerView.ViewHolder
+    private class NumberViewHolder extends RecyclerView.ViewHolder {
+        // DONE (13) Within NumberViewHolder, create a TextView variable called listItemNumberViewer
+        TextView listItemNumberViewer;
+
+        // DONE (14) Create a constructor for NumberViewHolder that accepts a View called itemView as a parameter
+
+        public NumberViewHolder(View itemView) {
+            // DONE (15) Within the constructor, call super(itemView)
+            // and then find listItemNumberView by ID
+            super(itemView);
+            listItemNumberViewer = (TextView) itemView.findViewById(R.id.tv_item_number);
+        }
+
+        // DONE (16) Within the NumberViewHolder class, create a void method called bind that accepts an int parameter called listIndex
+        // DONE (17) Within bind, set the text of listItemNumberView to the listIndex
+        // DONE (18) Be careful to get the String representation of listIndex, as using setText with an int does something different
+        private void bind(int listIndex) {
+            String index = String.valueOf(listIndex);
+            listItemNumberViewer.setText(index);
+        }
+>>>>>>> examples
     }
 }

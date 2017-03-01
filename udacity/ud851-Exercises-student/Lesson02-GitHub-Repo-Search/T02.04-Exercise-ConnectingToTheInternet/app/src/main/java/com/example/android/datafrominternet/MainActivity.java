@@ -24,6 +24,10 @@ import android.widget.TextView;
 
 import com.example.android.datafrominternet.utilities.NetworkUtils;
 
+<<<<<<< HEAD
+=======
+import java.io.IOException;
+>>>>>>> examples
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private EditText mSearchBoxEditText;
 
     private TextView mUrlDisplayTextView;
+<<<<<<< HEAD
 
+=======
+>>>>>>> examples
     private TextView mSearchResultsTextView;
 
     @Override
@@ -54,9 +61,22 @@ public class MainActivity extends AppCompatActivity {
     private void makeGithubSearchQuery() {
         String githubQuery = mSearchBoxEditText.getText().toString();
         URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
+<<<<<<< HEAD
         mUrlDisplayTextView.setText(githubSearchUrl.toString());
         // TODO (2) Call getResponseFromHttpUrl and display the results in mSearchResultsTextView
         // TODO (3) Surround the call to getResponseFromHttpUrl with a try / catch block to catch an IOException
+=======
+        //mUrlDisplayTextView.setText(githubSearchUrl.toString());
+        // DONE (2) Call getResponseFromHttpUrl and display the results in mSearchResultsTextView
+        // DONE (3) Surround the call to getResponseFromHttpUrl with a try / catch block to catch an IOException
+        try {
+            String response = NetworkUtils.getResponseFromHttpUrl(githubSearchUrl);
+            mUrlDisplayTextView.setText(response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+>>>>>>> examples
     }
 
     @Override
@@ -74,4 +94,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> examples

@@ -58,7 +58,14 @@
             android:authorities="@string/content_authority"
             android:exported="false"/>
         
+<<<<<<< HEAD
         <!-- TODO (8) Register SunshineSyncIntentService in the manifest -->
+=======
+        <!-- DONE (8) Register SunshineSyncIntentService in the manifest -->
+        <service
+            android:name=".sync.SunshineSyncIntentService"
+            android:exported="false"/>
+>>>>>>> examples
 
     </application>
 </manifest>

@@ -15,24 +15,38 @@
      limitations under the License.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
 
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!--DONE (1) Add a ScrollView around the TextView so you can scroll through the list of toys-->
     <!--DONE (2) Make the width of the ScrollView match_parent and the height wrap_content-->
+=======
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--TODO (1) Add a ScrollView around the TextView so you can scroll through the list of toys-->
+    <!--TODO (2) Make the width of the ScrollView match_parent and the height wrap_content-->
+>>>>>>> examples
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+<<<<<<< HEAD
 
+=======
+>>>>>>> examples
         <TextView
             android:id="@+id/tv_toy_names"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:textSize="20sp" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> examples
     </ScrollView>
 
 

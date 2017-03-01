@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tv_url_display)
     TextView mUrlDisplayTextView;
     @BindView(R.id.tv_github_search_results_json)
+=======
+public class MainActivity extends AppCompatActivity {
+
+    // DONE (26) Create an EditText variable called mSearchBoxEditText
+    EditText mSearchBoxEditText;
+
+    // DONE (27) Create a TextView variable called mUrlDisplayTextView
+    TextView mUrlDisplayTextView;
+    // DONE (28) Create a TextView variable called mSearchResults TextView
+>>>>>>> examples
     TextView mSearchResultsTextView;
 
     @Override
@@ -40,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
         ButterKnife.bind(this);
 
         // DONE (29) Use findViewById to get a reference to mSearchBoxEditText
@@ -47,3 +59,14 @@ public class MainActivity extends AppCompatActivity {
         // DONE (31) Use findViewById to get a reference to mSearchResultsTextView
     }
 }
+=======
+        // DONE (29) Use findViewById to get a reference to mSearchBoxEditText
+        mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
+
+        // DONE (30) Use findViewById to get a reference to mUrlDisplayTextView
+        mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
+        // DONE (31) Use findViewById to get a reference to mSearchResultsTextView
+        mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
+    }
+}
+>>>>>>> examples

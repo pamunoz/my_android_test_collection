@@ -15,6 +15,13 @@
  */
 package com.example.android.sunshine.data;
 
+<<<<<<< HEAD
+=======
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
+
+>>>>>>> examples
 import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
@@ -30,10 +37,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+<<<<<<< HEAD
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
+=======
+>>>>>>> examples
 /**
  * Although these tests aren't a complete set of tests one should run on a ContentProvider
  * implementation, they do test that the basic functionality of Sunshine's ContentProvider is

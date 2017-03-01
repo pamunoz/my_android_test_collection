@@ -17,22 +17,43 @@ package com.example.android.background.sync;
 
 import android.content.Context;
 
+<<<<<<< HEAD
+=======
+import com.example.android.background.utilities.NotificationUtils;
+>>>>>>> examples
 import com.example.android.background.utilities.PreferenceUtilities;
 
 public class ReminderTasks {
 
     public static final String ACTION_INCREMENT_WATER_COUNT = "increment-water-count";
+<<<<<<< HEAD
     //  TODO (2) Add a public static constant called ACTION_DISMISS_NOTIFICATION
+=======
+    //  DONE (2) Add a public static constant called ACTION_DISMISS_NOTIFICATION
+    public static final String ACTION_DISMISS_NOTIFICATION = "dismiss-notification";
+>>>>>>> examples
 
     public static void executeTask(Context context, String action) {
         if (ACTION_INCREMENT_WATER_COUNT.equals(action)) {
             incrementWaterCount(context);
         }
+<<<<<<< HEAD
         //      TODO (3) If the user ignored the reminder, clear the notification
+=======
+        // DONE (3) If the user ignored the reminder, clear the notification
+        if (ACTION_DISMISS_NOTIFICATION.equals(action)) {
+            NotificationUtils.clearAllNotifications(context);
+        }
+>>>>>>> examples
     }
 
     private static void incrementWaterCount(Context context) {
         PreferenceUtilities.incrementWaterCount(context);
+<<<<<<< HEAD
         //      TODO (4) If the water count was incremented, clear any notifications
+=======
+        // DONE (4) If the water count was incremented, clear any notifications
+        NotificationUtils.clearAllNotifications(context);
+>>>>>>> examples
     }
 }

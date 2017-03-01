@@ -2,7 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
+<<<<<<< HEAD
     buildToolsVersion "25.0.2"
+=======
+    buildToolsVersion "25.0.1"
+>>>>>>> examples
 
     defaultConfig {
         applicationId "com.example.android.boardingpass"
@@ -22,6 +26,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+<<<<<<< HEAD
     compile 'com.android.support:appcompat-v7:25.1.0'
     // TODO (1) Add the compile dependency for the constraint layout support library
 }
+=======
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    // DONE (1) Add the compile dependency for the constraint layout support library
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+}
+>>>>>>> examples

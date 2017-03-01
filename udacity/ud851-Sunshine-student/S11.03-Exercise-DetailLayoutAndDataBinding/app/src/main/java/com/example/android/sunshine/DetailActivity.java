@@ -144,7 +144,11 @@ public class DetailActivity extends AppCompatActivity implements
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
         MenuInflater inflater = getMenuInflater();
         /* Use the inflater's inflate method to inflate our menu layout to this menu */
+<<<<<<< HEAD
         inflater.inflate(R.menu.detail, menu);
+=======
+        inflater.inflate(R.menu.forecast, menu);
+>>>>>>> examples
         /* Return true so that the menu is displayed in the Toolbar */
         return true;
     }

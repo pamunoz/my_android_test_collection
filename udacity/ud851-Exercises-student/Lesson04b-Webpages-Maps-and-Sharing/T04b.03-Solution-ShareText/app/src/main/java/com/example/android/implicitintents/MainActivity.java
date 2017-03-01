@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onClickOpenAddressButton(View v) {
         String addressString = "1600 Amphitheatre Parkway, CA";
+<<<<<<< HEAD
 
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("geo")
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 .query(addressString);
         Uri addressUri = builder.build();
 
+=======
+        Uri addressUri = Uri.parse("geo:0,0?q=" + addressString);
+>>>>>>> examples
         showMap(addressUri);
     }
 

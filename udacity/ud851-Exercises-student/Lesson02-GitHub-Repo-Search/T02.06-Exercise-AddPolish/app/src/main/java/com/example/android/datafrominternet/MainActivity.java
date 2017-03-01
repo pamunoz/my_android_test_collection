@@ -20,7 +20,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+<<<<<<< HEAD
 import android.widget.EditText;
+=======
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+>>>>>>> examples
 import android.widget.TextView;
 
 import com.example.android.datafrominternet.utilities.NetworkUtils;
@@ -33,12 +39,22 @@ public class MainActivity extends AppCompatActivity {
     private EditText mSearchBoxEditText;
 
     private TextView mUrlDisplayTextView;
+<<<<<<< HEAD
 
     private TextView mSearchResultsTextView;
 
     // TODO (12) Create a variable to store a reference to the error message TextView
 
     // TODO (24) Create a ProgressBar variable to store a reference to the ProgressBar
+=======
+    private TextView mSearchResultsTextView;
+
+    // DONE (12) Create a variable to store a reference to the error message TextView
+    private TextView mErrorMessageTextView;
+
+    // DONE (24) Create a ProgressBar variable to store a reference to the ProgressBar
+    private ProgressBar mLoadingIndicatorPb;
+>>>>>>> examples
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +66,17 @@ public class MainActivity extends AppCompatActivity {
         mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
         mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
 
+<<<<<<< HEAD
         // TODO (13) Get a reference to the error TextView using findViewById
 
         // TODO (25) Get a reference to the ProgressBar using findViewById
+=======
+        // DONE (13) Get a reference to the error TextView using findViewById
+        mErrorMessageTextView = (TextView) findViewById(R.id.tv_error_message_display);
+
+        // DONE (25) Get a reference to the ProgressBar using findViewById
+        mLoadingIndicatorPb = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+>>>>>>> examples
     }
 
     /**
@@ -68,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         new GithubQueryTask().execute(githubSearchUrl);
     }
 
+<<<<<<< HEAD
     // TODO (14) Create a method called showJsonDataView to show the data and hide the error
 
     // TODO (15) Create a method called showErrorMessage to show the error and hide the data
@@ -75,6 +100,28 @@ public class MainActivity extends AppCompatActivity {
     public class GithubQueryTask extends AsyncTask<URL, Void, String> {
 
         // TODO (26) Override onPreExecute to set the loading indicator to visible
+=======
+    // DONE (14) Create a method called showJsonDataView to show the data and hide the error
+    private void showJsonDataView() {
+        mErrorMessageTextView.setVisibility(View.INVISIBLE);
+        mSearchResultsTextView.setVisibility(View.VISIBLE);
+    }
+
+    // DONE (15) Create a method called showErrorMessage to show the error and hide the data
+    private void showErrorMessage() {
+        mErrorMessageTextView.setVisibility(View.VISIBLE);
+        mSearchResultsTextView.setVisibility(View.INVISIBLE);
+    }
+
+    public class GithubQueryTask extends AsyncTask<URL, Void, String> {
+
+        // DONE (26) Override onPreExecute to set the loading indicator to visible
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mLoadingIndicatorPb.setVisibility(View.VISIBLE);
+        }
+>>>>>>> examples
 
         @Override
         protected String doInBackground(URL... params) {
@@ -90,12 +137,27 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String githubSearchResults) {
+<<<<<<< HEAD
             // TODO (27) As soon as the loading is complete, hide the loading indicator
             if (githubSearchResults != null && !githubSearchResults.equals("")) {
                 // TODO (17) Call showJsonDataView if we have valid, non-null results
                 mSearchResultsTextView.setText(githubSearchResults);
             }
             // TODO (16) Call showErrorMessage if the result is null in onPostExecute
+=======
+            // DONE (27) As soon as the loading is complete, hide the loading indicator
+            mLoadingIndicatorPb.setVisibility(View.INVISIBLE);
+            if (githubSearchResults != null && !githubSearchResults.equals("")) {
+                // DONE (17) Call showJsonDataView if we have valid, non-null results
+                showJsonDataView();
+                mSearchResultsTextView.setText(githubSearchResults);
+            } else {
+                // DONE (16) Call showErrorMessage if the result is null in onPostExecute
+                showErrorMessage();
+
+            }
+
+>>>>>>> examples
         }
     }
 
@@ -114,4 +176,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> examples

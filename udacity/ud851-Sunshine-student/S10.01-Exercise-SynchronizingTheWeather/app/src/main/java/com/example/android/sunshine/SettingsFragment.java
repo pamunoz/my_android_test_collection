@@ -26,6 +26,10 @@ import android.support.v7.preference.PreferenceScreen;
 
 import com.example.android.sunshine.data.SunshinePreferences;
 import com.example.android.sunshine.data.WeatherContract;
+<<<<<<< HEAD
+=======
+import com.example.android.sunshine.sync.SunshineSyncUtils;
+>>>>>>> examples
 
 /**
  * The SettingsFragment serves as the display for all of the user's settings. In Sunshine, the
@@ -97,7 +101,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             // we've changed the location
             // Wipe out any potential PlacePicker latlng values so that we can use this text entry.
             SunshinePreferences.resetLocationCoordinates(activity);
+<<<<<<< HEAD
             //  TODO (14) Sync the weather if the location changes
+=======
+            //  DONE (14) Sync the weather if the location changes
+            SunshineSyncUtils.startImmediateSync(activity);
+>>>>>>> examples
         } else if (key.equals(getString(R.string.pref_units_key))) {
             // units have changed. update lists of weather entries accordingly
             activity.getContentResolver().notifyChange(WeatherContract.WeatherEntry.CONTENT_URI, null);

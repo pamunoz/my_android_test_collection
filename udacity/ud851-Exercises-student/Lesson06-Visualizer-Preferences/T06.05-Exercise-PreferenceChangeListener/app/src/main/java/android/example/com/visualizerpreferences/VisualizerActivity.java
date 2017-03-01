@@ -33,8 +33,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 // TODO (1) Implement OnSharedPreferenceChangeListener
 public class VisualizerActivity extends AppCompatActivity {
+=======
+// DONE (1) Implement OnSharedPreferenceChangeListener
+public class VisualizerActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
+>>>>>>> examples
 
     private static final int MY_PERMISSION_RECORD_AUDIO_REQUEST_CODE = 88;
     private VisualizerView mVisualizerView;
@@ -58,11 +63,35 @@ public class VisualizerActivity extends AppCompatActivity {
         mVisualizerView.setShowTreble(true);
         mVisualizerView.setMinSizeScale(1);
         mVisualizerView.setColor(getString(R.string.pref_color_red_value));
+<<<<<<< HEAD
         // TODO (3) Register the listener
     }
 
     // TODO (2) Override the onSharedPreferenceChanged method and update the show bass preference
     // TODO (4) Override onDestroy and unregister the listener
+=======
+        // DONE (3) Register the listener
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    // DONE (2) Override the onSharedPreferenceChanged method and update the show bass preference
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.pref_show_bass_key))) {
+            mVisualizerView.setShowBass(
+                    sharedPreferences.getBoolean(
+                            key, getResources().getBoolean(R.bool.pref_show_bass_default)));
+        }
+    }
+    // DONE (4) Override onDestroy and unregister the listener
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Unregister VisualizerActivity as an OnPreferenceChangedListener to avoid any memory leaks.
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
+>>>>>>> examples
 
     /**
      * Methods for setting up the menu
@@ -117,7 +146,12 @@ public class VisualizerActivity extends AppCompatActivity {
      **/
     private void setupPermissions() {
         // If we don't have the record audio permission...
+<<<<<<< HEAD
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+=======
+        if (ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+>>>>>>> examples
             // And if we're on SDK M or later...
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 // Ask again, nicely, for the permissions.

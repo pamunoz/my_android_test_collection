@@ -12,7 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+<<<<<<< HEAD
 import com.example.android.waitlist.data.WaitlistContract;
+=======
+import com.example.android.waitlist.data.WaitlistContract.WaitlistEntry;
+>>>>>>> examples
 import com.example.android.waitlist.data.WaitlistDbHelper;
 
 
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         waitlistRecyclerView.setAdapter(mAdapter);
 
 
+<<<<<<< HEAD
         //TODO (3) Create a new ItemTouchHelper with a SimpleCallback that handles both LEFT and RIGHT swipe directions
 
         // TODO (4) Override onMove and simply return false inside
@@ -69,6 +74,31 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO (11) attach the ItemTouchHelper to the waitlistRecyclerView
 
+=======
+        //DONE (3) Create a new ItemTouchHelper with a SimpleCallback that handles both LEFT and RIGHT swipe directions
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
+                0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            // DONE (4) Override onMove and simply return false inside
+
+            @Override
+            public boolean onMove(RecyclerView rv, RecyclerView.ViewHolder vh,
+                    RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            // DONE (5) Override onSwiped
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                // DONE (8) Inside, get the viewHolder's itemView's tag and store in a long variable id
+                // DONE (9) call removeGuest and pass through that id
+                // DONE (10) call swapCursor on mAdapter passing in getAllGuests() as the argument
+                long id = (long) viewHolder.itemView.getTag();
+                removeGuest(id);
+                mAdapter.swapCursor(getAllGuests());
+            }
+            //DONE (11) attach the ItemTouchHelper to the waitlistRecyclerView
+        }).attachToRecyclerView(waitlistRecyclerView);
+>>>>>>> examples
     }
 
     /**
@@ -111,13 +141,21 @@ public class MainActivity extends AppCompatActivity {
      */
     private Cursor getAllGuests() {
         return mDb.query(
+<<<<<<< HEAD
                 WaitlistContract.WaitlistEntry.TABLE_NAME,
+=======
+                WaitlistEntry.TABLE_NAME,
+>>>>>>> examples
                 null,
                 null,
                 null,
                 null,
                 null,
+<<<<<<< HEAD
                 WaitlistContract.WaitlistEntry.COLUMN_TIMESTAMP
+=======
+                WaitlistEntry.COLUMN_TIMESTAMP
+>>>>>>> examples
         );
     }
 
@@ -130,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private long addNewGuest(String name, int partySize) {
         ContentValues cv = new ContentValues();
+<<<<<<< HEAD
         cv.put(WaitlistContract.WaitlistEntry.COLUMN_GUEST_NAME, name);
         cv.put(WaitlistContract.WaitlistEntry.COLUMN_PARTY_SIZE, partySize);
         return mDb.insert(WaitlistContract.WaitlistEntry.TABLE_NAME, null, cv);
@@ -139,6 +178,23 @@ public class MainActivity extends AppCompatActivity {
     // TODO (1) Create a new function called removeGuest that takes long id as input and returns a boolean
 
     // TODO (2) Inside, call mDb.delete to pass in the TABLE_NAME and the condition that WaitlistEntry._ID equals id
+=======
+        cv.put(WaitlistEntry.COLUMN_GUEST_NAME, name);
+        cv.put(WaitlistEntry.COLUMN_PARTY_SIZE, partySize);
+        return mDb.insert(WaitlistEntry.TABLE_NAME, null, cv);
+    }
+
+
+    // DONE (1) Create a new function called removeGuest that takes long id as input and returns a boolean
+    private boolean removeGuest(long id) {
+        // DONE (2) Inside, call mDb.delete to pass in the TABLE_NAME and the condition that WaitlistEntry._ID equals id
+        String whereClause = WaitlistEntry._ID + "=" + id;
+        int itemDeleted = mDb.delete(WaitlistEntry.TABLE_NAME, whereClause, null);
+        return itemDeleted > 0;
+    }
+
+
+>>>>>>> examples
 
 
 }

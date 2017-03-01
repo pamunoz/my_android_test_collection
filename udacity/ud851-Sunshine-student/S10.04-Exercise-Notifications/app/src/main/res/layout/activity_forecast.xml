@@ -48,4 +48,8 @@
         android:layout_gravity="center"
         android:visibility="invisible" />
 
+<<<<<<< HEAD
 </FrameLayout>
+=======
+</FrameLayout>
+>>>>>>> examples

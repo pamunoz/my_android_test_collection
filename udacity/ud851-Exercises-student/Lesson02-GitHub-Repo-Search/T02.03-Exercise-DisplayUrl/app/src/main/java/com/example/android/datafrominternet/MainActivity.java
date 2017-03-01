@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -34,6 +35,17 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tv_url_display)
     private TextView mUrlDisplayTextView;
     @BindView(R.id.tv_github_search_results_json)
+=======
+import com.example.android.datafrominternet.utilities.NetworkUtils;
+
+import java.net.URL;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText mSearchBoxEditText;
+
+    private TextView mUrlDisplayTextView;
+>>>>>>> examples
     private TextView mSearchResultsTextView;
 
     @Override
@@ -41,12 +53,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
         // Butterknife binding
         ButterKnife.bind(this);
     }
 
     // TODO (2) Create a method called makeGithubSearchQuery
     // TODO (3) Within this method, build the URL with the text from the EditText and set the built URL to the TextView
+=======
+        mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
+
+        mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
+        mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
+    }
+
+    // DONE (2) Create a method called makeGithubSearchQuery
+    private void makeGithubSearchQuery() {
+        // DONE (3) Within this method, build the URL with the text from the EditText and set the built URL to the TextView
+        String githubQuery = mSearchBoxEditText.getText().toString().trim();
+        URL gihubSearchUrl = NetworkUtils.buildUrl(githubQuery);
+        mUrlDisplayTextView.setText(gihubSearchUrl.toString());
+    }
+>>>>>>> examples
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,13 +86,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemThatWasClickedId = item.getItemId();
         if (itemThatWasClickedId == R.id.action_search) {
+<<<<<<< HEAD
             // TODO (4) Remove the Toast message when the search menu item is clicked
             Context context = MainActivity.this;
             String textToShow = "Search clicked";
             Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
             // TODO (5) Call makeGithubSearchQuery when the search menu item is clicked
+=======
+            // DONE (4) Remove the Toast message when the search menu item is clicked
+            // DONE (5) Call makeGithubSearchQuery when the search menu item is clicked
+            makeGithubSearchQuery();
+>>>>>>> examples
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> examples
