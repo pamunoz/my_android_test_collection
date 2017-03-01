@@ -17,6 +17,8 @@ package com.example.android.datafrominternet;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -26,11 +28,11 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.et_search_box)
-    private EditText mSearchBoxEditText;
+    EditText mSearchBoxEditText;
     @BindView(R.id.tv_url_display)
-    private TextView mUrlDisplayTextView;
+    TextView mUrlDisplayTextView;
     @BindView(R.id.tv_github_search_results_json)
-    private TextView mSearchResultsTextView;
+    TextView mSearchResultsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +44,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Do 2 - 7 in menu.xml ///////////////////////////////////////////////////////////////////////
-    // TODO (2) Create a menu in xml called main.xml
-    // TODO (3) Add one menu item to your menu
-    // TODO (4) Give the menu item an id of @+id/action_search
-    // TODO (5) Set the orderInCategory to 1
-    // TODO (6) Show this item if there is room (use app:showAsAction, not android:showAsAction)
-    // TODO (7) Set the title to the search string ("Search") from strings.xml
+    // DONE (2) Create a menu in xml called main.xml
+    // DONE (3) Add one menu item to your menu
+    // DONE (4) Give the menu item an id of @+id/action_search
+    // DONE (5) Set the orderInCategory to 1
+    // DONE (6) Show this item if there is room (use app:showAsAction, not android:showAsAction)
+    // DONE (7) Set the title to the search string ("Search") from strings.xml
     // Do 2 - 7 in menu.xml ///////////////////////////////////////////////////////////////////////
 
 
-    // TODO (8) Override onCreateOptionsMenu
-    // TODO (9) Within onCreateOptionsMenu, use getMenuInflater().inflate to inflate the menu
-    // TODO (10) Return true to display your menu
+    // DONE (8) Override onCreateOptionsMenu
+    // DONE (9) Within onCreateOptionsMenu, use getMenuInflater().inflate to inflate the menu
+    // DONE (10) Return true to display your menu
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
 
     // TODO (11) Override onOptionsItemSelected
     // TODO (12) Within onOptionsItemSelected, get the ID of the item that was selected
