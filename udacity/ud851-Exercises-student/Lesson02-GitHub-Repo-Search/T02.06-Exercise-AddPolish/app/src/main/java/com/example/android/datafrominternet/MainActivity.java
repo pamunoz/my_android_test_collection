@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.datafrominternet.utilities.NetworkUtils;
@@ -28,31 +29,34 @@ import com.example.android.datafrominternet.utilities.NetworkUtils;
 import java.io.IOException;
 import java.net.URL;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
-    private EditText mSearchBoxEditText;
-
-    private TextView mUrlDisplayTextView;
-
-    private TextView mSearchResultsTextView;
-
-    // TODO (12) Create a variable to store a reference to the error message TextView
-
-    // TODO (24) Create a ProgressBar variable to store a reference to the ProgressBar
+    @BindView(R.id.et_search_box)
+    EditText mSearchBoxEditText;
+    @BindView(R.id.tv_url_display)
+    TextView mUrlDisplayTextView;
+    @BindView(R.id.tv_github_search_results_json)
+    TextView mSearchResultsTextView;
+    // DONE (12) Create a variable to store a reference to the error message TextView
+    @BindView(R.id.tv_error_message_display)
+    TextView mErrorMessageTextView;
+    // DONE (24) Create a ProgressBar variable to store a reference to the ProgressBar
+    @BindView(R.id.pb_loading_indicator)
+    ProgressBar mLoadingIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
+        ButterKnife.bind(this);
 
-        mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
-        mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
+        // DONE (13) Get a reference to the error TextView using findViewById
 
-        // TODO (13) Get a reference to the error TextView using findViewById
-
-        // TODO (25) Get a reference to the ProgressBar using findViewById
+        // DONE (25) Get a reference to the ProgressBar using findViewById
     }
 
     /**
