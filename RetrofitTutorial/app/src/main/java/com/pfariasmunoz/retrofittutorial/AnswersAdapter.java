@@ -11,6 +11,9 @@ import com.pfariasmunoz.retrofittutorial.data.model.Item;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Pablo Farias on 05-03-17.
  */
@@ -23,12 +26,14 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public TextView titleTv;
+        @BindView(android.R.id.text1)
+        TextView titleTv;
         PostItemListener mItemListener;
 
         public ViewHolder(View itemView, PostItemListener postItemListener) {
             super(itemView);
-            titleTv = (TextView) itemView.findViewById(android.R.id.text1);
+            // appli the injections of views with butterknife
+            ButterKnife.bind(this, itemView);
 
             this.mItemListener = postItemListener;
             itemView.setOnClickListener(this);
