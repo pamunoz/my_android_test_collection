@@ -23,6 +23,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * We couldn't come up with a good name for this class. Then, we realized
  * that this lesson is about RecyclerView.
@@ -117,16 +120,30 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         return mNumberItems;
     }
 
-    // TODO (12) Create a class called NumberViewHolder that extends RecyclerView.ViewHolder
+    // DONE (12) Create a class called NumberViewHolder that extends RecyclerView.ViewHolder
 
-    // TODO (13) Within NumberViewHolder, create a TextView variable called listItemNumberView
+    // DONE (13) Within NumberViewHolder, create a TextView variable called listItemNumberView
 
-    // TODO (14) Create a constructor for NumberViewHolder that accepts a View called itemView as a parameter
-    // TODO (15) Within the constructor, call super(itemView) and then find listItemNumberView by ID
+    // DONE (14) Create a constructor for NumberViewHolder that accepts a View called itemView as a parameter
+    // DONE (15) Within the constructor, call super(itemView) and then find listItemNumberView by ID
 
-    // TODO (16) Within the NumberViewHolder class, create a void method called bind that accepts an int parameter called listIndex
-    // TODO (17) Within bind, set the text of listItemNumberView to the listIndex
-    // TODO (18) Be careful to get the String representation of listIndex, as using setText with an int does something different
+    // DONE (16) Within the NumberViewHolder class, create a void method called bind that accepts an int parameter called listIndex
+    // DONE (17) Within bind, set the text of listItemNumberView to the listIndex
+    // DONE (18) Be careful to get the String representation of listIndex, as using setText with an int does something different
 
+
+
+    class NumberViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tv_item_number)
+        TextView listItemNumberView;
+
+        public NumberViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        void bind(int listIndex) {
+            listItemNumberView.setText(String.valueOf(listIndex));
+        }
     }
 }
