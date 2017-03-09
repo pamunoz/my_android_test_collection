@@ -15,4 +15,5 @@
 -->
 <resources>
     <string name="app_name">Implicit Intents</string>
+    <string name="my_git_acount" translatable="false">https://github.com/pamunoz</string>
 </resources>
