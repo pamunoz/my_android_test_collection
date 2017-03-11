@@ -33,6 +33,9 @@ import com.example.android.asynctaskloader.utilities.NetworkUtils;
 import java.io.IOException;
 import java.net.URL;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<String> {
 
@@ -45,13 +48,15 @@ public class MainActivity extends AppCompatActivity implements
      */
     private static final int GITHUB_SEARCH_LOADER = 22;
 
+    @BindView(R.id.et_search_box)
     private EditText mSearchBoxEditText;
-
+    @BindView(R.id.tv_url_display)
     private TextView mUrlDisplayTextView;
+    @BindView(R.id.tv_github_search_results_json)
     private TextView mSearchResultsTextView;
-
+    @BindView(R.id.tv_error_message_display)
     private TextView mErrorMessageDisplay;
-
+    @BindView(R.id.pb_loading_indicator)
     private ProgressBar mLoadingIndicator;
 
     @Override
@@ -59,14 +64,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
-
-        mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
-        mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
-
-        mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
-
-        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        // Bind the views
+        ButterKnife.bind(this);
 
         if (savedInstanceState != null) {
             String queryUrl = savedInstanceState.getString(SEARCH_QUERY_URL_EXTRA);
