@@ -49,15 +49,15 @@ public class MainActivity extends AppCompatActivity implements
     private static final int GITHUB_SEARCH_LOADER = 22;
 
     @BindView(R.id.et_search_box)
-    private EditText mSearchBoxEditText;
+    EditText mSearchBoxEditText;
     @BindView(R.id.tv_url_display)
-    private TextView mUrlDisplayTextView;
+    TextView mUrlDisplayTextView;
     @BindView(R.id.tv_github_search_results_json)
-    private TextView mSearchResultsTextView;
+    TextView mSearchResultsTextView;
     @BindView(R.id.tv_error_message_display)
-    private TextView mErrorMessageDisplay;
+    TextView mErrorMessageDisplay;
     @BindView(R.id.pb_loading_indicator)
-    private ProgressBar mLoadingIndicator;
+    ProgressBar mLoadingIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
