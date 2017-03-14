@@ -2,6 +2,7 @@ package com.example.android.asynctaskloader.data.remote;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -12,6 +13,6 @@ import retrofit2.http.Query;
  */
 
 public interface GithubService {
-    @GET("/users/{user}")
+    @GET("users/{user}")
     Call<String> getUser(@Path("user") String user);
 }
