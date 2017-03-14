@@ -15,4 +15,7 @@ import retrofit2.http.Query;
 public interface GithubService {
     @GET("users/{user}")
     Call<String> getUser(@Path("user") String user);
+
+    @GET("repositories/{repo}")
+    Call<String> getRepositories(@Path("repo") String repoName);
 }

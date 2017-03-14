@@ -92,7 +92,8 @@ public class MainActivity extends AppCompatActivity  {
             return;
         }
 
-        String githubSearch = getUser(githubQuery);
+        //String githubSearch = getUser(githubQuery);
+        String githubSearch = getRepositories(githubQuery);
 
         Bundle queryBundle = new Bundle();
         queryBundle.putString(SEARCH_QUERY_URL_EXTRA, githubSearch.toString());
@@ -154,6 +155,26 @@ public class MainActivity extends AppCompatActivity  {
     private String getUser(String user) {
 
         Call<String> result = mGithubService.getUser(user);
+        final StringBuilder builder = new StringBuilder();
+        result.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                builder.append(response.body());
+                mUrlDisplayTextView.setText(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+        return builder.toString();
+
+    }
+
+    private String getRepositories(String repo) {
+
+        Call<String> result = mGithubService.getRepositories(repo);
         final StringBuilder builder = new StringBuilder();
         result.enqueue(new Callback<String>() {
             @Override
