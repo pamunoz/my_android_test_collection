@@ -52,11 +52,11 @@ public class SettingsActivity extends AppCompatActivity {
     // This check box preference should have a default value of true, the key 'show_bass', a
     // summaryOff of Hidden, a summaryOn of Shown and a title of 'Show Bass'
 
-    // TODO (5) In SettingsFragment's onCreatePreferences method add the preference file using the
+    // DONE (5) In SettingsFragment's onCreatePreferences method add the preference file using the
     // addPreferencesFromResource method
 
 
-    // TODO (7) Set the root layout of activity_settings to our newly created SettingsFragment
+    // DONE (7) Set the root layout of activity_settings to our newly created SettingsFragment
     // and remove the padding.
     // [HINT] Use a <fragment> element in xml
 }
