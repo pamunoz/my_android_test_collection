@@ -16,7 +16,10 @@ import com.example.android.waitlist.data.TestUtil;
 import com.example.android.waitlist.data.WaitlistContract;
 import com.example.android.waitlist.data.WaitlistDbHelper;
 
+import java.util.List;
+
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 
@@ -96,9 +99,13 @@ public class MainActivity extends AppCompatActivity {
         String guestName = mNewGuestNameEditText.getText().toString();
         addGuest(guestName, partySize);
 
-        // TODO (19) call mAdapter.swapCursor to update the cursor by passing in getAllGuests()
+        // DONE (19) call mAdapter.swapCursor to update the cursor by passing in getAllGuests()
+        mAdapter.swapCursor(getAllGuests());
 
-        // TODO (20) To make the UI look nice, call .getText().clear() on both EditTexts, also call clearFocus() on mNewPartySizeEditText
+        // DONE (20) To make the UI look nice, call .getText().clear() on both EditTexts, also call clearFocus() on mNewPartySizeEditText
+        mNewGuestNameEditText.getText().clear();
+        mNewPartySizeEditText.getText().clear();
+        mNewPartySizeEditText.clearFocus();
 
     }
 
