@@ -19,6 +19,9 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String SIGN_IN_TAG = "sign_in_fragment";
     public static final int DELAY_MILLIS = 3000;
 
-    // Add mGoogleApiClient and mIsResolving fields here.
+    // DONE Add mGoogleApiClient and mIsResolving fields here.
+    private GoogleApiClient mGoogleApiClient;
+
     private boolean mIsResolving;
     private boolean mIsRequesting;
     private Handler mHandler;
@@ -41,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .enableAutoManage(this, 0, this)
+                .addApi(Auth.CREDENTIALS_API)
+                .build();
 
         setFragment(getIntent());
 
