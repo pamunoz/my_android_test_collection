@@ -14,6 +14,7 @@
 package com.google.codelab.smartlock;
 
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -203,6 +204,35 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
         });
+    }
+
+    /** If the credential is new the user must give permission for the credential to be saved.
+     * Add the following method to MainActivity.java.*/
+    // DONE Add the following method to MainActivity.java
+    private void resolveResult(Status status, int requestCode) {
+        // We don't want to fire multiple resolutions at once since that
+        // can   result in stacked dialogs after rotation or another
+        // similar event.
+        if (mIsResolving) {
+            Log.w(TAG, "resolveResult: already resolving.");
+            return;
+        }
+
+        Log.d(TAG, "Resolving: " + status);
+        if (status.hasResolution()) {
+            Log.d(TAG, "STATUS: RESOLVING");
+            try {
+                status.startResolutionForResult(this, requestCode);
+                mIsResolving = true;
+            } catch (IntentSender.SendIntentException e) {
+                Log.e(TAG, "STATUS: Failed to send resolution.", e);
+            }
+        } else {
+            Log.e(TAG, "STATUS: FAIL");
+            if (requestCode == RC_SAVE) {
+                goToContent();
+            }
+        }
     }
 
 }
