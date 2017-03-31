@@ -235,4 +235,23 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    /** Once the user has responded to the dialog, indicating whether or not
+     * they want to save the credential, the Activity must handle that response
+     * by overriding the onActivityResult method in SignInActivity.java.*/
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult:" + requestCode + ":" + resultCode + ":" +
+                data);
+        if (requestCode == RC_SAVE) {
+            Log.d(TAG, "Result code: " + resultCode);
+            if (resultCode == RESULT_OK) {
+                Log.d(TAG, "Credential Save: OK");
+            } else {
+                Log.e(TAG, "Credential Save Failed");
+            }
+            goToContent();
+        }
+        mIsResolving = false;
+    }
+
 }
