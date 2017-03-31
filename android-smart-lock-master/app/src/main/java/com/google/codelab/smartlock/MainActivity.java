@@ -21,8 +21,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 import java.util.List;
 
@@ -181,6 +184,25 @@ public class MainActivity extends AppCompatActivity implements
 
     protected boolean isRequesting() {
         return mIsRequesting;
+    }
+
+    protected void saveCredential(Credential credential) {
+        // Credential is valid so save it.
+        Auth.CredentialsApi.save(mGoogleApiClient,
+                credential).setResultCallback(new ResultCallback<Status>() {
+            @Override
+            public void onResult(Status status) {
+                if (status.isSuccess()) {
+                    Log.d(TAG, "Credential saved");
+                    goToContent();
+                } else {
+                    Log.d(TAG, "Attempt to save credential failed " +
+                            status.getStatusMessage() + " " +
+                            status.getStatusCode());
+                    resolveResult(status, RC_SAVE);
+                }
+            }
+        });
     }
 
 }
