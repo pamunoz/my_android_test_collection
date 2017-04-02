@@ -47,4 +47,10 @@ dependencies {
     // Icepick
     compile 'frankiesardo:icepick:3.2.0'
     provided 'frankiesardo:icepick-processor:3.2.0'
+
+    // /usr/lib/jvm/jdk1.8.0$
+}
+
+retrolambda {
+    jdk "/usr/lib/jvm/jdk1.8.0"
 }
