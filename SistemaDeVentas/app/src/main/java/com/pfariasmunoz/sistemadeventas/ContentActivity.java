@@ -16,6 +16,7 @@ import com.pfariasmunoz.sistemadeventas.smartlock.SignInActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ContentActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -23,11 +24,6 @@ public class ContentActivity extends AppCompatActivity implements
 
     private static final String TAG = "ContentActivity";
     private GoogleApiClient mGoogleApiClient;
-
-    @BindView(R.id.logoutButton)
-    Button logoutButton;
-    @BindView(R.id.changeCredsButton)
-    Button changeCredsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +33,6 @@ public class ContentActivity extends AppCompatActivity implements
         ButterKnife.bind(this);
 
         mGoogleApiClient = createGoogleApiClient();
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logOut(v);
-            }
-        });
-        changeCredsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeCredentials(v);
-            }
-        });
     }
 
     @Override
@@ -66,7 +50,8 @@ public class ContentActivity extends AppCompatActivity implements
         Log.d(TAG, "GoogleApiClient failed to connect: " + connectionResult);
     }
 
-    private void logOut(View view) {
+    @OnClick(R.id.logoutButton)
+    public void logOut(View view) {
         Auth.CredentialsApi.disableAutoSignIn(mGoogleApiClient);
         Intent intent = new Intent(view.getContext(), SignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -74,7 +59,8 @@ public class ContentActivity extends AppCompatActivity implements
         finish();
     }
 
-    private void changeCredentials(View view) {
+    @OnClick(R.id.changeCredsButton)
+    public void changeCredentials(View view) {
         startActivity(new Intent(view.getContext(), ChangeCredActivity.class));
     }
 
