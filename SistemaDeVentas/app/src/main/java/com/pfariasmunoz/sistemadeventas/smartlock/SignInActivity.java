@@ -18,6 +18,7 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.pfariasmunoz.sistemadeventas.ContentActivity;
 import com.pfariasmunoz.sistemadeventas.R;
 import com.pfariasmunoz.sistemadeventas.util.CodelabUtil;
 
