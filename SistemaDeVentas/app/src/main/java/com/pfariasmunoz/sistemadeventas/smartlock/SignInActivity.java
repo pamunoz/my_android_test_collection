@@ -18,6 +18,7 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.pfariasmunoz.sistemadeventas.MainActivity;
 import com.pfariasmunoz.sistemadeventas.R;
 import com.pfariasmunoz.sistemadeventas.util.CodelabUtil;
 
@@ -46,7 +47,7 @@ public class SignInActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sign_in);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -211,7 +212,7 @@ public class SignInActivity extends AppCompatActivity implements
      * Start the Content Activity and finish this one.
      */
     protected void goToContent() {
-        startActivity(new Intent(this, ContentActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
