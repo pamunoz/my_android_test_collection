@@ -147,14 +147,32 @@ public class MainActivity extends AppCompatActivity implements
 
         } else if (id == R.id.change_credentials) {
             changeCredentials();
-        } else if (id == R.id.nav_slideshow) {
+        /**} else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_send) {*/
 
+        }
+        switch (id) {
+            case R.id.sign_out:
+                signOut();
+                break;
+            case R.id.change_credentials:
+                changeCredentials();
+                break;
+            case R.id.ventas:
+                // Do something
+                break;
+            case R.id.inventario:
+                // Do something
+                break;
+            case R.id.despacho:
+                break;
+            default:
+                // go to pedido
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -53,6 +53,7 @@ public class ChangeCredActivity extends AppCompatActivity {
                 UsernamesAndPasswords.username3 = mUsername3TextInputLayout.getEditText().getText().toString();
                 UsernamesAndPasswords.password3 = mPassword3TextInputLayout.getEditText().getText().toString();
                 Toast.makeText(v.getContext(), R.string.creds_updated_msg, Toast.LENGTH_LONG).show();
+                finish();
             }
         });
     }

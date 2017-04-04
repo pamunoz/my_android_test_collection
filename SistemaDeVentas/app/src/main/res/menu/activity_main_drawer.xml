@@ -10,6 +10,8 @@
             android:id="@+id/change_credentials"
             android:icon="@drawable/ic_menu"
             android:title="Change Credentials"/>
+
+        <!--
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu"
@@ -18,18 +20,27 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu"
             android:title="Tools"/>
+            -->
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Sections">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu"
-                android:title="Share"/>
+                android:id="@+id/ventas"
+                android:icon="@drawable/ic_shopping_cart_black_24dp"
+                android:title="Ventas"/>
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/inventario"
+                android:icon="@drawable/ic_check_box_black_24dp"
+                android:title="Inventario"/>
+            <item
+                android:id="@+id/despacho"
                 android:icon="@drawable/ic_menu"
-                android:title="Send"/>
+                android:title="Despacho"/>
+            <item
+                android:id="@+id/pedido"
+                android:icon="@drawable/ic_menu"
+                android:title="Pedido"/>
         </menu>
     </item>
 
