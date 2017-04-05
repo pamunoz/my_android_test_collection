@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="3">
+
+    <ImageView
+        android:id="@+id/img_avatar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_rowSpan="3"
+        android:background="@android:mipmap/sym_def_app_icon"/>
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_gravity="fill_horizontal|center_vertical"
+        android:layout_height="wrap_content"
+        tools:text="Nombre y Apellido"/>
+    <TextView
+        android:id="@+id/tv_rut"
+        android:layout_width="0dp"
+        android:layout_gravity="fill_horizontal|center_vertical"
+        android:layout_height="wrap_content"
+        tools:text="11111111-1"/>
+    <TextView
+        android:id="@+id/tv_direccion"
+        android:layout_width="0dp"
+        android:layout_gravity="fill_horizontal|center_vertical"
+        android:layout_height="wrap_content"
+        tools:text="Una direccion en particular"/>
+    <TextView
+        android:id="@+id/tv_zona"
+        android:layout_width="0dp"
+        android:layout_gravity="fill_horizontal|center_vertical"
+        android:layout_height="wrap_content"
+        tools:text="Zona en particular"/>
+    <TextView
+        android:id="@+id/tv_ciudad"
+        android:layout_width="0dp"
+        android:layout_gravity="fill_horizontal|center_vertical"
+        android:layout_height="wrap_content"
+        tools:text="Ciudad en particular"/>
+    <TextView
+        android:id="@+id/tv_comuna"
+        android:layout_width="0dp"
+        android:layout_gravity="fill_horizontal|center_vertical"
+        android:layout_height="wrap_content"
+        tools:text="Comuna en particular"/>
+
+</GridLayout>
