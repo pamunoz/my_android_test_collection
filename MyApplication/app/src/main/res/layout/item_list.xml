@@ -1,52 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:padding="16dp">
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp">
 
     <TextView
         android:id="@+id/tv_name"
+        android:padding="8dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:gravity="center_vertical"
-        tools:text="Nombre y Apellido"/>
+        tools:text="Nombre y Apellido"
+        android:background="@color/green1"/>
     <TextView
         android:id="@+id/tv_rut"
+        android:padding="8dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:gravity="center_vertical"
-        tools:text="11111111-1"/>
+        tools:text="11111111-1"
+        android:background="@color/green2"/>
     <TextView
         android:id="@+id/tv_direccion"
+        android:padding="8dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:gravity="center_vertical"
-        tools:text="Una direccion en particular"/>
+        tools:text="Una direccion en particular"
+        android:background="@color/green3"/>
     <TextView
         android:id="@+id/tv_zona"
+        android:padding="8dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:gravity="center_vertical"
-        tools:text="Zona en particular"/>
+        tools:text="Zona en particular"
+        android:background="@color/green4"/>
     <TextView
         android:id="@+id/tv_ciudad"
+        android:padding="8dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:gravity="center_vertical"
-        tools:text="Ciudad en particular"/>
+        tools:text="Ciudad en particular"
+        android:background="@color/green5"/>
     <TextView
         android:id="@+id/tv_comuna"
+        android:padding="8dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:gravity="center_vertical"
-        tools:text="Comuna en particular"/>
+        tools:text="Comuna en particular"
+        android:background="@color/green6"/>
 
 </GridLayout>
