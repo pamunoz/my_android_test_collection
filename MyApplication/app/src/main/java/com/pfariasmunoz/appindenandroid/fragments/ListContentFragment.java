@@ -46,7 +46,7 @@ public class ListContentFragment extends Fragment {
             nombreTextView = (TextView) itemView.findViewById(R.id.tv_name);
             rutTextView = (TextView) itemView.findViewById(R.id.tv_rut);
             direccionTextView = (TextView) itemView.findViewById(R.id.tv_direccion);
-            zonaTextView = (TextView) itemView.findViewById(R.id.tv_ciudad);
+            zonaTextView = (TextView) itemView.findViewById(R.id.tv_zona);
             ciudadTextView = (TextView) itemView.findViewById(R.id.tv_ciudad);
             comunaTextView = (TextView) itemView.findViewById(R.id.tv_comuna);
             itemView.setOnClickListener(new View.OnClickListener() {
