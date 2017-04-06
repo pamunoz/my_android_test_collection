@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="nombres">
+        <item>Nombre&#032;1</item>
+        <item>Nombre&#032;2</item>
+        <item>Nombre&#032;4</item>
+        <item>Nombre&#032;5</item>
+        <item>Nombre&#032;6</item>
+        <item>Nombre&#032;7</item>
+        <item>Nombre&#032;8</item>
+        <item>Nombre&#032;9</item>
+        <item>Nombre&#032;10</item>
+        <item>Nombre&#032;11</item>
+        <item>Nombre&#032;12</item>
+        <item>Nombre&#032;13</item>
+        <item>Nombre&#032;14</item>
+        <item>Nombre&#032;15</item>
+        <item>Nombre&#032;16</item>
+        <item>Nombre&#032;17</item>
+        <item>Nombre&#032;18</item>
+        <item>Nombre&#032;19</item>
+        <item>Nombre&#032;20</item>
+    </string-array>
+
+    <string-array name="ruts">
+        <item>11.111111&#8211;1</item>
+        <item>22.222222&#8211;2</item>
+        <item>33.333333&#8211;3</item>
+        <item>44.444444&#8211;4</item>
+        <item>55.555555&#8211;5</item>
+        <item>66.666666&#8211;6</item>
+        <item>77.777777&#8211;7</item>
+        <item>88.888888&#8211;8</item>
+        <item>99.999999&#8211;9</item>
+        <item>10.000000&#8211;0</item>
+        <item>10.111111&#8211;1</item>
+        <item>10.222222&#8211;2</item>
+        <item>10.333333&#8211;3</item>
+        <item>10.444444&#8211;4</item>
+        <item>10.555555&#8211;5</item>
+        <item>10.666666&#8211;6</item>
+        <item>10.777777&#8211;7</item>
+        <item>10.888888&#8211;8</item>
+        <item>10.999999&#8211;9</item>
+        <item>20.000000&#8211;0</item>
+    </string-array>
+
+    <string-array name="direcciones">
+        <item>Direccion&#032;1</item>
+        <item>Direccion&#032;2</item>
+        <item>Direccion&#032;3</item>
+        <item>Direccion&#032;4</item>
+        <item>Direccion&#032;5</item>
+        <item>Direccion&#032;6</item>
+        <item>Direccion&#032;7</item>
+        <item>Direccion&#032;8</item>
+        <item>Direccion&#032;9</item>
+        <item>Direccion&#032;10</item>
+        <item>Direccion&#032;11</item>
+        <item>Direccion&#032;12</item>
+        <item>Direccion&#032;13</item>
+        <item>Direccion&#032;14</item>
+        <item>Direccion&#032;15</item>
+        <item>Direccion&#032;16</item>
+        <item>Direccion&#032;17</item>
+        <item>Direccion&#032;18</item>
+        <item>Direccion&#032;19</item>
+        <item>Direccion&#032;20</item>
+    </string-array>
+
+    <string-array name="zonas">
+        <item>Zona&#032;1</item>
+        <item>Zona&#032;2</item>
+        <item>Zona&#032;3</item>
+        <item>Zona&#032;4</item>
+        <item>Zona&#032;5</item>
+        <item>Zona&#032;6</item>
+        <item>Zona&#032;7</item>
+        <item>Zona&#032;8</item>
+        <item>Zona&#032;9</item>
+        <item>Zona&#032;10</item>
+        <item>Zona&#032;11</item>
+        <item>Zona&#032;12</item>
+        <item>Zona&#032;13</item>
+        <item>Zona&#032;14</item>
+        <item>Zona&#032;15</item>
+        <item>Zona&#032;16</item>
+        <item>Zona&#032;17</item>
+        <item>Zona&#032;18</item>
+        <item>Zona&#032;19</item>
+        <item>Zona&#032;20</item>
+    </string-array>
+
+    <string-array name="ciudades">
+        <item>Ciudad&#032;1</item>
+        <item>Ciudad&#032;2</item>
+        <item>Ciudad&#032;3</item>
+        <item>Ciudad&#032;4</item>
+        <item>Ciudad&#032;5</item>
+        <item>Ciudad&#032;6</item>
+        <item>Ciudad&#032;7</item>
+        <item>Ciudad&#032;8</item>
+        <item>Ciudad&#032;9</item>
+        <item>Ciudad&#032;10</item>
+        <item>Ciudad&#032;11</item>
+        <item>Ciudad&#032;12</item>
+        <item>Ciudad&#032;13</item>
+        <item>Ciudad&#032;14</item>
+        <item>Ciudad&#032;15</item>
+        <item>Ciudad&#032;16</item>
+        <item>Ciudad&#032;17</item>
+        <item>Ciudad&#032;18</item>
+        <item>Ciudad&#032;19</item>
+        <item>Ciudad&#032;20</item>
+    </string-array>
+
+    <string-array name="comunas">
+        <item>Comuna&#032;1</item>
+        <item>Comuna&#032;2</item>
+        <item>Comuna&#032;3</item>
+        <item>Comuna&#032;4</item>
+        <item>Comuna&#032;5</item>
+        <item>Comuna&#032;6</item>
+        <item>Comuna&#032;7</item>
+        <item>Comuna&#032;8</item>
+        <item>Comuna&#032;9</item>
+        <item>Comuna&#032;10</item>
+        <item>Comuna&#032;11</item>
+        <item>Comuna&#032;12</item>
+        <item>Comuna&#032;13</item>
+        <item>Comuna&#032;14</item>
+        <item>Comuna&#032;15</item>
+        <item>Comuna&#032;16</item>
+        <item>Comuna&#032;17</item>
+        <item>Comuna&#032;18</item>
+        <item>Comuna&#032;19</item>
+        <item>Comuna&#032;20</item>
+    </string-array>
+
+
+    <!-- **************************************************************** -->
+
+    <string-array name="places">
+        <item>Palais Garnie</item>
+        <item>Piazza del Duomo</item>
+        <item>Manhattan</item>
+        <item>Senso-ji</item>
+        <item>Sultan Ahmed Mosque</item>
+        <item>Table Mountain</item>
+    </string-array>
+    <string-array name="place_desc">
+        <item>The Palais Garnier which locates in Paris was built from 1861 for
+        the Paris Opera.
+        </item>
+        <item>Piazza del Duomo the cathedral which locates in Florence.</item>
+        <item>Manhattan is the district in New York City</item>
+        <item>Senso-ji is the Shrine locates in Asakusa Tokyo</item>
+        <item>Sultan Ahmed Mosque is mosque locates in Istabul, Turkey</item>
+        <item>Table Mountain is mountain and park locates in Cape Town, South Africa.</item>
+    </string-array>
+    <string-array name="place_details">
+        <item>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.
+        </item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.
+        </item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.
+        </item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.
+        </item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.
+        </item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.
+        </item>
+    </string-array>
+    <string-array name="place_locations">
+        <item>8 Rue Scribe, 75009 Paris, France</item>
+        <item>Piazza del Capitolo - 50122 Florence</item>
+        <item>New York City</item>
+        <item>2-3-1 Asakusa, Taitō-ku, Tokyo, Japan</item>
+        <item>At Meydanı No:7, 34122 Fatih/İstanbul, Turkey</item>
+        <item>Cape Town, South Africa</item>
+    </string-array>
+
+    
+</resources>
