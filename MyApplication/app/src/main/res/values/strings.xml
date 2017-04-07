@@ -15,4 +15,7 @@
     <string name="detail_location">"8 Rue Scribe, 75009 Paris, France"</string>
 
     <string name="SHA1" translatable="false">33:52:03:A0:F9:20:54:B3:E4:C7:42:D8:52:D8:8E:19:E1:85:70:B3</string>
+
+    <!-- DATABASE -->
+    <string name="table_clients" translatable="false">clientes</string>
 </resources>

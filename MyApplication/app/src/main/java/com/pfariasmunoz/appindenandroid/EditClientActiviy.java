@@ -37,22 +37,32 @@ public class EditClientActiviy extends AppCompatActivity {
 
     private Client mClient;
 
+    // Database
+    FirebaseDatabase mDatabase;
+    DatabaseReference mClientsReference;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_client);
 
         ButterKnife.bind(this);
+
+        mDatabase = FirebaseDatabase.getInstance();
+        String tablaClientes = getResources().getString(R.string.table_clients);
+        mClientsReference = mDatabase.getReference().child(tablaClientes));
     }
 
     @OnClick(R.id.save_client)
-    public void saveClient() {
+    public void writeNewClient() {
         String nombre = mClientNameEditText.getText().toString();
         String rut = mClientRutEditText.getText().toString();
         Long descuento = Long.valueOf(mClientDiscountEditText.getText().toString());
         Toast.makeText(this, nombre + rut + String.valueOf(descuento), Toast.LENGTH_SHORT).show();
         mClient = new Client(nombre, rut, descuento);
-        FirebaseUtil.getClientsReference().setValue(mClient);
+        mClientsReference.push().setValue(mClient);
         finish();
     }
 }

@@ -8,7 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 
 public class FirebaseUtil {
-    private static FirebaseDatabase mFirebaseDatabase = createDatabase();
+    public static FirebaseDatabase sDatabase = FirebaseDatabase.getInstance();
     private static DatabaseReference mClientDbReference;
 
 
@@ -16,12 +16,7 @@ public class FirebaseUtil {
     }
 
     public static DatabaseReference getClientsReference() {
-        return mClientDbReference = mFirebaseDatabase.getReference().child("clientes");
+        return mClientDbReference = sDatabase.getReference().child("clientes");
     }
-
-    private static FirebaseDatabase createDatabase() {
-        return FirebaseDatabase.getInstance();
-    }
-
 
 }
