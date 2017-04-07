@@ -1,5 +1,6 @@
 package com.pfariasmunoz.appindenandroid;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.pfariasmunoz.appindenandroid.data.models.Client;
 import com.pfariasmunoz.appindenandroid.fragments.ListContentFragment;
 
 import java.util.ArrayList;
@@ -76,8 +78,11 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Snackbar.make(v, "Hello Snackbar!",
                         Snackbar.LENGTH_LONG).show();
+                Intent editClientActivityIntent = new Intent(MainActivity.this, EditClientActiviy.class);
+                startActivity(editClientActivityIntent);
             }
         });
     }
