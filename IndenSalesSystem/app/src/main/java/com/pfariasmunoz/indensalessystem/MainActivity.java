@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -136,8 +137,34 @@ public class MainActivity extends AppCompatActivity
 
     public static class ClientViewHolder extends RecyclerView.ViewHolder {
 
+        TextView mClientNameTextView;
+        TextView mClientRutTextView;
+        TextView mClientDiscountTextView;
+        TextView mClientAdressTextView;
+
         public ClientViewHolder(View itemView) {
             super(itemView);
+
+            mClientNameTextView = (TextView) itemView.findViewById(R.id.tv_client_name);
+            mClientRutTextView = (TextView) itemView.findViewById(R.id.tv_client_rut);
+            mClientDiscountTextView = (TextView) itemView.findViewById(R.id.tv_client_discount);
+            mClientAdressTextView = (TextView) itemView.findViewById(R.id.tv_client_adress);
+        }
+
+        public void setClientName(String name) {
+
+        }
+
+        public void setClientRut(String rut) {
+
+        }
+
+        public void setClientDiscount(Long discount) {
+            mClientDiscountTextView.setText(String.valueOf(discount));
+        }
+
+        public void setClinetAdress(String adress) {
+
         }
     }
 }
