@@ -16,13 +16,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.pfariasmunoz.indensalessystem.data.models.Client;
+import com.pfariasmunoz.indensalessystem.data.utils.Constants;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView mClientsRecyclerView;
     private FirebaseRecyclerAdapter<Client, ClientViewHolder> mClientListAdapter;
+    private DatabaseReference mClientsDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +59,17 @@ public class MainActivity extends AppCompatActivity
     private void initializeScreen() {
         mClientsRecyclerView = (RecyclerView) findViewById(R.id.rv_clients_list);
         mClientsRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        mClientsDatabaseReference = FirebaseDatabase.getInstance().getReference(Constants.TABLE_CLIENTS);
         setupAdapter();
     }
 
     private void setupAdapter() {
-        mClientListAdapter = new FirebaseRecyclerAdapter<Client, ClientViewHolder>() {
+        mClientListAdapter = new FirebaseRecyclerAdapter<Client, ClientViewHolder>(
+                Client.class,
+                R.layout.client_item_list,
+                ClientViewHolder.class,
+                mClientsDatabaseReference
+        ) {
             @Override
             protected void populateViewHolder(ClientViewHolder viewHolder, Client model, int position) {
 
