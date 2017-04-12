@@ -1,5 +1,6 @@
 package com.pfariasmunoz.appindenandroid.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.pfariasmunoz.appindenandroid.ClientDetailActivity;
 import com.pfariasmunoz.appindenandroid.R;
 import com.pfariasmunoz.appindenandroid.data.models.Client;
 import com.pfariasmunoz.appindenandroid.viewholder.ClientViewHolder;
@@ -65,7 +67,33 @@ public abstract class ClientListFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
         // Set up FirebaseRecyclerAdapter with the Query
-        Query postsQuery =
+        Query clientsQuery = getQuery(mDatabase);
+        mAdapter = new FirebaseRecyclerAdapter<Client, ClientViewHolder>(
+                Client.class,
+                R.layout.item_client,
+                ClientViewHolder.class,
+                clientsQuery) {
+            @Override
+            protected void populateViewHolder(final ClientViewHolder viewHolder,
+                                              final Client model,
+                                              final int position) {
+                final DatabaseReference clientsreference = getRef(position);
+
+                // Set click listener for the whole client view
+                final String postKey = clientsreference.getKey();
+
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Launch ClientDetailActivity
+                        Intent intent = new Intent(getActivity(), ClientDetailActivity.class);
+                        intent.putExtra(ClientDetailActivity.EXTRA_CLIENT_KEY, postKey);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+        }
     }
 
     public abstract Query getQuery(DatabaseReference databaseReference);

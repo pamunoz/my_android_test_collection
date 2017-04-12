@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".EditClientActiviy">
         </activity>
+        <activity android:name=".ClientDetailActivity">
+        </activity>
     </application>
 
 </manifest>
