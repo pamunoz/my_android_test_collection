@@ -92,7 +92,18 @@ public abstract class ClientListFragment extends Fragment {
                     }
                 });
 
+
+
             }
+        };
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mAdapter != null) {
+            mAdapter.cleanup();
         }
     }
 
