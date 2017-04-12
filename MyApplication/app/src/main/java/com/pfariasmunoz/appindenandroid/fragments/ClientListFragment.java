@@ -92,6 +92,7 @@ public abstract class ClientListFragment extends Fragment {
                     }
                 });
 
+                viewHolder.bindToClient(model);
 
 
             }

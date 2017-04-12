@@ -1,7 +1,6 @@
 package com.pfariasmunoz.appindenandroid.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pfariasmunoz.appindenandroid.R;
@@ -42,7 +40,7 @@ public class ListContentFragment extends Fragment {
         public TextView ciudadTextView;
         public TextView comunaTextView;
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.item_list, parent, false));
+            super(inflater.inflate(R.layout.item_list_client, parent, false));
             nombreTextView = (TextView) itemView.findViewById(R.id.tv_name);
             rutTextView = (TextView) itemView.findViewById(R.id.tv_rut);
             direccionTextView = (TextView) itemView.findViewById(R.id.tv_direccion);

@@ -8,9 +8,9 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Client {
 
-    private String nombre;
-    private String rut;
-    private Long descuento;
+    public String nombre;
+    public String rut;
+    public Long descuento;
 
     public Client() {
     }
