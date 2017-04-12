@@ -18,4 +18,5 @@
 
     <!-- DATABASE -->
     <string name="table_clients" translatable="false">clientes</string>
+    <string name="heading_recent_clients">Clients</string>
 </resources>

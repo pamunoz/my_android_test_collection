@@ -23,6 +23,7 @@ import android.view.View;
 
 import com.pfariasmunoz.appindenandroid.data.models.Client;
 import com.pfariasmunoz.appindenandroid.fragments.ListContentFragment;
+import com.pfariasmunoz.appindenandroid.fragments.RecentClinetsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +32,50 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
+    private FragmentPagerAdapter mPagerAdapter;
+    private ViewPager mViewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Create the adapter that will return a fragment for each section
+        mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+
+            private final Fragment[] mFragments = new Fragment[] {
+                    new RecentClinetsFragment()
+            };
+
+            private final String[] mFragmentNames = new String[] {
+                    getString(R.string.heading_recent_clients)
+            };
+
+
+            @Override
+            public Fragment getItem(int position) {
+                return mFragments[position];
+            }
+
+            @Override
+            public int getCount() {
+                return mFragments.length;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mFragmentNames[position];
+            }
+        };
+
+
+
+
+
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         // Setting ViewPager for each Tabs
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -90,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new ListContentFragment(), "Clientes");
+        adapter.addFragment(new RecentClinetsFragment(), "Clientes");
        // adapter.addFragment(new TileContentFragment(), "Tile");
        // adapter.addFragment(new CardContentFragment(), "Card");
         viewPager.setAdapter(adapter);
