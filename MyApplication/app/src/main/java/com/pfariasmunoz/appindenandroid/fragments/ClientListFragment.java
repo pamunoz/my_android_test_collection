@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.pfariasmunoz.appindenandroid.R;
 import com.pfariasmunoz.appindenandroid.data.models.Client;
 import com.pfariasmunoz.appindenandroid.viewholder.ClientViewHolder;
@@ -20,7 +21,7 @@ import com.pfariasmunoz.appindenandroid.viewholder.ClientViewHolder;
  * Created by Pablo Farias on 12-04-17.
  */
 
-public class ClientListFragment extends Fragment {
+public abstract class ClientListFragment extends Fragment {
 
     private static final String TAG = ClientListFragment.class.getSimpleName();
 
@@ -62,5 +63,10 @@ public class ClientListFragment extends Fragment {
         mLinearLayoutManager.setReverseLayout(true);
         mLinearLayoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
+
+        // Set up FirebaseRecyclerAdapter with the Query
+        Query postsQuery =
     }
+
+    public abstract Query getQuery(DatabaseReference databaseReference);
 }
