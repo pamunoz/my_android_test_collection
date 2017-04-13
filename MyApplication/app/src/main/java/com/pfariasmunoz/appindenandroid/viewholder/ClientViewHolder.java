@@ -17,6 +17,7 @@ public class ClientViewHolder extends RecyclerView.ViewHolder {
     TextView mClientRut;
     TextView mClientAdress;
     TextView mClientDiscount;
+    Client mClient;
 
 
     public ClientViewHolder(View itemView) {
@@ -30,6 +31,7 @@ public class ClientViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindToClient(Client client) {
+
         mClientName.setText(client.nombre);
         mClientRut.setText(client.rut);
         mClientAdress.setText("Temporal adress");

@@ -52,7 +52,7 @@ public class EditClientActiviy extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance();
         String tablaClientes = getResources().getString(R.string.table_clients);
-        mClientsReference = mDatabase.getReference().child(tablaClientes));
+        mClientsReference = mDatabase.getReference().child(tablaClientes);
     }
 
     @OnClick(R.id.save_client)
