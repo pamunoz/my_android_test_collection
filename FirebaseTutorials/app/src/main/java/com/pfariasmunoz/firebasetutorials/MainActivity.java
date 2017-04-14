@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mSaveMessageButton;
     private EditText mEmailEditText;
 
-    private ArrayList<String> mNamesList = new ArrayList<>();
+    private ArrayList<String> mKeys = new ArrayList<>();
+    private ArrayList<String> mUserNames = new ArrayList<>();
 
 
     @Override
@@ -124,7 +125,9 @@ public class MainActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
+                mUserNames.add(value);
                 String key = dataSnapshot.getKey();
+                mKeys.add(key);
                 String completeText = key + ": " + value;
                 mMessageTextView.setText(completeText);
                 Log.d(TAG, "Value is: " + value);
@@ -144,8 +147,17 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                mKeys.clear();
+                mUserNames.clear();
+                mMessageTextView.setText("");
                 String value = dataSnapshot.getValue().toString().trim();
-                builder.append(value + "\n");
+                String key = dataSnapshot.getKey();
+                mUserNames.add(value);
+                mKeys.add(key);
+                for (int i = 0; i < mKeys.size(); i++) {
+                    builder.append("value: " + mUserNames.get(i) + " key: " + mKeys.get(i) + "\n");
+                }
+
                 mMessageTextView.append(builder.toString());
             }
 
