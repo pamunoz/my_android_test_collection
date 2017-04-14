@@ -1,10 +1,13 @@
 package com.pfariasmunoz.firebasetutorials;
 
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,8 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mMessagesReference;
-    private Button mAddMessageButton;
+    private Button mSetMessageButton;
     private TextView mMessageTextView;
+    private EditText mMessageEditText;
+    private Button mSaveMessageButton;
 
 
     @Override
@@ -31,14 +36,28 @@ public class MainActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mMessagesReference = mDatabase.getReference("message");
 
-        addMessage("Hola como estan");
 
+
+        mMessageEditText = (EditText) findViewById(R.id.ti_add_message);
         mMessageTextView = (TextView) findViewById(R.id.tv_message);
-        mAddMessageButton = (Button) findViewById(R.id.set_message);
-        mAddMessageButton.setOnClickListener(new View.OnClickListener() {
+        mSetMessageButton = (Button) findViewById(R.id.set_message);
+        mSetMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getMessage();
+            }
+        });
+
+        mSaveMessageButton = (Button) findViewById(R.id.bt_save_message);
+        mSaveMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = mMessageEditText.getText().toString();
+                if (!TextUtils.isEmpty(message)) {
+                    addMessage(message);
+                } else {
+                    addMessage("No se guardo mensaje");
+                }
             }
         });
 
@@ -49,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
     private void addMessage(String message) {
         // Write a message to the database
         mMessagesReference.setValue(message);
+    }
+
+    private void addNewMessage(String message) {
+        // Write a message to the database
+        mMessagesReference.push().setValue(message);
     }
 
     private void getMessage() {
