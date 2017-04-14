@@ -1,5 +1,6 @@
 package com.pfariasmunoz.firebasetutorials;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mMessagesReference;
+    private DatabaseReference mUsersReference;
+    private DatabaseReference mDatabaseReference;
     private Button mSetMessageButton;
     private TextView mMessageTextView;
     private EditText mMessageEditText;
@@ -38,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mMessagesReference = mDatabase.getReference("users");
+        mMessagesReference = mDatabase.getReference("Message");
+        mUsersReference = mDatabase.getReference("Users");
+        mDatabaseReference = mDatabase.getReference();
 
 
 
@@ -83,7 +90,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void addNewUser(HashMap<String, String> data) {
         // Write a message to the database
-        mMessagesReference.push().setValue(data);
+        mDatabaseReference.push().setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Saved User", Toast.LENGTH_LONG).show();
+                } else  {
+                    Toast.makeText(MainActivity.this, "Ho, the humanity!! we failed", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
     }
 
     private void getMessage() {
