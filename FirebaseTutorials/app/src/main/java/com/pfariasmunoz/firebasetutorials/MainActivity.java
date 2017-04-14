@@ -9,12 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mMessagesReference = mDatabase.getReference("message");
+        mMessagesReference = mDatabase.getReference("users");
 
 
 
@@ -54,11 +57,17 @@ public class MainActivity extends AppCompatActivity {
         mSaveMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message = mMessageEditText.getText().toString();
-                if (!TextUtils.isEmpty(message)) {
-                    addNewMessage(message);
+                String name = mMessageEditText.getText().toString().trim();
+                String email = mEmailEditText.getText().toString().trim();
+
+                HashMap<String, String> dataMap = new HashMap<String, String>();
+                dataMap.put("Name", name);
+                dataMap.put("Email", email);
+
+                if (!TextUtils.isEmpty(name)) {
+                    addNewUser(dataMap);
                 } else {
-                    addMessage("No se guardo mensaje");
+                    Toast.makeText(MainActivity.this, "Failed to add User", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -67,14 +76,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void addMessage(String message) {
+    private void addUserUser(HashMap<String, String> data) {
         // Write a message to the database
-        mMessagesReference.setValue(message);
+        mMessagesReference.setValue(data);
     }
 
-    private void addNewMessage(String message) {
+    private void addNewUser(HashMap<String, String> data) {
         // Write a message to the database
-        mMessagesReference.push().setValue(message);
+        mMessagesReference.push().setValue(data);
     }
 
     private void getMessage() {
