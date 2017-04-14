@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getUsers() {
-        final StringBuilder builder = new StringBuilder();
 
         mDatabaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -150,19 +149,28 @@ public class MainActivity extends AppCompatActivity {
                 mKeys.clear();
                 mUserNames.clear();
                 mMessageTextView.setText("");
+
                 String value = dataSnapshot.getValue().toString().trim();
                 String key = dataSnapshot.getKey();
                 mUserNames.add(value);
                 mKeys.add(key);
+                String message;
                 for (int i = 0; i < mKeys.size(); i++) {
-                    builder.append("value: " + mUserNames.get(i) + " key: " + mKeys.get(i) + "\n");
+                    message = "value: " + mUserNames.get(i) + " key: " + mKeys.get(i) + "\n";
+                    mMessageTextView.append(message);
                 }
 
-                mMessageTextView.append(builder.toString());
+
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                String value = dataSnapshot.getValue(String.class);
+                String key = dataSnapshot.getKey();
+
+                int index = mKeys.indexOf(key);
+                mUserNames.add(index, value);
 
             }
 
