@@ -19,7 +19,7 @@ public class RecyclerViewFragment extends Fragment {
 
     private RecyclerView mPostRecyclerView;
     private FirebaseRecyclerAdapter<Post, PostViewHolder> mPostPostViewHolder;
-
+    private View mRootView;
 
 
     public RecyclerViewFragment() {
@@ -31,7 +31,13 @@ public class RecyclerViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        initializeView();
+
+        return mRootView;
+    }
+
+    private void initializeView() {
     }
 
     public static class PostViewHolder extends RecyclerView.ViewHolder {
