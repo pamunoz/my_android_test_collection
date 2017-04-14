@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mMessageTextView;
     private EditText mMessageEditText;
     private Button mSaveMessageButton;
+    private EditText mEmailEditText;
 
 
     @Override
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        mMessageEditText = (EditText) findViewById(R.id.ti_add_message);
+        mMessageEditText = (EditText) findViewById(R.id.et_user_name);
+        mEmailEditText = (EditText) findViewById(R.id.et_user_email);
         mMessageTextView = (TextView) findViewById(R.id.tv_message);
         mSetMessageButton = (Button) findViewById(R.id.set_message);
         mSetMessageButton.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String message = mMessageEditText.getText().toString();
                 if (!TextUtils.isEmpty(message)) {
-                    addMessage(message);
+                    addNewMessage(message);
                 } else {
                     addMessage("No se guardo mensaje");
                 }
@@ -83,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
-                mMessageTextView.setText(value);
+                String key = dataSnapshot.getKey();
+                String completeText = key + ": " + value;
+                mMessageTextView.setText(completeText);
                 Log.d(TAG, "Value is: " + value);
             }
 
