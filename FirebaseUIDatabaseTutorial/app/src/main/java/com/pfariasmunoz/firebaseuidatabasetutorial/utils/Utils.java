@@ -17,6 +17,11 @@ public class Utils {
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mPostDBReference = mDatabase.getReference(Constants.TABLE_POST);
         String url = mPostDBReference.push().toString();
-        return url.substring(url.lastIndexOf("/"), url.length());
+        if (url.contains("/")) {
+            return url.substring(url.lastIndexOf("/"), url.length());
+        } else {
+            return "Nothing found";
+        }
+
     }
 }

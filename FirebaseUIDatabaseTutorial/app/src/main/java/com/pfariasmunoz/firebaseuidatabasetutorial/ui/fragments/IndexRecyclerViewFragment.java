@@ -26,8 +26,7 @@ public class IndexRecyclerViewFragment extends Fragment {
     private View mRootView;
     private RecyclerView mIndexRecyclerView;
     private FirebaseIndexRecyclerAdapter<Post, RecyclerViewFragment.PostViewHolder> mPostIndexAdapter;
-    private DatabaseReference mPostDbReference;
-    private DatabaseReference mKeyPostDbReference;
+    private DatabaseReference mIndexedPostDbReference;
     private String[] mEmailList = Constants.EMAIL_LIST;
     // initialize Db members
     private FirebaseDatabase mDatabase;
@@ -54,7 +53,7 @@ public class IndexRecyclerViewFragment extends Fragment {
         mKeyDbReference = mDatabase.getReference(Constants.TABLE_FAVOURITES)
                 .child(mEmailList[randomEmailIndex]);
 
-        mKeyPostDbReference = mDatabase.getReference(Constants.TABLE_POST);
+        mIndexedPostDbReference = mDatabase.getReference(Constants.TABLE_POST);
         int viewId = R.id.indexedRecyclerView;
         mIndexRecyclerView = (RecyclerView) mRootView.findViewById(viewId);
         mIndexRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -70,7 +69,7 @@ public class IndexRecyclerViewFragment extends Fragment {
                         R.layout.item_post,
                         RecyclerViewFragment.PostViewHolder.class,
                         mKeyDbReference,
-                        mPostDbReference
+                        mIndexedPostDbReference
                 ) {
             @Override
             protected void populateViewHolder(

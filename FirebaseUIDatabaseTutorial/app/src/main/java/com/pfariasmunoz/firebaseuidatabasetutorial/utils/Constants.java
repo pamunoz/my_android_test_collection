@@ -12,9 +12,9 @@ public class Constants {
 
     // ============= TEMPORAL DATA ===================
     public static final String[] EMAIL_LIST = {
-            "mycompany@example.com",
-            "yourcompany@something.com",
-            "thatone@hotwaka.org",
-            "somecompany@thecompany.com"
+            "mycompany@example,com",
+            "yourcompany@something,com",
+            "thatone@hotwaka,org",
+            "somecompany@thecompany,com"
     };
 }
