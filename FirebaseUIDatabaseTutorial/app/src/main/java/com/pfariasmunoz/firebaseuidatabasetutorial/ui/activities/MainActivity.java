@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.pfariasmunoz.firebaseuidatabasetutorial.R;
+import com.pfariasmunoz.firebaseuidatabasetutorial.ui.fragments.IndexRecyclerViewFragment;
+import com.pfariasmunoz.firebaseuidatabasetutorial.ui.fragments.ListViewFragment;
 import com.pfariasmunoz.firebaseuidatabasetutorial.ui.fragments.RecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -81,11 +83,20 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_recycler) {
-            // Handle the camera action
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, new RecyclerViewFragment())
+                    .commit();
         } else if (id == R.id.nav_index) {
-
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, new IndexRecyclerViewFragment())
+                    .commit();
         } else if (id == R.id.nav_list) {
-
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, new ListViewFragment())
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
