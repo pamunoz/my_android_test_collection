@@ -7,13 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.pfariasmunoz.firebaseuidatabasetutorial.R;
 
 
 public class ListViewFragment extends Fragment {
 
     private View mRootView;
+    private ListView mListView;
+    private FirebaseListAdapter<String> mListAdapter;
 
     public ListViewFragment() {
         // Required empty public constructor
@@ -29,6 +33,7 @@ public class ListViewFragment extends Fragment {
     }
 
     private void initializeView() {
+        mListView = (ListView) mRootView.findViewById(R.id.listview);
     }
 
 }

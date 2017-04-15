@@ -78,7 +78,7 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     private void addFloatingActionButton() {
-        int fabId = R.id.fab;
+        int fabId = R.id.fab_recyler_view;
         FloatingActionButton fab = (FloatingActionButton) mRootView.findViewById(fabId);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
