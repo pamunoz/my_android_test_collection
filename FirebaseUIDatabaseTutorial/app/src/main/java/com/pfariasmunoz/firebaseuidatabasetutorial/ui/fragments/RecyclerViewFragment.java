@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.pfariasmunoz.firebaseuidatabasetutorial.R;
 import com.pfariasmunoz.firebaseuidatabasetutorial.data.models.Post;
 import com.pfariasmunoz.firebaseuidatabasetutorial.utils.Constants;
+import com.pfariasmunoz.firebaseuidatabasetutorial.utils.Utils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,6 +84,10 @@ public class RecyclerViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Post post = new Post();
+                post.setUID(Utils.getPostUID());
+                post.setText("Random text: " + post.getUID());
+
+                mPostDatabaseReference.child(post.getUID()).setValue(post);
 
             }
         });
