@@ -72,7 +72,8 @@ public class IndexRecyclerViewFragment extends Fragment {
             @Override
             protected void populateViewHolder(
                     RecyclerViewFragment.PostViewHolder viewHolder, Post model, int position) {
-
+                viewHolder.favouriteButton.setVisibility(View.GONE);
+                viewHolder.setPostText(model.getText());
             }
         };
     }

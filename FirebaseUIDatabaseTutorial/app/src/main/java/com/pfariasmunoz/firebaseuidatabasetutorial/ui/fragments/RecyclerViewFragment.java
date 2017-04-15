@@ -105,7 +105,7 @@ public class RecyclerViewFragment extends Fragment {
             postTextView = (TextView) itemView.findViewById(R.id.tv_post);
         }
 
-        private void setPostText(String postText) {
+        public void setPostText(String postText) {
             postTextView.setText(postText);
         }
     }
