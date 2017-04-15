@@ -3,6 +3,7 @@ package com.pfariasmunoz.firebaseuidatabasetutorial.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +57,7 @@ public class IndexRecyclerViewFragment extends Fragment {
         mKeyPostDbReference = mDatabase.getReference(Constants.TABLE_POST);
         int viewId = R.id.indexedRecyclerView;
         mIndexRecyclerView = (RecyclerView) mRootView.findViewById(viewId);
+        mIndexRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         setupAdapter();
         mIndexRecyclerView.setAdapter(mPostIndexAdapter);
     }
