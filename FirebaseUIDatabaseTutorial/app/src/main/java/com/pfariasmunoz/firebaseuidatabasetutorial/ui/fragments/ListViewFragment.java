@@ -69,7 +69,7 @@ public class ListViewFragment extends Fragment {
             @Override
             protected void populateView(View v, String model, int position) {
                 mTextView = (TextView) v.findViewById(R.id.list_text);
-                mTextView.setText(model.get);
+                mTextView.setText(model);
             }
         };
     }
