@@ -43,7 +43,7 @@ public class RecyclerViewFragment extends Fragment {
         // Inflate the layout for this fragment
         mRootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
         initializeView();
-
+        addFloatingActionButton();
         return mRootView;
     }
 
