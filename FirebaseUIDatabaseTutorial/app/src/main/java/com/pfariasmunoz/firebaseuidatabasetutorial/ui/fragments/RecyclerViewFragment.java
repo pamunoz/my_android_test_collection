@@ -42,16 +42,17 @@ public class RecyclerViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mRootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-        initializeView();
+        initializeViewAndDb();
         addFloatingActionButton();
         return mRootView;
     }
 
-    private void initializeView() {
+    private void initializeViewAndDb() {
         mPostDatabaseReference = FirebaseDatabase.getInstance().getReference(Constants.TABLE_POST);
         mPostRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view);
         mPostRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         setUpAdapter();
+        mPostRecyclerView.setAdapter(mPostAdapter);
     }
 
     private void setUpAdapter() {

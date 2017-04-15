@@ -57,6 +57,7 @@ public class IndexRecyclerViewFragment extends Fragment {
         int viewId = R.id.indexedRecyclerView;
         mIndexRecyclerView = (RecyclerView) mRootView.findViewById(viewId);
         setupAdapter();
+        mIndexRecyclerView.setAdapter(mPostIndexAdapter);
     }
 
     private void setupAdapter() {

@@ -58,6 +58,7 @@ public class ListViewFragment extends Fragment {
         mListDatabaseReference = mDatabase.getReference(Constants.LIST);
         mListView = (ListView) mRootView.findViewById(R.id.listview);
         setUpAdapter();
+        mListView.setAdapter(mListAdapter);
     }
 
     private void setUpAdapter() {
