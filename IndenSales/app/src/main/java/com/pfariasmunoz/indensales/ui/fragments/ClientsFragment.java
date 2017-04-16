@@ -31,9 +31,6 @@ public class ClientsFragment extends Fragment {
     private FirebaseRecyclerAdapter<Client, ClientViewHolder> mClientAdapter;
     private View mRootView;
 
-
-
-
     public ClientsFragment() {
         // Required empty public constructor
     }
@@ -47,6 +44,12 @@ public class ClientsFragment extends Fragment {
         initializeView();
 
         return mRootView;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mClientAdapter.cleanup();
     }
 
     private void initializeView() {
