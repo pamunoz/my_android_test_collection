@@ -1,4 +1,4 @@
-package com.pfariasmunoz.indensales;
+package com.pfariasmunoz.indensales.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.pfariasmunoz.indensales.R;
+import com.pfariasmunoz.indensales.data.DbContract;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
