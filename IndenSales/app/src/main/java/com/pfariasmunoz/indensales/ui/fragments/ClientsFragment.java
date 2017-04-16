@@ -35,7 +35,6 @@ public class ClientsFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,6 +53,7 @@ public class ClientsFragment extends Fragment {
 
     private void initializeView() {
         mClientRecyclerView = (RecyclerView) mRootView.findViewById(R.id.rv_clients);
+        mClientRecyclerView.setHasFixedSize(false);
         mClientRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         setupAdapter();
     }
