@@ -8,7 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 
 public class FirebaseDb {
-    
+
     public static final FirebaseDatabase sIndenDbRef = FirebaseDatabase.getInstance();
     public static final DatabaseReference sClientsRef = sIndenDbRef.getReference(DbContract.CLIENTS_ND);
     public static final DatabaseReference sArticlesRef = sIndenDbRef.getReference(DbContract.ARTICLES_ND);
