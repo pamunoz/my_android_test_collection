@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.pfariasmunoz.indensales.R;
+import com.pfariasmunoz.indensales.ui.fragments.ClientsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,6 +43,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Set up the fragements
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, new ClientsFragment())
+                .commit();
     }
 
     @Override
