@@ -15,21 +15,20 @@ import butterknife.ButterKnife;
  */
 
 public class ClientViewHolder extends RecyclerView.ViewHolder {
-    @BindView(R.id.tv_client_name)
-    TextView mNameTextView;
-    @BindView(R.id.tv_client_rut)
-    TextView mRutTextView;
-    @BindView(R.id.tv_client_adress)
-    TextView mAdressTextView;
-    @BindView(R.id.tv_client_discount)
-    TextView mDiscountTextView;
+    private TextView mNameTextView;
+    private TextView mRutTextView;
+    private TextView mAdressTextView;
+    private TextView mDiscountTextView;
 
     public ClientViewHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        mNameTextView = (TextView) itemView.findViewById(R.id.tv_client_name);
+        mRutTextView = (TextView) itemView.findViewById(R.id.tv_client_rut);
+        mAdressTextView = (TextView) itemView.findViewById(R.id.tv_client_adress);
+        mDiscountTextView = (TextView) itemView.findViewById(R.id.tv_client_discount);
     }
 
-    public void setViewsText(Client client) {
+    public void setTextOnViews(Client client) {
         mNameTextView.setText(client.getNombre());
         mRutTextView.setText(client.getRut());
         mAdressTextView.setText("Temporal Text");
