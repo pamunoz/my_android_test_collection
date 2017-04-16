@@ -10,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.pfariasmunoz.indensales.R;
 import com.pfariasmunoz.indensales.data.FirebaseDb;
 import com.pfariasmunoz.indensales.data.models.Client;
@@ -27,6 +30,7 @@ public class ClientsFragment extends Fragment {
     private RecyclerView mClientRecyclerView;
     private FirebaseRecyclerAdapter<Client, ClientViewHolder> mClientAdapter;
     private View mRootView;
+
 
 
 
@@ -62,6 +66,6 @@ public class ClientsFragment extends Fragment {
                 viewHolder.setTextOnViews(model);
             }
         };
+        mClientRecyclerView.setAdapter(mClientAdapter);
     }
-
 }
