@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.pfariasmunoz.indensales.R;
+import com.pfariasmunoz.indensales.ui.fragments.ArticlesFragment;
 import com.pfariasmunoz.indensales.ui.fragments.ClientsFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -91,6 +92,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, new ArticlesFragment())
+                    .commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
