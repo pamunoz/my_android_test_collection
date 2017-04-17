@@ -11,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.pfariasmunoz.indensales.R;
 import com.pfariasmunoz.indensales.data.FirebaseDb;
+import com.pfariasmunoz.indensales.data.models.Adress;
 import com.pfariasmunoz.indensales.data.models.Client;
 import com.pfariasmunoz.indensales.ui.viewholders.ClientViewHolder;
 
@@ -66,10 +68,41 @@ public class ClientsFragment extends Fragment {
                 ClientViewHolder.class,
                 FirebaseDb.sClientsRef) {
             @Override
-            protected void populateViewHolder(ClientViewHolder viewHolder, Client model, int position) {
-                String uid = FirebaseDb.getUid(getRef(position));
-                Log.i("RECICLER", uid);
-                viewHolder.setTextOnViews(model, uid);
+            protected void populateViewHolder(final ClientViewHolder viewHolder, final Client model, int position) {
+                String clientUid = FirebaseDb.getUid(getRef(position));
+                FirebaseDb.sClientAdressRef.child(clientUid).addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        Adress adress = dataSnapshot.getValue(Adress.class);
+                        viewHolder.setAdresText(adress.getDireccion());
+                        Log.i("RECICLER", adress.getDireccion());
+
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                        Adress adress = dataSnapshot.getValue(Adress.class);
+                        viewHolder.setAdresText(adress.getDireccion());
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                viewHolder.setTextOnViews(model);
             }
         };
         mClientRecyclerView.setAdapter(mClientAdapter);
