@@ -28,10 +28,10 @@ public class ClientViewHolder extends RecyclerView.ViewHolder {
         mDiscountTextView = (TextView) itemView.findViewById(R.id.tv_client_discount);
     }
 
-    public void setTextOnViews(Client client) {
+    public void setTextOnViews(Client client, String key) {
         mNameTextView.setText(client.getNombre());
         mRutTextView.setText(client.getRut());
-        mAdressTextView.setText("Temporal Text");
+        mAdressTextView.setText(key);
         mDiscountTextView.setText(client.getDescuento());
     }
 }

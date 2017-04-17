@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,9 @@ public class ClientsFragment extends Fragment {
                 FirebaseDb.sClientsRef) {
             @Override
             protected void populateViewHolder(ClientViewHolder viewHolder, Client model, int position) {
-                viewHolder.setTextOnViews(model);
+                String uid = FirebaseDb.getUid(getRef(position));
+                Log.i("RECICLER", uid);
+                viewHolder.setTextOnViews(model, uid);
             }
         };
         mClientRecyclerView.setAdapter(mClientAdapter);

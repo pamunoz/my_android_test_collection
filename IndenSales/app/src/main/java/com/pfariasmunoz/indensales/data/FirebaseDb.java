@@ -18,9 +18,9 @@ public class FirebaseDb {
 
 
     public static String getUid(DatabaseReference databaseReference) {
-        String url = databaseReference.push().toString();
+        String url = databaseReference.toString();
         if (url.contains("/")) {
-            return url.substring(url.lastIndexOf("/"), url.length());
+            return url.substring(url.lastIndexOf("/") + 1, url.length());
         } else {
             return "Nothing found";
         }
