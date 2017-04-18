@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -72,9 +73,11 @@ public class MainActivity extends AppCompatActivity
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // the user is signed in
+                    onSignedInInitialize(user.getDisplayName());
                     String message = "You are now signed in, welcome to inden Sales!";
                     Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                 } else {
+                    onSignedOutCleanup();
                     // the user is signed out, so, launch the sign in flow
                     startSignInFlow();
                 }
@@ -82,10 +85,21 @@ public class MainActivity extends AppCompatActivity
         };
 
         // Set up the fragements
+        initializeFragment(new ClientsFragment());
+
+    }
+
+    private void initializeFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container, new ClientsFragment())
+                .replace(R.id.container, fragment)
                 .commit();
+    }
+
+    private void onSignedOutCleanup() {
+    }
+
+    private void onSignedInInitialize(String displayName) {
     }
 
     private void startSignInFlow() {
@@ -172,4 +186,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
