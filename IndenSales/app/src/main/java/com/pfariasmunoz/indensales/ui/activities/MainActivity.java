@@ -13,18 +13,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseIndexRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.pfariasmunoz.indensales.R;
 import com.pfariasmunoz.indensales.ui.fragments.ArticlesFragment;
 import com.pfariasmunoz.indensales.ui.fragments.ClientsFragment;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    // recuest code for firebase sign in
+    // this is a flag for when we return from starting the activity for the result
+    public static final int RC_SIGN_IN = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +69,15 @@ public class MainActivity extends AppCompatActivity
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // the user is signed in
+                    String message = "You are now signed in, welcome to inden Sales!";
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                } else {
+                    // the user is signed out, so, launch the sign in flow
+                    startSignInFlow();
+                }
             }
         };
 
@@ -70,6 +86,18 @@ public class MainActivity extends AppCompatActivity
                 .beginTransaction()
                 .replace(R.id.container, new ClientsFragment())
                 .commit();
+    }
+
+    private void startSignInFlow() {
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setIsSmartLockEnabled(false)
+                        .setProviders(Arrays.asList(
+                                new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
+                                new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
+                        .build(),
+                RC_SIGN_IN);
     }
 
     @Override
