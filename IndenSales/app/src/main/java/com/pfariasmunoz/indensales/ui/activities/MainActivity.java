@@ -73,9 +73,11 @@ public class MainActivity extends AppCompatActivity
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // the user is signed in
-                    onSignedInInitialize(user.getDisplayName());
-                    String message = "You are now signed in, welcome to inden Sales!";
-                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                    onSignedInInitialize(user.getEmail());
+                    String message = "You are now signed in, welcome " + user.getEmail() + " to inden Sales!";
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                    // Set up the fragements
+                    initializeFragment(new ClientsFragment());
                 } else {
                     onSignedOutCleanup();
                     // the user is signed out, so, launch the sign in flow
@@ -84,8 +86,7 @@ public class MainActivity extends AppCompatActivity
             }
         };
 
-        // Set up the fragements
-        initializeFragment(new ClientsFragment());
+
 
     }
 
