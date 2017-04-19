@@ -146,6 +146,18 @@ public class MainActivity extends AppCompatActivity
                 RC_SIGN_IN);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, "Signed In!", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Signed In Canceled", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -200,9 +212,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_log_out) {
-            // Handle the camera action
-            Toast.makeText(this, "You can't log out of now", Toast.LENGTH_SHORT).show();
-
+            // Handle singing out of the app
+            AuthUI.getInstance().signOut(this);
         } else if (id == R.id.nav_articles_fragemnt) {
             initializeFragment(new ArticlesFragment());
         } else if (id == R.id.nav_slideshow) {
