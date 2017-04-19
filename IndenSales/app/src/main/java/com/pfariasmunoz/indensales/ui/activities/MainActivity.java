@@ -14,9 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.BuildConfig;
 import com.firebase.ui.database.FirebaseIndexRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +30,8 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TextView mNavBarEmailTextView;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
+        mNavBarEmailTextView = (TextView) findViewById(R.id.tv_email_nav_bar);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -101,6 +106,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void onSignedInInitialize(String displayName) {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        mNavBarEmailTextView = (TextView) headerView.findViewById(R.id.tv_email_nav_bar);
+        mNavBarEmailTextView.setText(displayName);
+
     }
 
     private void startSignInFlow() {
@@ -110,10 +120,12 @@ public class MainActivity extends AppCompatActivity
                         .setIsSmartLockEnabled(false)
                         .setProviders(Arrays.asList(
                                 new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
-                                new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
+                                new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build(),
+                                new AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build()))
                         .build(),
                 RC_SIGN_IN);
     }
+
 
     @Override
     protected void onResume() {
@@ -165,14 +177,12 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_log_out) {
             // Handle the camera action
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.container, new ArticlesFragment())
-                    .commit();
-        } else if (id == R.id.nav_gallery) {
+            Toast.makeText(this, "You can't log out of now", Toast.LENGTH_SHORT).show();
 
+        } else if (id == R.id.nav_articles_fragemnt) {
+            initializeFragment(new ArticlesFragment());
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
