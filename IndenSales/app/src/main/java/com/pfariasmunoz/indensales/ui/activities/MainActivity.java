@@ -1,10 +1,13 @@
 package com.pfariasmunoz.indensales.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +22,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.BuildConfig;
+import com.firebase.ui.auth.IdpResponse;
+import com.firebase.ui.auth.ui.ResultCodes;
 import com.firebase.ui.database.FirebaseIndexRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,8 +35,10 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String TAG = MainActivity.class.getSimpleName();
 
-    private TextView mNavBarEmailTextView;
+    private TextView mNavBarUserEmailTextView;
+    private TextView mNavBarUserNameTextView;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -46,10 +53,6 @@ public class MainActivity extends AppCompatActivity
 
         // Initialize Firebase components
         mFirebaseAuth = FirebaseAuth.getInstance();
-
-
-        mNavBarEmailTextView = (TextView) findViewById(R.id.tv_email_nav_bar);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // the user is signed in
-                    onSignedInInitialize(user.getEmail());
+                    onSignedInInitialize(user);
                     String message = "You are now signed in, welcome " + user.getEmail() + " to inden Sales!";
                     Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
                     // Set up the fragements
@@ -105,11 +108,22 @@ public class MainActivity extends AppCompatActivity
     private void onSignedOutCleanup() {
     }
 
-    private void onSignedInInitialize(String displayName) {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
-        mNavBarEmailTextView = (TextView) headerView.findViewById(R.id.tv_email_nav_bar);
-        mNavBarEmailTextView.setText(displayName);
+    private void onSignedInInitialize(FirebaseUser user) {
+        if (user != null) {
+            String userName = user.getDisplayName();
+            if (!TextUtils.isEmpty(userName)) {
+                Log.i(TAG, userName + "***************************************************");
+            } else {
+                Log.i(TAG, "||||||||||||||||||||||||||||| NO NAME DISPLAYED");
+            }
+            String userEmail = user.getEmail();
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            View headerView = navigationView.getHeaderView(0);
+            mNavBarUserEmailTextView = (TextView) headerView.findViewById(R.id.tv_email_nav_bar);
+            mNavBarUserNameTextView = (TextView) headerView.findViewById(R.id.tv_user_name_nav_bar);
+            mNavBarUserEmailTextView.setText(userEmail);
+            mNavBarUserNameTextView.setText("PABLO FARIAS MUNOZ");
+        }
 
     }
 
