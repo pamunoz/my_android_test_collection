@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static final String TAG = MainActivity.class.getSimpleName();
 
+    private static final String ANONYMOUS = "anonymous";
+    private String mUserName = ANONYMOUS;
+
     private TextView mNavBarUserEmailTextView;
     private TextView mNavBarUserNameTextView;
 
@@ -84,8 +87,7 @@ public class MainActivity extends AppCompatActivity
                     onSignedInInitialize(user);
                     String message = "You are now signed in, welcome " + user.getEmail() + " to inden Sales!";
                     Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
-                    // Set up the fragements
-                    initializeFragment(new ClientsFragment());
+
                 } else {
                     onSignedOutCleanup();
                     // the user is signed out, so, launch the sign in flow
@@ -106,13 +108,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void onSignedOutCleanup() {
+        mUserName = ANONYMOUS;
     }
 
     private void onSignedInInitialize(FirebaseUser user) {
         if (user != null) {
-            String userName = user.getDisplayName();
-            if (!TextUtils.isEmpty(userName)) {
-                Log.i(TAG, userName + "***************************************************");
+            mUserName = user.getDisplayName();
+            if (!TextUtils.isEmpty(mUserName)) {
+                Log.i(TAG, mUserName + "***************************************************");
             } else {
                 Log.i(TAG, "||||||||||||||||||||||||||||| NO NAME DISPLAYED");
             }
@@ -122,7 +125,10 @@ public class MainActivity extends AppCompatActivity
             mNavBarUserEmailTextView = (TextView) headerView.findViewById(R.id.tv_email_nav_bar);
             mNavBarUserNameTextView = (TextView) headerView.findViewById(R.id.tv_user_name_nav_bar);
             mNavBarUserEmailTextView.setText(userEmail);
-            mNavBarUserNameTextView.setText("PABLO FARIAS MUNOZ");
+            mNavBarUserNameTextView.setText(mUserName);
+
+            // Set up the fragements
+            initializeFragment(new ClientsFragment());
         }
 
     }
@@ -150,7 +156,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
-        mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+        if (mAuthStateListener != null) {
+            mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+        }
     }
 
     @Override
