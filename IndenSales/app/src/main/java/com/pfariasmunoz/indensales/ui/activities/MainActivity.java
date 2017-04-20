@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -17,9 +18,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.BuildConfig;
 import com.firebase.ui.auth.IdpResponse;
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity
 
     private TextView mNavBarUserEmailTextView;
     private TextView mNavBarUserNameTextView;
+    private ImageView mNavBarUserPhotoImageView;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -85,7 +89,7 @@ public class MainActivity extends AppCompatActivity
                 if (user != null) {
                     // the user is signed in
                     onSignedInInitialize(user);
-                    String message = "You are now signed in, welcome " + user.getEmail() + " to inden Sales!";
+                    String message = "You are now signed in, welcome " + user.getDisplayName() + " to inden Sales!";
                     Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
 
                 } else {
@@ -95,8 +99,6 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         };
-
-
 
     }
 
@@ -113,20 +115,26 @@ public class MainActivity extends AppCompatActivity
 
     private void onSignedInInitialize(FirebaseUser user) {
         if (user != null) {
+            String stringUrl = user.getPhotoUrl().toString();
+            Log.i(TAG, stringUrl);
             mUserName = user.getDisplayName();
             if (!TextUtils.isEmpty(mUserName)) {
                 Log.i(TAG, mUserName + "***************************************************");
             } else {
                 Log.i(TAG, "||||||||||||||||||||||||||||| NO NAME DISPLAYED");
             }
+
             String userEmail = user.getEmail();
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             View headerView = navigationView.getHeaderView(0);
             mNavBarUserEmailTextView = (TextView) headerView.findViewById(R.id.tv_email_nav_bar);
             mNavBarUserNameTextView = (TextView) headerView.findViewById(R.id.tv_user_name_nav_bar);
+            mNavBarUserPhotoImageView = (ImageView) headerView.findViewById(R.id.imv_user_photo);
             mNavBarUserEmailTextView.setText(userEmail);
             mNavBarUserNameTextView.setText(mUserName);
-
+            if (user.getPhotoUrl() != null) {
+                Glide.with(this).load(user.getPhotoUrl().toString()).into(mNavBarUserPhotoImageView);
+            }
             // Set up the fragements
             initializeFragment(new ClientsFragment());
         }
@@ -200,6 +208,19 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_search) {
+            SearchView searchView = (SearchView) item.getActionView();
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    return false;
+                }
+            });
         }
 
         return super.onOptionsItemSelected(item);
