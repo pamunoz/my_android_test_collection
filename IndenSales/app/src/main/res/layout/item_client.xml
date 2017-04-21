@@ -4,68 +4,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="100dp"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
     <ImageView
         android:id="@+id/imv_client_profile_pic"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
-        app:layout_constraintVertical_bias="1.0"/>
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="0.166"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/tv_client_name"/>
 
     <TextView
         android:id="@+id/tv_client_name"
-        android:layout_width="0dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-        app:layout_constraintBottom_toTopOf="@+id/tv_client_rut"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_client_rut"
-        app:layout_constraintRight_toRightOf="@+id/tv_client_rut"
         app:layout_goneMarginBottom="4dp"
         tools:text="ESTA ES UNA DIRECCION LARGA"
-        app:layout_constraintTop_toTopOf="@+id/imv_client_profile_pic"
-        android:layout_marginTop="0dp"/>
+        app:layout_constraintRight_toLeftOf="@+id/bt_add_sale"
+        app:layout_constraintLeft_toRightOf="@+id/imv_client_profile_pic"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_client_rut"/>
 
     <TextView
         android:id="@+id/tv_client_rut"
-        android:layout_width="0dp"
-        android:layout_height="23dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
-        app:layout_constraintBottom_toTopOf="@+id/imbt_client_location"
-        app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintLeft_toRightOf="@+id/imv_client_profile_pic"
-        app:layout_constraintRight_toLeftOf="@+id/bt_add_sale"
-        app:layout_constraintTop_toBottomOf="@+id/tv_client_name"
         app:layout_goneMarginTop="4dp"
-        tools:text="14008578-8"/>
+        tools:text="14008578-8"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_client_name"
+        app:layout_constraintBottom_toTopOf="@+id/imbt_client_location"
+        app:layout_constraintTop_toBottomOf="@+id/tv_client_name"/>
 
     <ImageButton
         android:id="@+id/imbt_client_location"
         android:layout_width="23dp"
-        android:layout_height="21dp"
+        android:layout_height="23dp"
         app:srcCompat="@android:drawable/ic_menu_mylocation"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_client_name"
-        app:layout_constraintRight_toLeftOf="@+id/imbt_edit_client"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_client_rut"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="8dp"
         app:layout_constraintTop_toBottomOf="@+id/tv_client_rut"/>
 
     <ImageButton
@@ -73,21 +59,13 @@
         android:layout_width="27dp"
         android:layout_height="19dp"
         android:src="@drawable/ic_edit_black_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/tv_client_rut"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_client_rut"/>
+        app:layout_constraintRight_toRightOf="@+id/tv_client_name"
+        app:layout_constraintBottom_toBottomOf="@+id/imbt_client_location"/>
 
     <Button
         android:id="@+id/bt_add_sale"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="0dp"
         android:background="@color/colorPrimaryLight"
         android:elevation="4dp"
         android:paddingEnd="16dp"
@@ -96,28 +74,28 @@
         android:paddingStart="16dp"
         android:text="Add Sale"
         android:textColor="@color/authui_inputTextColor"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_goneMarginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.562"
-        app:layout_goneMarginRight="16dp"/>
+        app:layout_constraintLeft_toRightOf="@+id/tv_client_name"/>
 
     <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/guideline"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="20dp"/>
-
-    <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline2"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="20dp"/>
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="0dp"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="0dp"/>
 
 </android.support.constraint.ConstraintLayout>
