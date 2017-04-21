@@ -26,8 +26,10 @@ dependencies {
     })
     // FirebaseUI Database only
 
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    
 
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:customtabs:25.3.1'
     compile 'com.android.support:design:25.3.1'
@@ -44,6 +46,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }
+
 
 
 
