@@ -24,17 +24,17 @@ public class ClientViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         mNameTextView = (TextView) itemView.findViewById(R.id.tv_client_name);
         mRutTextView = (TextView) itemView.findViewById(R.id.tv_client_rut);
-        mAdressTextView = (TextView) itemView.findViewById(R.id.tv_client_adress);
-        mDiscountTextView = (TextView) itemView.findViewById(R.id.tv_client_discount);
+        //mAdressTextView = (TextView) itemView.findViewById(R.id.tv_client_adress);
+        //mDiscountTextView = (TextView) itemView.findViewById(R.id.tv_client_discount);
     }
 
     public void setAdresText(String adress) {
-        mAdressTextView.setText(adress);
+        //mAdressTextView.setText(adress);
     }
 
     public void setTextOnViews(Client client) {
         mNameTextView.setText(client.getNombre());
         mRutTextView.setText(client.getRut());
-        mDiscountTextView.setText(client.getDescuento());
+        //mDiscountTextView.setText(client.getDescuento());
     }
 }

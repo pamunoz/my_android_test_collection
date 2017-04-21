@@ -70,37 +70,37 @@ public class ClientsFragment extends Fragment {
             @Override
             protected void populateViewHolder(final ClientViewHolder viewHolder, final Client model, int position) {
                 String clientUid = FirebaseDb.getUid(getRef(position));
-                FirebaseDb.sClientAdressRef.child(clientUid).addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        Adress adress = dataSnapshot.getValue(Adress.class);
-                        viewHolder.setAdresText(adress.getDireccion());
-                        Log.i("RECICLER", adress.getDireccion());
-
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                        Adress adress = dataSnapshot.getValue(Adress.class);
-                        viewHolder.setAdresText(adress.getDireccion());
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+//                FirebaseDb.sClientAdressRef.child(clientUid).addChildEventListener(new ChildEventListener() {
+//                    @Override
+//                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                        Adress adress = dataSnapshot.getValue(Adress.class);
+//                        viewHolder.setAdresText(adress.getDireccion());
+//                        Log.i("RECICLER", adress.getDireccion());
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//                        Adress adress = dataSnapshot.getValue(Adress.class);
+//                        viewHolder.setAdresText(adress.getDireccion());
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
 
                 viewHolder.setTextOnViews(model);
             }
