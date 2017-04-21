@@ -115,23 +115,20 @@ public class MainActivity extends AppCompatActivity
 
     private void onSignedInInitialize(FirebaseUser user) {
         if (user != null) {
-            String stringUrl = user.getPhotoUrl().toString();
-            Log.i(TAG, stringUrl);
             mUserName = user.getDisplayName();
-            if (!TextUtils.isEmpty(mUserName)) {
-                Log.i(TAG, mUserName + "***************************************************");
-            } else {
-                Log.i(TAG, "||||||||||||||||||||||||||||| NO NAME DISPLAYED");
-            }
-
             String userEmail = user.getEmail();
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             View headerView = navigationView.getHeaderView(0);
             mNavBarUserEmailTextView = (TextView) headerView.findViewById(R.id.tv_email_nav_bar);
             mNavBarUserNameTextView = (TextView) headerView.findViewById(R.id.tv_user_name_nav_bar);
             mNavBarUserPhotoImageView = (ImageView) headerView.findViewById(R.id.imv_user_photo);
-            mNavBarUserEmailTextView.setText(userEmail);
-            mNavBarUserNameTextView.setText(mUserName);
+            if (TextUtils.isEmpty(userEmail)) {
+                mNavBarUserEmailTextView.setText(userEmail);
+            }
+            if (TextUtils.isEmpty(mUserName)) {
+                mNavBarUserNameTextView.setText(mUserName);
+            }
+
             if (user.getPhotoUrl() != null) {
                 Glide.with(this).load(user.getPhotoUrl().toString()).into(mNavBarUserPhotoImageView);
             }
