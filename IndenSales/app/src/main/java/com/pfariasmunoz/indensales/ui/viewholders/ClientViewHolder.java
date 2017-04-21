@@ -1,11 +1,14 @@
 package com.pfariasmunoz.indensales.ui.viewholders;
 
+import android.provider.UserDictionary;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import com.pfariasmunoz.indensales.R;
 import com.pfariasmunoz.indensales.data.models.Client;
+import com.pfariasmunoz.indensales.utils.TextHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +36,8 @@ public class ClientViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setTextOnViews(Client client) {
-        mNameTextView.setText(client.getNombre());
+        //String clientName = TextHelper.capitalizeFirestLetter(client.getNombre());
+        mNameTextView.setText(client.getNombre().trim());
         mRutTextView.setText(client.getRut());
         //mDiscountTextView.setText(client.getDescuento());
     }
