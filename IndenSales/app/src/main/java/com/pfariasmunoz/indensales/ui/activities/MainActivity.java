@@ -1,6 +1,9 @@
 package com.pfariasmunoz.indensales.ui.activities;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -24,16 +28,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.BuildConfig;
-import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.ui.ResultCodes;
-import com.firebase.ui.database.FirebaseIndexRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.pfariasmunoz.indensales.R;
 import com.pfariasmunoz.indensales.ui.fragments.ArticlesFragment;
 import com.pfariasmunoz.indensales.ui.fragments.ClientsFragment;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // Initialize Firebase components
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -122,10 +125,10 @@ public class MainActivity extends AppCompatActivity
             mNavBarUserEmailTextView = (TextView) headerView.findViewById(R.id.tv_email_nav_bar);
             mNavBarUserNameTextView = (TextView) headerView.findViewById(R.id.tv_user_name_nav_bar);
             mNavBarUserPhotoImageView = (ImageView) headerView.findViewById(R.id.imv_user_photo);
-            if (TextUtils.isEmpty(userEmail)) {
+            if (!TextUtils.isEmpty(userEmail)) {
                 mNavBarUserEmailTextView.setText(userEmail);
             }
-            if (TextUtils.isEmpty(mUserName)) {
+            if (!TextUtils.isEmpty(mUserName)) {
                 mNavBarUserNameTextView.setText(mUserName);
             }
 
