@@ -31,6 +31,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.pfariasmunoz.indensales.R;
+import com.pfariasmunoz.indensales.data.FirebaseDb;
 import com.pfariasmunoz.indensales.ui.fragments.ArticlesFragment;
 import com.pfariasmunoz.indensales.ui.fragments.ClientsFragment;
 
@@ -60,9 +61,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // Initialize Firebase components
         mFirebaseAuth = FirebaseAuth.getInstance();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

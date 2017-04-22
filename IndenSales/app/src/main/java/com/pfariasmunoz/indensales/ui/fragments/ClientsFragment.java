@@ -16,6 +16,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.pfariasmunoz.indensales.R;
 import com.pfariasmunoz.indensales.data.FirebaseDb;
@@ -66,13 +67,16 @@ public class ClientsFragment extends Fragment {
     }
 
     private void setupAdapter() {
+        Query clientsRef = FirebaseDb.sClientsRef;
         mClientAdapter = new FirebaseRecyclerAdapter<Client, ClientViewHolder>(
                 Client.class,
                 R.layout.item_client,
                 ClientViewHolder.class,
-                FirebaseDb.sClientsRef) {
+                clientsRef) {
             @Override
-            protected void populateViewHolder(final ClientViewHolder viewHolder, final Client model, int position) {
+            protected void populateViewHolder(
+                    final ClientViewHolder viewHolder,
+                    final Client model, int position) {
 
 
                 String clientUid = FirebaseDb.getUid(getRef(position));
@@ -84,8 +88,9 @@ public class ClientsFragment extends Fragment {
             }
 
 
-        };
 
+
+        };
         mClientAdapter.notifyDataSetChanged();
         mClientRecyclerView.setAdapter(mClientAdapter);
     }
