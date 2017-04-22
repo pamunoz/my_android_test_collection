@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.ChildEventListener;
@@ -33,6 +34,7 @@ public class ClientsFragment extends Fragment {
     private RecyclerView mClientRecyclerView;
     private FirebaseRecyclerAdapter<Client, ClientViewHolder> mClientAdapter;
     private View mRootView;
+    private ProgressBar mLoadingIndicatorProgressBar;
 
     public ClientsFragment() {
         // Required empty public constructor
@@ -58,6 +60,8 @@ public class ClientsFragment extends Fragment {
         mClientRecyclerView = (RecyclerView) mRootView.findViewById(R.id.rv_clients);
         mClientRecyclerView.setHasFixedSize(false);
         mClientRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mClientRecyclerView.setVisibility(View.INVISIBLE);
+        mLoadingIndicatorProgressBar = (ProgressBar) mRootView.findViewById(R.id.pb_loading_indicator);
         setupAdapter();
     }
 
@@ -69,42 +73,21 @@ public class ClientsFragment extends Fragment {
                 FirebaseDb.sClientsRef) {
             @Override
             protected void populateViewHolder(final ClientViewHolder viewHolder, final Client model, int position) {
+
+
                 String clientUid = FirebaseDb.getUid(getRef(position));
-//                FirebaseDb.sClientAdressRef.child(clientUid).addChildEventListener(new ChildEventListener() {
-//                    @Override
-//                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                        Adress adress = dataSnapshot.getValue(Adress.class);
-//                        viewHolder.setAdresText(adress.getDireccion());
-//                        Log.i("RECICLER", adress.getDireccion());
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//                        Adress adress = dataSnapshot.getValue(Adress.class);
-//                        viewHolder.setAdresText(adress.getDireccion());
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
+
 
                 viewHolder.setTextOnViews(model);
+                mLoadingIndicatorProgressBar.setVisibility(View.GONE);
+                mClientRecyclerView.setVisibility(View.VISIBLE);
             }
+
+
         };
+
+        mClientAdapter.notifyDataSetChanged();
         mClientRecyclerView.setAdapter(mClientAdapter);
     }
+
 }
