@@ -1,10 +1,9 @@
 package com.pfariasmunoz.fragmentlayouts;
 
-import android.app.FragmentTransaction;
-import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -13,7 +12,7 @@ import android.widget.ListView;
  * Created by Pablo Farias on 25-04-17.
  */
 
-public class TitlesFragment extends ListFragment {
+public class TitlesFragment extends android.support.v4.app.ListFragment {
 
     boolean mHorizontalMode;
     int mCurrentCheckPosition = 0;
