@@ -3,6 +3,7 @@ package com.pfariasmunoz.indensales.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,7 +42,8 @@ public class ArticlesFragment extends Fragment {
     private void initializeViews() {
         mArticlesRecyclerView = (RecyclerView) mRootView.findViewById(R.id.rv_articles);
         mArticlesRecyclerView.setHasFixedSize(false);
-        mArticlesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
+        mArticlesRecyclerView.setLayoutManager(layoutManager);
         setupAdapter();
     }
 
