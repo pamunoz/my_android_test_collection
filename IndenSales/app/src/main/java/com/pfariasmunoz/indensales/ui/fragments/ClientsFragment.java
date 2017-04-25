@@ -41,6 +41,8 @@ public class ClientsFragment extends Fragment {
         // Required empty public constructor
     }
 
+    // The onCreateView method is called when Fragment should create its View object hierarchy,
+    // either dynamically or via XML layout inflation.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,6 +50,9 @@ public class ClientsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_clients, container, false);
     }
 
+    // This event is triggered soon after onCreateView().
+    // onViewCreated() is only called if the view returned from onCreateView() is non-null.
+    // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View rootView, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
@@ -56,6 +61,17 @@ public class ClientsFragment extends Fragment {
         mClientRecyclerView.setHasFixedSize(false);
         mClientRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mClientRecyclerView.setVisibility(View.INVISIBLE);
+
+        mClientRecyclerView.setAdapter(mClientAdapter);
+    }
+
+    // This event fires 2nd, before views are created for the fragment
+    // The onCreate method is called when the Fragment instance is being created,
+    // or re-created. Use onCreate for any standard setup that does not
+    // require the activity to be fully created
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setupAdapter();
     }
 
@@ -85,7 +101,7 @@ public class ClientsFragment extends Fragment {
             }
         };
         mClientAdapter.notifyDataSetChanged();
-        mClientRecyclerView.setAdapter(mClientAdapter);
+
     }
 
 }
