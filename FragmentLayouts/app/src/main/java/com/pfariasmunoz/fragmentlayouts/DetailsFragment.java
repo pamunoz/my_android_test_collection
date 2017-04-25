@@ -23,7 +23,7 @@ public class DetailsFragment extends Fragment {
         TextView heroDataTextView = new TextView(getActivity());
         // a way to specify dimmention using specific units
         int padding = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 4,
+                TypedValue.COMPLEX_UNIT_DIP, 16,
                 getActivity().getResources().getDisplayMetrics());
         // apply the padding to the textview in all its sides
         heroDataTextView.setPadding(padding, padding, padding, padding);
