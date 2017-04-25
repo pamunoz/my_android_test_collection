@@ -2,6 +2,7 @@ package com.pfariasmunoz.indensales.ui.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +35,6 @@ public class ClientsFragment extends Fragment {
 
     private RecyclerView mClientRecyclerView;
     private FirebaseRecyclerAdapter<Client, ClientViewHolder> mClientAdapter;
-    private View mRootView;
     private ProgressBar mLoadingIndicatorProgressBar;
 
     public ClientsFragment() {
@@ -45,25 +45,24 @@ public class ClientsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mRootView = inflater.inflate(R.layout.fragment_clients, container, false);
-        initializeView();
+        return inflater.inflate(R.layout.fragment_clients, container, false);
+    }
 
-        return mRootView;
+    @Override
+    public void onViewCreated(View rootView, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+        mClientRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_clients);
+        mLoadingIndicatorProgressBar = (ProgressBar) rootView.findViewById(R.id.pb_loading_indicator);
+        mClientRecyclerView.setHasFixedSize(false);
+        mClientRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mClientRecyclerView.setVisibility(View.INVISIBLE);
+        setupAdapter();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         mClientAdapter.cleanup();
-    }
-
-    private void initializeView() {
-        mClientRecyclerView = (RecyclerView) mRootView.findViewById(R.id.rv_clients);
-        mClientRecyclerView.setHasFixedSize(false);
-        mClientRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mClientRecyclerView.setVisibility(View.INVISIBLE);
-        mLoadingIndicatorProgressBar = (ProgressBar) mRootView.findViewById(R.id.pb_loading_indicator);
-        setupAdapter();
     }
 
     private void setupAdapter() {
@@ -80,16 +79,10 @@ public class ClientsFragment extends Fragment {
 
 
                 String clientUid = FirebaseDb.getUid(getRef(position));
-
-
                 viewHolder.setTextOnViews(model);
                 mLoadingIndicatorProgressBar.setVisibility(View.GONE);
                 mClientRecyclerView.setVisibility(View.VISIBLE);
             }
-
-
-
-
         };
         mClientAdapter.notifyDataSetChanged();
         mClientRecyclerView.setAdapter(mClientAdapter);
