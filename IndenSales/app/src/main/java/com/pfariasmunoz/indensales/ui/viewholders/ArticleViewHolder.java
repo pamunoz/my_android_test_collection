@@ -16,6 +16,7 @@ import com.pfariasmunoz.indensales.data.models.Article;
 public class ArticleViewHolder extends RecyclerView.ViewHolder {
     private TextView mDescriptionTextView;
     private TextView mPriceTextView;
+    private TextView mTotalPriceTextView;
     private TextView mAmountTextView;
     private ImageButton mAddButton;
     private ImageButton mSubstractButton;
@@ -28,6 +29,7 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
         mView = itemView;
         mDescriptionTextView = (TextView) mView.findViewById(R.id.tv_article_description);
         mPriceTextView = (TextView) mView.findViewById(R.id.tv_article_price);
+        mTotalPriceTextView = (TextView) mView.findViewById(R.id.tv_article_total_price);
         mAmountTextView = (TextView) mView.findViewById(R.id.tv_article_amount);
         mAddButton = (ImageButton) mView.findViewById(R.id.imb_up_arrow);
         mSubstractButton = (ImageButton) mView.findViewById(R.id.imb_down_arrow);
@@ -54,5 +56,13 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
     public void setAmount(int amount) {
         String stringPrice = String.valueOf(amount);
         mAmountTextView.setText(stringPrice);
+    }
+
+    public TextView getTotalPriceTextView() {
+        return mTotalPriceTextView;
+    }
+
+    public String getStringPrice() {
+        return mPriceTextView.getText().toString().trim();
     }
 }

@@ -15,6 +15,7 @@ import com.pfariasmunoz.indensales.R;
 import com.pfariasmunoz.indensales.data.FirebaseDb;
 import com.pfariasmunoz.indensales.data.models.Article;
 import com.pfariasmunoz.indensales.ui.viewholders.ArticleViewHolder;
+import com.pfariasmunoz.indensales.utils.MathHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +23,7 @@ import com.pfariasmunoz.indensales.ui.viewholders.ArticleViewHolder;
 public class ArticlesFragment extends Fragment {
 
     private int mAmount;
+    private String mTotalPrice;
 
     private RecyclerView mArticlesRecyclerView;
     private FirebaseRecyclerAdapter<Article, ArticleViewHolder> mArticleAdapter;
@@ -61,11 +63,16 @@ public class ArticlesFragment extends Fragment {
                 viewHolder.setTextOnViews(model);
 
                 viewHolder.setAmount(mAmount);
+                String totalPrice = MathHelper.setTotalPrice(mAmount, model.getPrecio());
+
 
                 viewHolder.getAddButton().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         mAmount++;
+                        viewHolder.getTotalPriceTextView()
+                                .setText(MathHelper.setTotalPrice(mAmount, viewHolder
+                                        .getStringPrice()));
                         viewHolder.setAmount(mAmount);
                     }
                 });
@@ -76,10 +83,14 @@ public class ArticlesFragment extends Fragment {
                         if (mAmount > 0) {
                             mAmount--;
                         }
-
+                        viewHolder.getTotalPriceTextView()
+                                .setText(MathHelper.setTotalPrice(mAmount, viewHolder
+                                        .getStringPrice()));
                         viewHolder.setAmount(mAmount);
                     }
                 });
+
+                viewHolder.getTotalPriceTextView().setText(totalPrice);
             }
         };
         mArticlesRecyclerView.setAdapter(mArticleAdapter);
