@@ -42,7 +42,7 @@ public class ArticlesFragment extends Fragment {
     private void initializeViews() {
         mArticlesRecyclerView = (RecyclerView) mRootView.findViewById(R.id.rv_articles);
         mArticlesRecyclerView.setHasFixedSize(false);
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         mArticlesRecyclerView.setLayoutManager(layoutManager);
         setupAdapter();
     }
