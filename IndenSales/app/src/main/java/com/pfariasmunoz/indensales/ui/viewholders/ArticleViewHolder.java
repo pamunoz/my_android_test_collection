@@ -19,25 +19,28 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
     private TextView mAmountTextView;
     private ImageButton mAddButton;
     private ImageButton mSubstractButton;
+    private View mView;
+
 
 
     public ArticleViewHolder(View itemView) {
         super(itemView);
-        mDescriptionTextView = (TextView) itemView.findViewById(R.id.tv_article_description);
-        mPriceTextView = (TextView) itemView.findViewById(R.id.tv_article_price);
-        mAmountTextView = (TextView) itemView.findViewById(R.id.tv_article_amount);
-        mAddButton = (ImageButton) itemView.findViewById(R.id.imb_up_arrow);
-        mSubstractButton = (ImageButton) itemView.findViewById(R.id.imb_down_arrow);
+        mView = itemView;
+        mDescriptionTextView = (TextView) mView.findViewById(R.id.tv_article_description);
+        mPriceTextView = (TextView) mView.findViewById(R.id.tv_article_price);
+        mAmountTextView = (TextView) mView.findViewById(R.id.tv_article_amount);
+        mAddButton = (ImageButton) mView.findViewById(R.id.imb_up_arrow);
+        mSubstractButton = (ImageButton) mView.findViewById(R.id.imb_down_arrow);
     }
 
     public void setTextOnViews(Article article) {
         mDescriptionTextView.setText(article.getDescripcion());
         mPriceTextView.setText(article.getPrecio());
+
     }
 
-    public void setAmount(int amount) {
-        String stringAmount = String.valueOf(amount);
-        mAmountTextView.setText(stringAmount);
+    public View getView() {
+        return mView;
     }
 
     public ImageButton getAddButton() {
@@ -46,5 +49,10 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
 
     public ImageButton getSubstractButton() {
         return mSubstractButton;
+    }
+
+    public void setAmount(int amount) {
+        String stringPrice = String.valueOf(amount);
+        mAmountTextView.setText(stringPrice);
     }
 }

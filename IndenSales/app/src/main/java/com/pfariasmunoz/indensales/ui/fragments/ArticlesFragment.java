@@ -21,6 +21,8 @@ import com.pfariasmunoz.indensales.ui.viewholders.ArticleViewHolder;
  */
 public class ArticlesFragment extends Fragment {
 
+    private int mAmount;
+
     private RecyclerView mArticlesRecyclerView;
     private FirebaseRecyclerAdapter<Article, ArticleViewHolder> mArticleAdapter;
     private View mRootView;
@@ -35,6 +37,7 @@ public class ArticlesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mRootView = inflater.inflate(R.layout.fragment_articles, container, false);
+        mAmount = 0;
         initializeViews();
         return mRootView;
     }
@@ -54,8 +57,29 @@ public class ArticlesFragment extends Fragment {
                 ArticleViewHolder.class,
                 FirebaseDb.sArticlesRef) {
             @Override
-            protected void populateViewHolder(ArticleViewHolder viewHolder, Article model, int position) {
+            protected void populateViewHolder(final ArticleViewHolder viewHolder, Article model, int position) {
                 viewHolder.setTextOnViews(model);
+
+                viewHolder.setAmount(mAmount);
+
+                viewHolder.getAddButton().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mAmount++;
+                        viewHolder.setAmount(mAmount);
+                    }
+                });
+
+                viewHolder.getSubstractButton().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mAmount > 0) {
+                            mAmount--;
+                        }
+
+                        viewHolder.setAmount(mAmount);
+                    }
+                });
             }
         };
         mArticlesRecyclerView.setAdapter(mArticleAdapter);
