@@ -20,7 +20,7 @@ import com.pfariasmunoz.indensales.utils.MathHelper;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ArticlesFragment extends Fragment {
+public class ArticlesFragment extends BaseFragment {
 
     private int mAmount;
     private String mTotalPrice;
@@ -101,4 +101,5 @@ public class ArticlesFragment extends Fragment {
         super.onDestroy();
         if (mArticleAdapter != null) mArticleAdapter.cleanup();
     }
+
 }
