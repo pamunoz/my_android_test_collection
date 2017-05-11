@@ -39,4 +39,11 @@
         android:fontFamily="monospace"
         android:textColor="#000"
         tools:text="ViewHolder instance: 7" />
+
+    <Button
+        android:id="@+id/btn"
+        android:text="ADD"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </FrameLayout>
