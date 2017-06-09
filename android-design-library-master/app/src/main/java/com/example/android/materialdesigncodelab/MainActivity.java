@@ -16,6 +16,7 @@
 
 package com.example.android.materialdesigncodelab;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -35,6 +36,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getSupportFragmentManager());
+        Adapter adapter = new Adapter(getSupportFragmentManager(), this);
         adapter.addFragment(new ListContentFragment(), "List");
         adapter.addFragment(new TileContentFragment(), "Tile");
         adapter.addFragment(new CardContentFragment(), "Card");
@@ -111,9 +113,11 @@ public class MainActivity extends AppCompatActivity {
     static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
+        private Context mContext;
 
-        public Adapter(FragmentManager manager) {
+        public Adapter(FragmentManager manager, Context context) {
             super(manager);
+            mContext = context;
         }
 
         @Override
@@ -152,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "WELCOME!!", Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == android.R.id.home) {
             mDrawerLayout.openDrawer(GravityCompat.START);
