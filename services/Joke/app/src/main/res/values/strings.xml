@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Joke</string>
-    
+    <string name="buttom_response">Timing!</string>
+    <string name="buttom_text">What is the secret of comedy?</string>
 </resources>
