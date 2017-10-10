@@ -81,6 +81,8 @@ public class ShoppingCartActivity extends AppCompatActivity
         mButtonCheckout = (Button) findViewById(R.id.button_cart_checkout);
         mButtonCheckout.setOnClickListener(this);
 
+        Analytics.logEventBeginCheckout(this);
+
         getSupportLoaderManager().initLoader(SHOPPING_CART_LOADER, null, this);
     }
 
@@ -103,6 +105,7 @@ public class ShoppingCartActivity extends AppCompatActivity
                         Snackbar.make(v, R.string.checkout_complete, Snackbar.LENGTH_SHORT).show();
                     }
                 }, DELAY);
+                Analytics.logEventEcommercePurchase(this);
                 break;
         }
     }
