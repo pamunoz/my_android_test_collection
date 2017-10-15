@@ -16,8 +16,10 @@
 
 package com.example.android.persistence.codelab.step3;
 
+import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -54,8 +56,17 @@ public class BooksBorrowedByUserActivity extends LifecycleActivity {
     }
 
     private void subscribeUiBooks() {
-        // TODO: refresh the list of books when there's new data
+        // DONE: refresh the list of books when there's new data
         // mViewModel.books.observe(...
+        mViewModel.books.observe(this, new Observer<List<Book>>() {
+            @Override
+            public void onChanged(@Nullable List<Book> books) {
+                if (books != null) {
+                    showBooksInUi(books, mBooksTextView);
+                }
+
+            }
+        });
     }
 
     @SuppressWarnings("unused")
