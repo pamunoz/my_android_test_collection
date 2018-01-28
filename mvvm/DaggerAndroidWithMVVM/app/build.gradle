@@ -24,10 +24,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
     implementation "com.android.support:appcompat-v7:$versions.support"
     implementation "com.android.support.constraint:constraint-layout:$versions.constraint"
     // Dagger Core
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor "com.google.dagger:dagger-compiler:$versions.dagger"
     implementation "com.google.dagger:dagger:$versions.dagger"
     // Dagger Android
