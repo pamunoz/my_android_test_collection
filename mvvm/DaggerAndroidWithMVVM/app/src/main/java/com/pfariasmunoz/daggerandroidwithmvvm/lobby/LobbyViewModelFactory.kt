@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModelProvider
 import com.pfariasmunoz.daggerandroidwithmvvm.common.domain.interactors.LoadCommonGreetingUseCase
 import com.pfariasmunoz.daggerandroidwithmvvm.rx.SchedulersFacade
 
-internal class LobbyViewModelFactory(
+class LobbyViewModelFactory(
         private val loadCommonGreetingUseCase: LoadCommonGreetingUseCase,
         private val loadLobbyGreetingUseCase: LoadLobbyGreetingUseCase,
         private val schedulersFacade: SchedulersFacade) : ViewModelProvider.Factory {
