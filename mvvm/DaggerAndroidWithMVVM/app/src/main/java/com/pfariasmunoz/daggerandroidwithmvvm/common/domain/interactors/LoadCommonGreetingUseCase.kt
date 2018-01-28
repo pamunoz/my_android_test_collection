@@ -5,8 +5,6 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class LoadCommonGreetingUseCase
-@Inject constructor(private val greetingRepository: CommonGreetingRepository) {
-
-    fun execute() : Single<String> = greetingRepository.getGreeting()
-
+@Inject constructor(private val greetingRepository: CommonGreetingRepository) : LoadGreetingUseCase {
+    override fun execute(): Single<String> = greetingRepository.getGreeting()
 }
