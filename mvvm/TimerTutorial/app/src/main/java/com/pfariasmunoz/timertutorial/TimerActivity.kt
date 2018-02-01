@@ -132,6 +132,18 @@ class TimerActivity : AppCompatActivity() {
         progress_countdown.max = timerLengthSeconds.toInt()
     }
 
+    private fun updateCountdownUI() {
+        // this values are for the textview that we need to update
+        val minutesUntilFinished = secondsRemaining / 60
+        val secondsInMinutesUntilFinished = secondsRemaining - minutesUntilFinished * 60
+        val sedondsStr = secondsInMinutesUntilFinished.toString()
+        textView_countdown.text = "$minutesUntilFinished:${
+            if(sedondsStr.length == 2) sedondsStr else "0" + sedondsStr}"
+        progress_countdown.progress = (timerLengthSeconds - secondsRemaining).toInt()
+
+
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_timer, menu)
