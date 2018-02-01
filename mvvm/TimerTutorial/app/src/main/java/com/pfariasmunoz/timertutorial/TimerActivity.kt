@@ -74,6 +74,28 @@ class TimerActivity : AppCompatActivity() {
         PrefUtil.setTimerState(timerState, this)
     }
 
+    private fun initTimer() {
+        timerState = PrefUtil.getTimerState(this)
+        if (timerState == TimerState.STOPPED) {
+            setNewTimerLength()
+        } else {
+            setPreviousTimerLength()
+        }
+        secondsRemaining = if (timerState == TimerState.RUNNING || timerState == TimerState.PAUSED) {
+            PrefUtil.getSecondsRemaining(this)
+        } else {
+            timerLengthSeconds
+        }
+
+        // TODO: change secondsRemaining according to where the background timer stopped
+
+        // resume where we left off
+        if (timerState == TimerState.RUNNING) startTimer()
+        updateButtons()
+        updateCountdownUI()
+
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_timer, menu)
