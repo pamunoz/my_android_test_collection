@@ -114,7 +114,6 @@ class TimerActivity : AppCompatActivity() {
             timerLengthSeconds
         }
 
-        // TODO: change secondsRemaining according to where the background timer stopped
         val alarmSetTime = PrefUtil.getAlarmSetTime(this)
         if (alarmSetTime > 0) {
             secondsRemaining -= nowSeconds - alarmSetTime
