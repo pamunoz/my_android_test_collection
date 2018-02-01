@@ -13,6 +13,8 @@ import android.net.Uri
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import com.pfariasmunoz.timertutorial.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NotificationUtil {
     companion object {
@@ -38,6 +40,38 @@ class NotificationUtil {
             // Now create the notification
             nManager.notify(TIMER_ID, nBuilder.build())
         }
+
+        fun showTimerRunning(context: Context, wakeUpTime: Long) {
+            // stop intent
+            val stopIntent = Intent(context, TimerNotificationActionReceiver::class.java)
+            stopIntent.action = AppConstants.ACTION_STOP
+            val stopPendingIntent = PendingIntent.getBroadcast(context, 0,
+                    stopIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+            // stop intent
+            val pauseIntent = Intent(context, TimerNotificationActionReceiver::class.java)
+            pauseIntent.action = AppConstants.ACTION_STOP
+            val pausePendingIntent = PendingIntent.getBroadcast(context, 0,
+                    pauseIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+            val dateFormat = SimpleDateFormat.getTimeInstance(SimpleDateFormat.SHORT)
+
+
+            // Create the actual notifications
+            val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, true)
+            nBuilder.setContentTitle("Timer is Running.")
+                    .setContentText("End: ${dateFormat.format(Date(wakeUpTime))}")
+                    .setContentIntent(getPendingIntentWithStack(context, TimerActivity::class.java))
+                    .setOngoing(true) // the user cannot dismiss the notification manually
+                    .addAction(R.drawable.ic_stop, "Stop", stopPendingIntent)
+                    .addAction(R.drawable.ic_pause, "Pause", pausePendingIntent)
+            val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, true)
+            // Now create the notification
+            nManager.notify(TIMER_ID, nBuilder.build())
+        }
+
+
 
         private fun getBasicNotificationBuilder(
                 context: Context, channeLId: String, playSound: Boolean)
