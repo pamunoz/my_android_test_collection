@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.Z
+import com.pfariasmunoz.timertutorial.util.PrefUtil
 
 import kotlinx.android.synthetic.main.activity_timer.*
 
@@ -67,6 +68,10 @@ class TimerActivity : AppCompatActivity() {
         else if (timerState == TimerState.PAUSED) {
             // TODO: show notification
         }
+
+        PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, this)
+        PrefUtil.setSecondsRemaining(secondsRemaining, this)
+        PrefUtil.setTimerState(timerState, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
