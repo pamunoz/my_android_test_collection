@@ -42,6 +42,11 @@ class TimerActivity : AppCompatActivity() {
             updateButtons()
         }
 
+        fab_stop.setOnClickListener { v ->
+            timer.cancel()
+            onTimerFinished()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
