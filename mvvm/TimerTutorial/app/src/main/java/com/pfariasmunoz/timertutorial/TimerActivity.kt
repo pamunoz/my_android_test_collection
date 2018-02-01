@@ -1,18 +1,42 @@
 package com.pfariasmunoz.timertutorial
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View.Z
 import com.pfariasmunoz.timertutorial.util.PrefUtil
-
 import kotlinx.android.synthetic.main.activity_timer.*
 import kotlinx.android.synthetic.main.content_timer.*
+import java.util.*
 
 class TimerActivity : AppCompatActivity() {
+
+    companion object {
+        fun setAlarm(context: Context, nowSeconds: Long, secondsRemaining: Long): Long {
+            val wakeUpTime = (nowSeconds + secondsRemaining) * 1000
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent(context, TimerExpiredReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, wakeUpTime, pendingIntent)
+            PrefUtil.setAlarmSetTime(nowSeconds, context)
+            return wakeUpTime
+        }
+
+        fun removeAlarm(context: Context) {
+            val intent = Intent(context, TimerExpiredReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmManager.cancel(pendingIntent)
+            PrefUtil.setAlarmSetTime(0, context)
+        }
+        val nowSeconds: Long
+            get() = Calendar.getInstance().timeInMillis / 1000
+    }
 
     enum class TimerState{
         STOPPED, PAUSED, RUNNING
@@ -138,7 +162,8 @@ class TimerActivity : AppCompatActivity() {
         val secondsInMinutesUntilFinished = secondsRemaining - minutesUntilFinished * 60
         val sedondsStr = secondsInMinutesUntilFinished.toString()
         textView_countdown.text = "$minutesUntilFinished:${
-            if(sedondsStr.length == 2) sedondsStr else "0" + sedondsStr}"
+            if(sedondsStr.length == 2) sedondsStr else "0" + sedondsStr
+        }"
         progress_countdown.progress = (timerLengthSeconds - secondsRemaining).toInt()
     }
 
