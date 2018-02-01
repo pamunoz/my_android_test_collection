@@ -1,6 +1,7 @@
 package com.pfariasmunoz.timertutorial
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -9,6 +10,16 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_timer.*
 
 class TimerActivity : AppCompatActivity() {
+
+    enum class TimerState{
+        STOPPED, PAUSED, RUNNING
+    }
+
+    private lateinit var timer: CountDownTimer
+    private var timerLengthSeconds = 0L
+    private var timerState = TimerState.STOPPED
+
+    private var secondsRemaining = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
