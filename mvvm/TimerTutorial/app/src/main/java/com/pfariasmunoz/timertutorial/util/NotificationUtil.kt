@@ -34,6 +34,9 @@ class NotificationUtil {
                     .setContentIntent(getPendingIntentWithStack(context, TimerActivity::class.java))
                     .addAction(R.drawable.ic_play, "Start", startPendingIntent)
             val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, true)
+            // Now create the notification
+            nManager.notify(TIMER_ID, nBuilder.build())
         }
 
         private fun getBasicNotificationBuilder(
@@ -62,8 +65,8 @@ class NotificationUtil {
         }
 
         @TargetApi(26)
-        private fun NotificationManager.createNotificationChannel(channeLId: String,
-                                                                  channelName: String
+        private fun NotificationManager.createNotificationChannel(channelId: String,
+                                                                  channelName: String,
                                                                     playSound: Boolean) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 // Here we control if we can play sound in oreo or later
@@ -72,7 +75,7 @@ class NotificationUtil {
                 } else {
                     NotificationManager.IMPORTANCE_LOW
                 }
-                val nChannel = NotificationChannel(channeLId, channelName, channelImportance)
+                val nChannel = NotificationChannel(channelId, channelName, channelImportance)
                 nChannel.enableLights(true)
                 nChannel.lightColor = Color.BLUE
                 this.createNotificationChannel(nChannel)
