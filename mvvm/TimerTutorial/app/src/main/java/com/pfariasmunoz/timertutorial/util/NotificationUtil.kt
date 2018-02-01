@@ -91,6 +91,11 @@ class NotificationUtil {
             nManager.notify(TIMER_ID, nBuilder.build())
         }
 
+        fun hideTimerNotification(context: Context) {
+            val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            nManager.cancel(TIMER_ID)
+        }
+
         private fun getBasicNotificationBuilder(
                 context: Context, channeLId: String, playSound: Boolean)
                 : NotificationCompat.Builder {
