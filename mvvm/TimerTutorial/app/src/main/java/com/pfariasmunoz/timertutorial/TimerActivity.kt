@@ -89,7 +89,8 @@ class TimerActivity : AppCompatActivity() {
 
         if (timerState == TimerState.RUNNING) {
             timer.cancel()
-            // TODO: start background timer and show notification
+            val wakeUpTime = setAlarm(this, nowSeconds, secondsRemaining)
+            // TODO: show notification
         }
         else if (timerState == TimerState.PAUSED) {
             // TODO: show notification
