@@ -80,7 +80,8 @@ class TimerActivity : AppCompatActivity() {
 
         initTimer()
 
-        //TODO: remove background timer, hide notification
+        //TODO: hide notification
+        removeAlarm(this)
     }
 
     override fun onPause() {
