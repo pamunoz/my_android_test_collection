@@ -127,6 +127,11 @@ class TimerActivity : AppCompatActivity() {
         progress_countdown.max = timerLengthSeconds.toInt()
     }
 
+    private fun setPreviousTimerLength() {
+        timerLengthSeconds = PrefUtil.getPreviousTimerLengthSeconds(this)
+        progress_countdown.max = timerLengthSeconds.toInt()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_timer, menu)
