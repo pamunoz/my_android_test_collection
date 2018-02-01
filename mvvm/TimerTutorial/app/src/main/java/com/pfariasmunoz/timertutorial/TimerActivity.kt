@@ -115,8 +115,13 @@ class TimerActivity : AppCompatActivity() {
         }
 
         // TODO: change secondsRemaining according to where the background timer stopped
+        val alarmSetTime = PrefUtil.getAlarmSetTime(this)
+        if (alarmSetTime > 0) {
+            secondsRemaining -= nowSeconds - alarmSetTime
+        } else if (timerState == TimerState.RUNNING) {
+            startTimer()
+        }
 
-        // resume where we left off
         if (timerState == TimerState.RUNNING) startTimer()
         updateButtons()
         updateCountdownUI()
