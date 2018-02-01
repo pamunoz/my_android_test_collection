@@ -71,7 +71,25 @@ class NotificationUtil {
             nManager.notify(TIMER_ID, nBuilder.build())
         }
 
-
+        fun showTimerPaused(context: Context) {
+            // We want to be able to control the timer from notifications
+            val resumeIntent = Intent(context, TimerNotificationActionReceiver::class.java)
+            // specify actions for the intent
+            resumeIntent.action = AppConstants.ACTION_RESUME
+            val resumePendingIntent = PendingIntent.getBroadcast(context, 0,
+                    resumeIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+            // Create the actual notifications
+            val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, true)
+            nBuilder.setContentTitle("Timer is paused.")
+                    .setContentText("Resume?")
+                    .setContentIntent(getPendingIntentWithStack(context, TimerActivity::class.java))
+                    .setOngoing(true)
+                    .addAction(R.drawable.ic_play, "Resume", resumePendingIntent)
+            val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, true)
+            // Now create the notification
+            nManager.notify(TIMER_ID, nBuilder.build())
+        }
 
         private fun getBasicNotificationBuilder(
                 context: Context, channeLId: String, playSound: Boolean)
