@@ -49,6 +49,26 @@ class TimerActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        initTimer()
+
+        //TODO: remove background timer, hide notification
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        if (timerState == TimerState.RUNNING) {
+            timer.cancel()
+            // TODO: start background timer and show notification
+        }
+        else if (timerState == TimerState.PAUSED) {
+            // TODO: show notification
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_timer, menu)
