@@ -140,8 +140,26 @@ class TimerActivity : AppCompatActivity() {
         textView_countdown.text = "$minutesUntilFinished:${
             if(sedondsStr.length == 2) sedondsStr else "0" + sedondsStr}"
         progress_countdown.progress = (timerLengthSeconds - secondsRemaining).toInt()
+    }
 
-
+    private fun updateButtons() {
+        when(timerState) {
+            TimerState.RUNNING -> {
+                fab_start.isEnabled = false
+                fab_pause.isEnabled = true
+                fab_stop.isEnabled = true
+            }
+            TimerState.STOPPED -> {
+                fab_start.isEnabled = true
+                fab_pause.isEnabled = false
+                fab_stop.isEnabled = false
+            }
+            TimerState.PAUSED -> {
+                fab_start.isEnabled = true
+                fab_pause.isEnabled = false
+                fab_stop.isEnabled = true
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
