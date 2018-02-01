@@ -10,6 +10,7 @@ import android.view.View.Z
 import com.pfariasmunoz.timertutorial.util.PrefUtil
 
 import kotlinx.android.synthetic.main.activity_timer.*
+import kotlinx.android.synthetic.main.content_timer.*
 
 class TimerActivity : AppCompatActivity() {
 
@@ -94,6 +95,19 @@ class TimerActivity : AppCompatActivity() {
         updateButtons()
         updateCountdownUI()
 
+    }
+
+    private fun onTimerFinished() {
+        timerState = TimerState.STOPPED
+        // We set the length of the timer to be the one set on the settings activity
+        // if the length was changed when the timer was running
+        setNewTimerLength()
+
+        progress_countdown.progress = 0
+        PrefUtil.setSecondsRemaining(timerLengthSeconds, this)
+        secondsRemaining = timerLengthSeconds
+        updateButtons()
+        updateCountdownUI()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
