@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View.Z
 
 import kotlinx.android.synthetic.main.activity_timer.*
 
@@ -34,7 +35,13 @@ class TimerActivity : AppCompatActivity() {
             timerState = TimerState.RUNNING
             updateButtons()
         }
-        
+
+        fab_pause.setOnClickListener { v ->
+            timer.cancel()
+            timerState = TimerState.PAUSED
+            updateButtons()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
