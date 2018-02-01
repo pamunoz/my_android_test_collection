@@ -27,6 +27,14 @@ class TimerActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setIcon(R.drawable.ic_timer)
         supportActionBar?.title = "      Timer"
+
+        // add funtionality to the fabButtons
+        fab_start.setOnClickListener { v ->
+            startTimer()
+            timerState = TimerState.RUNNING
+            updateButtons()
+        }
+        
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
