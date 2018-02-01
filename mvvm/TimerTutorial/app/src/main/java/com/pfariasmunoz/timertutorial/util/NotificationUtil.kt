@@ -1,16 +1,18 @@
 package com.pfariasmunoz.timertutorial.util
 
+import android.annotation.TargetApi
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.media.RingtoneManager
 import android.net.Uri
+import android.os.Build
 import android.support.v4.app.NotificationCompat
-import com.pfariasmunoz.timertutorial.AppConstants
-import com.pfariasmunoz.timertutorial.R
-import com.pfariasmunoz.timertutorial.TimerActivity
-import com.pfariasmunoz.timertutorial.TimerNotificationActionReceiver
+import com.pfariasmunoz.timertutorial.*
 
 class NotificationUtil {
     companion object {
@@ -31,6 +33,7 @@ class NotificationUtil {
                     .setContentText("Start again?")
                     .setContentIntent(getPendingIntentWithStack(context, TimerActivity::class.java))
                     .addAction(R.drawable.ic_play, "Start", startPendingIntent)
+            val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         }
 
         private fun getBasicNotificationBuilder(
@@ -56,6 +59,24 @@ class NotificationUtil {
             stackBuilder.addNextIntent(resultIntent)
 
             return stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
+        @TargetApi(26)
+        private fun NotificationManager.createNotificationChannel(channeLId: String,
+                                                                  channelName: String
+                                                                    playSound: Boolean) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                // Here we control if we can play sound in oreo or later
+                val channelImportance = if (playSound) {
+                    NotificationManager.IMPORTANCE_DEFAULT
+                } else {
+                    NotificationManager.IMPORTANCE_LOW
+                }
+                val nChannel = NotificationChannel(channeLId, channelName, channelImportance)
+                nChannel.enableLights(true)
+                nChannel.lightColor = Color.BLUE
+                this.createNotificationChannel(nChannel)
+            }
         }
 
     }
