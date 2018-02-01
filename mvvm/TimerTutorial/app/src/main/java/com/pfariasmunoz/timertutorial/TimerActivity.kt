@@ -110,6 +110,17 @@ class TimerActivity : AppCompatActivity() {
         updateCountdownUI()
     }
 
+    private fun startTimer() {
+        timerState = TimerState.RUNNING
+        timer= object : CountDownTimer(secondsRemaining * 1000, 1000) {
+            override fun onFinish() = onTimerFinished()
+            override fun onTick(millisUntilFinished: Long) {
+                secondsRemaining = millisUntilFinished / 1000
+                updateCountdownUI()
+            }
+        }.start()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_timer, menu)
